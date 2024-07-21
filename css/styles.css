@@ -1,31 +1,100 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('montserrat.eot');
+    src:    url('../fonts/monsterrat/montserrat.eot?#iefix') format('embedded-opentype'),
+            url('../fonts/monsterrat/montserrat.woff2') format('woff2'),
+            url('../fonts/monsterrat/montserrat.woff') format('woff'),
+            url('../fonts/monsterrat/montserrat.ttf') format('truetype'),
+            url('../fonts/monsterrat/montserrat.svg#montserrat') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('montserrat-italic.eot');
+    src:    url('../fonts/monsterrat/montserrat-italic.eot?#iefix') format('embedded-opentype'), 
+            url('../fonts/monsterrat/montserrat-italic.woff2') format('woff2'),
+            url('../fonts/monsterrat/montserrat-italic.woff') format('woff'),
+            url('../fonts/monsterrat/montserrat-italic.ttf') format('truetype'),
+            url('../fonts/monsterrat/montserrat-italic.svg#montserrat-Italic') format('svg');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+}
+
+:root {
+    --purple-color: #A22F9B;
+    --pink-color: #DD41B8;
+    --blue-color: #09072B;
+    --text-color: #FCFAFA;
 }
 
 body {
     background-image: url('../img/bg.png');
     background-position: top;
     background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
     height: 100vh;
     width: 100vw;
 }
 
 main {
+    grid-area: m;
     display: flex;
     flex-direction: column;
-    height: 75vh;
-    width: 70vw;
-
+    height: 69vh;
+    width: 69vw;
+    border-radius: 1vw 1vw 0 0;
+    overflow: hidden;
+    box-shadow: black 0 0 1vw;
 }
 
 nav {
-    background-color: #333;
-    color: white;
-    padding: 10px;
+    background-color: var(--purple-color);
+    padding: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 content {
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 67vh;
+    background-color: black;
+}
+
+footer{
+    grid-area: f;
+    background-color: var(--blue-color);
+    color: var(--text-color);
+    padding: 2vh;
+    text-align: center;
+    width: 100vw;
 }
