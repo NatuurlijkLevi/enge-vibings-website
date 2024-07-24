@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+p, h1, h2, h3, h4, h5, h6, i {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+}
+
+:root {
+    --purple-color: #A22F9B;
+    --pink-color: #DD41B8;
+    --hover-pink-color: #DD41B85a;
+    --blue-color: #09072B;
+    --transparent-black-color: rgba(0, 0, 0, 0.85);
+    --text-color: #FCFAFA;
+
+    --regular: normal;
+    --medium: 500;
+    --semi-bold: 600;
+    --bold: bold;
+}

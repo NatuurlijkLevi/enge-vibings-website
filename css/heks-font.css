@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'An Old Witch';
+    src: url('../fonts/AnOldWitch.eot');
+    src: url('../fonts/AnOldWitch.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AnOldWitch.woff2') format('woff2'),
+        url('../fonts/AnOldWitch.woff') format('woff'),
+        url('../fonts/AnOldWitch.ttf') format('truetype'),
+        url('../fonts/AnOldWitch.svg#MB-AnOldWitch') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

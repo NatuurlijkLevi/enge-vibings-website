@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'BlackChancery';
+    src: url('../fonts/BlackChancery.eot');
+    src: url('../fonts/BlackChancery.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BlackChancery.woff2') format('woff2'),
+        url('../fonts/BlackChancery.woff') format('woff'),
+        url('../fonts/BlackChancery.ttf') format('truetype'),
+        url('../fonts/BlackChancery.svg#BlackChancery') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FrederickText';
+    src: url('../fonts/FrederickText.eot');
+    src: url('../fonts/FrederickText.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FrederickText.woff2') format('woff2'),
+        url('../fonts/FrederickText.woff') format('woff'),
+        url('../fonts/FrederickText.ttf') format('truetype'),
+        url('../fonts/FrederickText.svg#FrederickText') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
