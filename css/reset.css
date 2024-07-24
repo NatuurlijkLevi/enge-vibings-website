@@ -18,6 +18,7 @@ p, h1, h2, h3, h4, h5, h6, i {
     --blue-color: #09072B;
     --transparent-black-color: rgba(0, 0, 0, 0.85);
     --text-color: #FCFAFA;
+    --transparent-white-color: rgba(255, 255, 255, 0.7);
 
     --regular: normal;
     --medium: 500;

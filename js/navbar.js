@@ -24,8 +24,7 @@ linkItems.forEach((item) => {
         header.className = "visible";
         main.children[1].children[0].style.display = "none";
         setTimeout(() => {
-          main.children[1].innerHTML =
-          "<p>Logeerpartijtje</p>";
+          main.children[1].innerHTML ="<iframe src='logeerpartijtje.html'></iframe>";
         }, 750);
       }
       else if (item.innerHTML == "<p>Games</p>") {
