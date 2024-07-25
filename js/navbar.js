@@ -32,7 +32,7 @@ linkItems.forEach((item) => {
         header.className = "";
         main.children[1].children[0].style.display = "none";
         setTimeout(() => {
-          main.children[1].innerHTML = "<p>Games</p>";
+          main.children[1].innerHTML = "<iframe src='games.html'></iframe>";
         }, 750);
       }
     }

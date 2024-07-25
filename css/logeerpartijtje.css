@@ -1,46 +1,53 @@
 body {
     display: flex;
     gap: 2vw;
-    padding: 2vw 0;
+    padding: 0 2vw;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 div#dashboard {
+    height: 100vh;
+    width: 84vw;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr 1fr;
-    grid-template-areas:    "header"
-                            "header"
-                            "main"
-                            "footer";
+    grid-template-columns: 4fr 2fr 2fr 2fr;
+    grid-template-rows: 4fr 3fr 1fr;
+    grid-template-areas:    "ws hs hs hs"
+                            "kk hs hs hs"
+                            "kk pt kw hw";
+    box-shadow: 0 0 2vw rgba(0, 0, 0, 1);
 }
 
+#koningkaarten {grid-area: kk;}
+#heksensoep {grid-area: hs;}
+#wheelspinner {grid-area: ws;}
+
+#presentatie {grid-area: pt;}
+#koningwisselaar {grid-area: kw;}
+#hekswisselaar {grid-area: hw;}
+
 article {
+    margin: 2vw 0;
     display: flex;
-    flex-direction: column;
-    padding: 3vw 2vw;
+    align-items: center;
     justify-content: center;
     border: 1px solid var(--purple-color);
-    border-radius: 1vw;
+    border-radius: 2vw;
+    height: 92vh;
+    width: 12vw;
     background-color: var(--transparent-white-color);
     font-family: 'Montserrat', sans-serif;
 }
 
-h4{
-    padding: 1vw 0;
-}
-
-h4:nth-child(odd)
-{
-    padding-bottom: 0;
-}
-
-h1:first-child {
-    padding: 1vw 0;
-    padding-top: 0;
+article > div {
+    height: inherit;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 p, h1, li {
@@ -48,14 +55,9 @@ p, h1, li {
     font-size: 5vh;
 }
 
-h1{
-    padding: 1vw 0;
-}
-
 li {
     list-style: number;
-}
-
-ul {
-    padding-left: 1vw;
+    list-style-position: inside;
+    direction: ltr;
+    width: fit-content;
 }

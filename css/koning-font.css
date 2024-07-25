@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'BlackChancery';
-    src: url('../fonts/BlackChancery.eot');
-    src: url('../fonts/BlackChancery.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/BlackChancery.woff2') format('woff2'),
-        url('../fonts/BlackChancery.woff') format('woff'),
-        url('../fonts/BlackChancery.ttf') format('truetype'),
-        url('../fonts/BlackChancery.svg#BlackChancery') format('svg');
+    src: url('../fonts/koning/BlackChancery.eot');
+    src: url('../fonts/koning/BlackChancery.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/koning/BlackChancery.woff2') format('woff2'),
+        url('../fonts/koning/BlackChancery.woff') format('woff'),
+        url('../fonts/koning/BlackChancery.ttf') format('truetype'),
+        url('../fonts/koning/BlackChancery.svg#BlackChancery') format('svg');
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -13,12 +13,12 @@
 
 @font-face {
     font-family: 'FrederickText';
-    src: url('../fonts/FrederickText.eot');
-    src: url('../fonts/FrederickText.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/FrederickText.woff2') format('woff2'),
-        url('../fonts/FrederickText.woff') format('woff'),
-        url('../fonts/FrederickText.ttf') format('truetype'),
-        url('../fonts/FrederickText.svg#FrederickText') format('svg');
+    src: url('../fonts/koning/FrederickText.eot');
+    src: url('../fonts/koning/FrederickText.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/koning/FrederickText.woff2') format('woff2'),
+        url('../fonts/koning/FrederickText.woff') format('woff'),
+        url('../fonts/koning/FrederickText.ttf') format('truetype'),
+        url('../fonts/koning/FrederickText.svg#FrederickText') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

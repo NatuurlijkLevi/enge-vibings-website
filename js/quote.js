@@ -13,7 +13,7 @@ const amberQuotes = [
     "Wat is een brug?!?!",
     "Ik ben bergen aan het zandificeren.",
     "Australiaans.",
-    "Ik zeg altijd <b>*au*</b> als iemand Texas zegt."
+    "Ik zeg altijd au als iemand Texas zegt."
 ];
 const jordanQuotes = [
     "Dillema.",
@@ -88,7 +88,7 @@ function getRandomName(names) {
 
 function chooseRandomPerson(){
     const namesArray = ["amber", "jordan", "levi", "loek", "luuk", "stef"];
-    const randomIndex = Math.floor(Math.random() * (namesArray.length - 1));
+    const randomIndex = Math.floor(Math.random() * (namesArray.length));
     const randomPerson = namesArray[randomIndex];
     return randomPerson;
 }

@@ -1,0 +1,55 @@
+:root {
+    --beige: #FDF7EB;
+    --dark-beige: #EBDAC0;
+}
+
+body{
+    background-image: url("../../img/koning.png");
+    background-size: 15vw;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4vw;
+    gap: 4vw;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 4vw;
+}
+
+h1{
+    color: black;
+    font-family: 'FrederickText', sans-serif;
+    font-size: 10vh;
+    font-weight: 600;
+}
+
+button, p {
+    font-family: 'BlackChancery', sans-serif;
+    color: black;
+    font-size: 6vh;
+}
+
+button{
+    background-color: var(--beige);
+    border: none;
+    border-radius: 1vw;
+    padding: 1vw;
+    cursor: pointer;
+    transition: 500ms linear;
+    text-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.50) 0 0 2vw;
+}
+
+button:hover{
+    background-color: var(--dark-beige);
+    transition: 500ms linear;
+}

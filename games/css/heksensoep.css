@@ -1,0 +1,89 @@
+body {
+    background-image: url('../../img/heksensoep.svg'), linear-gradient(to bottom, #91389f, #91389f, #91389f, #91389f, #623488, #382b6c, #151f4c, #000f2c);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100vw;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+}
+
+#ketel-inhoud {
+    fill: var(--huidige-soepkleur);
+    transition: 500ms;
+}
+
+#ketel {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+#ketel-bubbels {
+    position:absolute;
+    width:17%;
+    height: 69%;
+    z-index:0;
+    overflow:hidden;
+    top:0;
+}
+
+article {
+    margin: 7vh;
+    margin-left: 0;
+    width: 61vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    padding: 4vh;
+    justify-content: center;
+    align-items: left;
+    background-color: rgba(255, 255, 255, 0.65);
+    border-radius: 2vw;
+}
+
+#ingredienten-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingredient {
+    padding-bottom: 1vw;
+    border-radius: 1vw;
+    background-image: radial-gradient();
+    background-image: radial-gradient(var(--huidige-soepkleur), #D9D9D9 80%);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    transition: 500ms;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.25);
+}
+
+.ingredient img {
+    width: 19vh;
+    height: 15vh;
+    transition: 500ms;
+}
+
+p, h1 {
+    font-family: 'AnOldWitch', sans-serif;
+    color: black;
+    font-size: 2.8vh;
+}
+
+h1 {
+    font-size: 7vh;
+}
+
+svg {
+    width: 30vw;
+    margin-bottom: 7vh;
+}

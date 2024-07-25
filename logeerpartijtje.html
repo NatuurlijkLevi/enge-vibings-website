@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logeerpartijtje</title>
     <link rel="stylesheet" href="css/monsterrat-font.css">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/logeerpartijtje.css">
+    <script src="js/logeerpartijtje.js" defer></script>
 </head>
 <body>
     <div id="dashboard">
-
+        <iframe src="games/koningkaarten.html" id="koningkaarten"></iframe>
+        <iframe src="games/heksensoep.html" id="heksensoep"></iframe>
+        <iframe src="games/wheelspinner.html" id="wheelspinner"></iframe>
+        <section id="presentatie">
+            <button>Presentatie</button>
+        </section>
+        <section id="koningwisselaar">
+            <input type="text" placeholder="Koning">
+            <button>Verstuur</button>
+        </section>
+        <section id="hekswisselaar">
+            <input type="text" placeholder="Koning">
+            <button>Verstuur</button>
+        </section>
     </div>
     <article>
-        <h1>Volgorde:</h1>
-        <ul>
-            <li><p>Amber</p></li>
-            <li><p>Jordan</p></li>
-            <li><p>Levi</p></li>
-            <li><p>Loek</p></li>
-            <li><p>Luuk</p></li>
-            <li><p>Stef</p></li>
-        </ul>
-        <h1>Koning:</h1>
-        <p>Stef</p>
-        <h1>Heks:</h1>
-        <p>Amber</p>
+        <div>
+            <section>
+                <h1>Volgorde:</h1>
+                <ul>
+                    <li>Amber</li>
+                    <li>Jordan</li>
+                    <li>Levi</li>
+                    <li>Loek</li>
+                    <li>Luuk</li>
+                    <li>Stef</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Koning:</h1>
+                <p>Stef</p>
+            </section>
+            <section>
+                <h1>Heks:</h1>
+                <p>Amber</p>
+            </section>
+        </div>
     </article>
 </body>
 </html>
