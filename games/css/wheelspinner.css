@@ -1,0 +1,16 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.wheel-container {
+    overflow: hidden;
+    width: 80vh;
+    height: 80vh;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 1vh black);
+}
