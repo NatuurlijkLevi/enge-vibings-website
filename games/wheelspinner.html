@@ -8,9 +8,49 @@
     <link rel="stylesheet" href="../css/monsterrat-font.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/reset.css">
-    <script type="module" src="js/wheelspinner.js"></script>
+    <script type="module" src="js/wheelspinner.js" defer></script>
 </head>
 <body>
-    <div class="wheel-container"></div>
+    <aside>
+        <div id="buttonwrapper">
+            <button id="clicked">Volgorde</button>
+            <button>Koning</button>
+            <button>Heks</button>
+            <button>Naam</button>
+        </div>
+    </aside>
+    <section>
+        <svg width="96" height="83" viewBox="0 0 96 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_47_166)">
+                <path d="M48 75L4.69874 -8.15666e-06L91.3013 -5.85622e-07L48 75Z" fill="url(#paint0_linear_47_166)"/>
+                <path d="M89.5692 0.999999L48 73L6.43079 0.999992L89.5692 0.999999Z" stroke="url(#paint1_linear_47_166)" stroke-width="2"/>
+            </g>
+            <defs>
+                <filter id="filter0_d_47_166" x="0.69873" y="0" width="94.6025" height="83" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="4"/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_47_166"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_47_166" result="shape"/>
+                </filter>
+                <linearGradient id="paint0_linear_47_166" x1="48" y1="-25" x2="48" y2="75" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#927E87"/>
+                    <stop offset="1" stop-color="#C29EAF"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear_47_166" x1="48" y1="0.500004" x2="48" y2="75" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#9F808F"/>
+                    <stop offset="0.9999" stop-color="#947F89"/>
+                    <stop offset="1" stop-color="#8A7780"/>
+                </linearGradient>
+            </defs>
+        </svg>        
+        <div class="wheel-container"></div>
+        <div id="spinbutton-container">
+            <div id="spinbutton">SPIN</div>
+        </div>
+    </section>
 </body>
 </html>

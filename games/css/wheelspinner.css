@@ -7,10 +7,80 @@ body {
     overflow: hidden;
 }
 
+section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 100vh;
+}
+
 .wheel-container {
     overflow: hidden;
     width: 80vh;
     height: 80vh;
     border-radius: 50%;
     filter: drop-shadow(0 0 1vh black);
+}
+
+#spinbutton {
+    width: 19vh;
+    height: 19vh;
+    background-image: linear-gradient(180deg, #C29EAF, #5C4B53);
+    color: var(--text-color);
+    font-size: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+}
+
+#spinbutton-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-image: linear-gradient(180deg, #5C4B53, #C29EAF);
+    transform: translate(-50%, -50%);
+    width: 20vh;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#spinbutton-container:active > #spinbutton {
+    width: 17.5vh;
+    height: 17.5vh;
+}
+
+svg {
+    position: absolute;
+    width: 15vh;
+    height: 15vh;
+    transform: translate(-50%, -50%);
+    top: 13vh;
+    left: 50%;
+    z-index: 100;
+}
+
+aside {
+    padding:3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside > div#buttonwrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vh;
+    padding: 5vh;
 }
