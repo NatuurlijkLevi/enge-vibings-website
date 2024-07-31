@@ -29,6 +29,36 @@ div#dashboard {
 #koningwisselaar {grid-area: kw;}
 #hekswisselaar {grid-area: hw;}
 
+#presentatie, #koningwisselaar, #hekswisselaar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+}
+
+#presentatie > button {
+    width: 95%;
+    height: 70%;
+    font-size: 4vh;
+}
+
+#koningwisselaar > button, #hekswisselaar > button {
+    width: 50%;
+    height: 40%;
+    font-size: 2.5vh;
+}
+
+#koningwisselaar > input, #hekswisselaar > input {
+    width: 95%;
+    height: 40%;
+    font-size: 2.5vh;
+    border: none;
+    border-radius: 1vw;
+    text-align: center;
+    padding: 2%;
+    font-family: 'Montserrat', sans-serif;
+}
+
 article {
     margin: 2vw 0;
     display: flex;
@@ -68,3 +98,4 @@ section:nth-child(1n+2){
     display: flex;
     flex-direction: column;
 }
+

@@ -48,7 +48,12 @@ button:hover {
     cursor: pointer;
 }
 
-#clicked {
+button:active {
+    background-color: var(--pink-color);
+    transition: 500ms;
+}
+
+#selected {
     background-color: var(--pink-color);
     transition: 500ms;
     cursor: unset;
