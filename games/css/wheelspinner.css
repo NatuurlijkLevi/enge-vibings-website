@@ -5,6 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background-color: #3CBEDE33;
 }
 
 section {
@@ -70,17 +71,21 @@ svg {
 }
 
 aside {
-    padding:3vh;
+    border-radius: 4vh;
+    padding: 1.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(180deg, #836a7599, #93778499);
 }
 
 aside > div#buttonwrapper {
+    border-radius: 4vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 5vh;
     padding: 5vh;
+    background-image: linear-gradient(180deg, #C29EAF99, #927E8799);
 }

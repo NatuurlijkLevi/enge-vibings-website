@@ -4,7 +4,7 @@ const amberNames = ["Amber", "Wasbeer", "HammieDeHam", "HammieDeHamer", "Amber M
 const jordanNames = ["Jordan", "iJordan_", "jordansoerendonk", "ItsJordanNL", "Zratan", "Jordan Johannes Romanus Adrianus Koevoets"];
 const leviNames = ["Levi", "NatuurlijkLevi", "Leviman", "GewoonLevi", "HenryJonesJunior1", "HenryGamingYT", "Levi Meijer"];
 const loekNames = ["Loek", "LOEKMANS", "Loekman", "loekmeneerman", "LivingRoomPlant", "Just Some Guy", "Plant", "Kamerplant", "Dode plant", "Dode kamerplant", "loekmeneer", "Loek Theodoris Adrianus van Kessel", "Loek Theodoris Adrianus van Kessel Govers"];
-const luukNames = ["Luuk", "LuckyBoy", "LuckyBoy1203", "LuckyBoy2003", "Luukman", "Eduward Lucas Rademakers", "Edward Lucas Rademakers", "Luuk Rademakers"];
+const luukNames = ["Luuk", "LuckyBoy", "LuckyBoy1203", "LuckyBoy2003", "Luukman", "Paul", "PAULLLLLL!!!!", "Eduward Lucas Rademakers", "Edward Lucas Rademakers", "Luuk Rademakers"];
 const stefNames =  ["Stef", "Steef", "SteefNL", "vishengelman", "Brandweerman Sam", "ZwartePietGaming", "Freek11111", "SteefNLGamerino", "Stef van Herk"];
 
 const amberQuotes = [

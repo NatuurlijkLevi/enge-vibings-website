@@ -120,7 +120,7 @@ function resetNames(){
 function resetWheel() {
   container.innerHTML = "";
   wheel = new Wheel(container, props);
-  wheel.itemBackgroundColors = ['#3CBEDE', '#DD41B8', '#455DA5', '#96299C'];
+  wheel.itemBackgroundColors = ['#3CBEDE', '#DD41B8', '#455DA5', '#96299C', '#455DA5', '#DD41B8'];
   wheel.lineWidth = 0;
   wheel.borderWidth = 0;
   wheel.itemLabelColors = ['#FCFAFA'];

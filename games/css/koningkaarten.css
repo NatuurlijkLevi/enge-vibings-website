@@ -10,7 +10,7 @@ body{
     height: 100vh;
     width: 100vw;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
     padding: 4vw;
@@ -22,6 +22,7 @@ article{
     flex-direction: column;
     align-items: left;
     justify-content: center;
+    width: 100%;
     gap: 4vw;
 }
 
