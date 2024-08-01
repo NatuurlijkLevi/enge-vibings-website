@@ -100,3 +100,22 @@
         transform:translateX(-10.417vw);
     }
 }
+
+@keyframes putInSoup{
+    0%{
+        bottom: 50vh;
+        opacity: 1;
+    }
+    100%{
+        bottom: 0vh;
+        opacity: 0;
+    }
+}
+
+img {
+    position: absolute;
+    bottom: 50vh;
+    transform: translate(-50%, 50%);
+    left: 50vw;
+    animation: putInSoup 1s ease-in-out;
+}

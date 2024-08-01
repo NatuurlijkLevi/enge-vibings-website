@@ -423,13 +423,13 @@ function drawRandomCard()
     const r = Math.random();
     cardValue = Math.floor(r * 200);
 
-    if (!numberNine) {
-        while (cardValue === 9)
+    if (numberNine) {
+        while (cardValue == 9)
         {
             cardValue = Math.floor(r * 200);
         }
+        numberNine = false;
     }
-
     koningH1.innerHTML = card[0][cardValue];
     koningP.innerHTML = card[1][cardValue];
 

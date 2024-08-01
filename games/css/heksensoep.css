@@ -68,6 +68,18 @@ article {
     box-shadow: 0 0 1vw rgba(0, 0, 0, 0.25);
 }
 
+.ingredient:hover{
+    transform: scale(1.1);
+    transition: 500ms;
+    cursor: pointer;
+}
+
+.ingredient:hover > div > img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 1vw rgba(0, 0, 0, 0.25));
+    transition: 500ms;
+}
+
 .ingredient > div {
     background-image: url('img/ingredienten/bg.jpg');
     width: 19vh;
@@ -88,4 +100,9 @@ h1 {
 svg {
     width: 30vw;
     margin-bottom: 7vh;
+}
+
+.used {
+    filter: grayscale(100%);
+    transition: 500ms;
 }
