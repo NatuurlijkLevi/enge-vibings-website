@@ -1,6 +1,6 @@
 :root {
     --huidige-soepkleur: var(--kokend-water);
-    --kokend-water: #d4f1f9;
+    --kokend-water: #8ed1e3;
     --groene-soep: #00ff00;
     --rode-soep: #ff0000;
     --blauwe-soep: #0000ff;
@@ -8,17 +8,7 @@
     --paarse-soep: #800080;
     --oranje-soep: #ff7f00;
     --witte-soep: #ffffff;
-    --grijze-soep: #808080;
     --bruine-soep: #a52a2a;
     --roze-soep: #ff69b4;
     --turquoise-soep: #40e0d0;
-    --zilver-soep: #c0c0c0;
-    --goud-soep: #ffd700;
-    --koper-soep: #b87333;
-    --zink-soep: #b0c4de;
-    --nikkel-soep: #c0d0e0;
-    --lood-soep: #708090;
-    --ijzer-soep: #43464b;
-    --tin-soep: #b5ae60;
-    --aluminium-soep: #a9a9a9;
 }

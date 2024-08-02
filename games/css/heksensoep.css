@@ -68,6 +68,22 @@ article {
     box-shadow: 0 0 1vw rgba(0, 0, 0, 0.25);
 }
 
+.ingredient > div {
+    background-image: url('img/ingredienten/bg.jpg');
+    width: 19vh;
+    height: 14vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 500ms;
+}
+
+.ingredient > div > img {
+    width: 70%;
+    height: 70%;
+    transition: 500ms;
+}
+
 .ingredient:hover{
     transform: scale(1.1);
     transition: 500ms;
@@ -77,13 +93,6 @@ article {
 .ingredient:hover > div > img {
     transform: scale(1.1);
     filter: drop-shadow(0 0 1vw rgba(0, 0, 0, 0.25));
-    transition: 500ms;
-}
-
-.ingredient > div {
-    background-image: url('img/ingredienten/bg.jpg');
-    width: 19vh;
-    height: 14vh;
     transition: 500ms;
 }
 
