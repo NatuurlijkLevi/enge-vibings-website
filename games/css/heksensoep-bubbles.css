@@ -1,3 +1,12 @@
+@keyframes addColorToSoep {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 #bubbles{
     position:absolute;
     width:100%;
@@ -12,12 +21,32 @@
     bottom:-5.208vw;
     width:8.336vw;
     height:8.336vw;
-    background: var(--huidige-soepkleur);
+    background: var(--kokend-water);
     border-radius:50%;
     opacity:0.5;
     animation: rise 10s infinite ease-in;
+    overflow: hidden;
     transition: 500ms ease-in;
 }
+
+#monsterratstoom, #zuurvandedoden, #spinnenweb, #konijnenkeutel, #uilenveer, #voetenmartelaar, #regenworm, #strontvliegje, #kleinduimpje, #spiddermanen, #levenderijst, #oggysangst{
+    width: 100%;
+    height: 100%;
+}
+
+#monsterratstoom{background: var(--monsterratstoom-insoep); animation: addColorToSoep 500ms ease-in forwards;}
+#zuurvandedoden {background: var(--zuurvandedoden-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#spinnenweb     {background: var(--spinnenweb-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#konijnenkeutel {background: var(--konijnenkeutel-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#uilenveer      {background: var(--uilenveer-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#voetenmartelaar{background: var(--voetenmartelaar-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#regenworm      {background: var(--regenworm-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#strontvliegje  {background: var(--strontvliegje-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#kleinduimpje   {background: var(--kleinduimpje-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#spiddermanen   {background: var(--spiddermanen-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#levenderijst   {background: var(--levenderijst-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+#oggysangst     {background: var(--oggysangst-insoep);animation: addColorToSoep 500ms ease-in forwards;}
+
 .bubble:nth-child(1){
     width:8.336vw;
     height:8.336vw;

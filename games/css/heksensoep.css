@@ -1,3 +1,12 @@
+@keyframes addColorToSoep {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 body {
     background-image: url('../../img/heksensoep.svg'), linear-gradient(to bottom, #91389f, #91389f, #91389f, #91389f, #623488, #382b6c, #151f4c, #000f2c);
     background-repeat: no-repeat;
@@ -10,9 +19,9 @@ body {
     grid-template-columns: 3fr 4fr;
 }
 
-#ketel-inhoud {
-    fill: var(--huidige-soepkleur);
+.ketel-inhoud {
     transition: 500ms;
+    animation: addColorToSoep 500ms ease-in forwards;
 }
 
 #ketel {
@@ -54,21 +63,43 @@ article {
     align-items: center;
 }
 
-.ingredient {
-    padding: 1vh;
-    padding-bottom: 1vw;
+.ingredient, #monsterratstoom, #zuurvandedoden, #spinnenweb, #konijnenkeutel, #uilenveer, #voetenmartelaar, #regenworm, #strontvliegje, #kleinduimpje, #spiddermanen, #levenderijst, #oggysangst{
     border-radius: 1vw;
-    background-image: radial-gradient();
-    background-image: radial-gradient(var(--huidige-soepkleur), #D9D9D9 80%);
+    background-image: radial-gradient(var(--kokend-water), #D9D9D9 80%);
     align-items: center;
     justify-content: space-between;
     display: flex;
     flex-direction: column;
     transition: 500ms;
     box-shadow: 0 0 1vw rgba(0, 0, 0, 0.25);
+    overflow: hidden;
 }
 
-.ingredient > div {
+.ingredient, #monsterratstoom, #zuurvandedoden, #spinnenweb, #konijnenkeutel, #uilenveer, #voetenmartelaar, #regenworm, #strontvliegje, #kleinduimpje, #spiddermanen, #levenderijst, #oggysangst{
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--kokend-water), #D9D9D9 80%);
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    transition: 500ms;
+}
+
+#monsterratstoom{background-image: radial-gradient(var(--monsterratstoom-insoep), transparent 80%);}
+#zuurvandedoden {background-image: radial-gradient(var(--zuurvandedoden-insoep), transparent 80%);}
+#spinnenweb     {background-image: radial-gradient(var(--spinnenweb-insoep), transparent 80%);}
+#konijnenkeutel {background-image: radial-gradient(var(--konijnenkeutel-insoep), transparent 80%);}
+#uilenveer      {background-image: radial-gradient(var(--uilenveer-insoep), transparent 80%);}
+#voetenmartelaar{background-image: radial-gradient(var(--voetenmartelaar-insoep), transparent 80%);}
+#regenworm      {background-image: radial-gradient(var(--regenworm-insoep), transparent 80%);}
+#strontvliegje  {background-image: radial-gradient(var(--strontvliegje-insoep), transparent 80%);}
+#kleinduimpje   {background-image: radial-gradient(var(--kleinduimpje-insoep), transparent 80%);}
+#spiddermanen   {background-image: radial-gradient(var(--spiddermanen-insoep), transparent 80%);}
+#levenderijst   {background-image: radial-gradient(var(--levenderijst-insoep), transparent 80%);}
+#oggysangst     {background-image: radial-gradient(var(--oggysangst-insoep), transparent 80%);}
+
+.ingredient .bgimg {
     background-image: url('img/ingredienten/bg.jpg');
     width: 19vh;
     height: 14vh;
@@ -76,9 +107,11 @@ article {
     justify-content: center;
     align-items: center;
     transition: 500ms;
+    margin: 1vh;
+    margin-bottom: 0;
 }
 
-.ingredient > div > img {
+.ingredient .bgimg > img {
     width: 70%;
     height: 70%;
     transition: 500ms;
@@ -90,20 +123,33 @@ article {
     cursor: pointer;
 }
 
-.ingredient:hover > div > img {
+.ingredient:hover .bgimg > img {
     transform: scale(1.1);
     filter: drop-shadow(0 0 1vw rgba(0, 0, 0, 0.25));
     transition: 500ms;
+}
+
+.ingredient.used:hover {
+    transform: scale(1);
+    cursor: default;
+}
+
+.ingredient.used:hover .bgimg > img {
+    transform: scale(1);
 }
 
 p, h1 {
     font-family: 'AnOldWitch', sans-serif;
     color: black;
     font-size: 2.8vh;
+    margin: 1vh;
+    margin-top: 0;
+    margin-bottom: 1vw;
 }
 
 h1 {
     font-size: 7vh;
+    margin: 0;
 }
 
 svg {
@@ -114,4 +160,13 @@ svg {
 .used {
     filter: grayscale(100%);
     transition: 500ms;
+}
+
+.used #monsterratstoom, .used #zuurvandedoden, .used #spinnenweb, .used #konijnenkeutel, .used #uilenveer, .used #voetenmartelaar, .used #regenworm, .used #strontvliegje, .used #kleinduimpje, .used #spiddermanen, .used #levenderijst, .used #oggysangst{
+    background: none;
+    transition: 500ms;
+}
+
+path.added-color {
+    animation: addColorToSoep 500ms ease-in forwards;
 }
