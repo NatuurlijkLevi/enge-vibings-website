@@ -13,7 +13,8 @@ const amberQuotes = [
     "Wat is een brug?!?!",
     "Ik ben bergen aan het zandificeren.",
     "Australiaans.",
-    "Ik zeg altijd au als iemand Texas zegt."
+    "Ik zeg altijd au als iemand Texas zegt.",
+    "Oh lekker, stenen!<br>♪♪ Ik eet graag stenen voor ontbijt ♪♪"
 ];
 const jordanQuotes = [
     "Dillema.",
@@ -37,7 +38,8 @@ const leviQuotes = [
     "De-week-voor-kerstvakantie-vakantie.",
     "Ik gebruik geen medischijnen.",
     "De wijn is belangrijk.",
-    "Ik ben niet eng."
+    "Ik ben niet eng.",
+    "<b>*high pitched screaming*</b><br>Het was een mug."
 ];
 const loekQuotes = [
     "Je kan nooit te weinig hebben.",

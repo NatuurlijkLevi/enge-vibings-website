@@ -1,0 +1,44 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 3vw;
+    overflow: hidden;
+}
+
+body > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4vh;
+    transition: 500ms;
+}
+
+body > a > img {
+    box-shadow: black 0 0 1vw;
+    border-radius: 2vw;
+    overflow: hidden;
+    transition: 500ms;
+}
+
+body > a > p {
+    font-size: 4.5vh;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: var(--semi-bold);
+}
+
+body > a:hover{
+    transform: scale(1.05);
+    transition: 500ms;
+}
+
+body > a:hover > img{
+    box-shadow: grey 0 0 1vw;
+}
+
+body > a:hover > p{
+    text-shadow: 0 4px 4px rgba(225, 225, 225, 0.25);
+}
