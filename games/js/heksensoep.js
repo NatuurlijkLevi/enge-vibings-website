@@ -41,35 +41,44 @@ function sipSoep() {
   const forward = [5, 6, 7, 8]
   const goodResponse = 
                       [
-                        "Het smaakt heerlijk!",
-                        "De soep is verrukelijk!",
-                        "De soep is om je vingers bij af te likken!",
-                        "Het is om van te smullen!",
+                        "Het smaakt heerlijk! Hierdoor ga je ",
+                        "De soep is verrukelijk! Daarom ga je ",
+                        "De soep is om je vingers bij af te likken! Ga hierom ",
+                        "Het is om van te smullen! Hierom ga je ",
                         "De soep is zo lekker dat je "
                       ]
-  const backward = [1, 2, 3, 4]
+  const backward = [3, 4, 9, 10]
   const badResponse = 
                       [
-                        "Het smaakt afschuwelijk!",
-                        "De soep is niet te drinken!",
-                        "Het is niet te eten!",
-                        "De soep is niet te vreten!",
+                        "Het smaakt afschuwelijk! Hierdoor moet je door je mond uit te spoelen ",
+                        "De soep is niet te drinken! Hierdoor ga je ",
+                        "Het is niet te eten! Daarom moet je ",
+                        "De soep is niet te vreten! Daarom ga je ",
                         "De soep is zo vies dat je "
                       ]
-  const moveResponses = 
+  const moveResponse = 
                       [
-                        "vakjes",
-                        "stappen",
-                        "hokjes",
+                        " vakjes ",
+                        " stappen ",
+                        " hokjes ",
                       ]
 
   alert("Je neemt een slok...");
-  if (randomNumber < 0.5) {
-    
+  let message;
+  if (randomNumber < 0.45) {
+    const randomBackward = backward[Math.floor(Math.random() * backward.length)];
+    const randomBadResponse = badResponse[Math.floor(Math.random() * badResponse.length)];
+    const randomMoveResponse = moveResponse[Math.floor(Math.random() * moveResponse.length)];
+    message = randomBadResponse + randomBackward + randomMoveResponse + "achteruit.";
   }
   else {
-    
+    const randomForward = forward[Math.floor(Math.random() * forward.length)];
+    const randomGoodResponse = goodResponse[Math.floor(Math.random() * goodResponse.length)];
+    const randomMoveResponse = moveResponse[Math.floor(Math.random() * moveResponse.length)];
+    message = randomGoodResponse + randomForward + randomMoveResponse + "vooruit.";
   }
+  message = "Je neemt een slok...\n\n\n\n" + message;
+  alert(message);
   
 }
 
@@ -101,8 +110,8 @@ ingredienten.forEach(ingredient => {
         }
         changeSoupWaterColorByAdding(ingredientForSoep);
         setTimeout(() => {
-          imgElement.style.opacity = 1;
-        }, 200);
+          sipSoep();
+        }, 1000);
       }, 1250);
     } else {
       alert(`Je hebt dit ingrediënt al gebruikt!`);
