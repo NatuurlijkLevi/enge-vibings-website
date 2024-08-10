@@ -14,7 +14,8 @@ const amberQuotes = [
     "Ik ben bergen aan het zandificeren.",
     "Australiaans.",
     "Ik zeg altijd au als iemand Texas zegt.",
-    "Oh lekker, stenen!<br>♪♪ Ik eet graag stenen voor ontbijt ♪♪"
+    "Oh lekker, stenen!<br>♪♪ Ik eet graag stenen voor ontbijt ♪♪",
+    "Het hoort geen soep te zijn"
 ];
 const jordanQuotes = [
     "Dillema.",
@@ -26,7 +27,12 @@ const jordanQuotes = [
     "<b>*Rokerslachje*</b>",
     "Vrachtweerwagen.",
     "Klaasman.",
-    "Leviman, pak me bij de hand breng me naar het land. Dode kamerplant."
+    "Leviman, pak me bij de hand breng me naar het land. Dode kamerplant.",
+    "Dat beest staat echt alsof die een lamp in de hoek van een kamer is.",
+    "Jouw haar ziet er wel uit als iets wat ik op wil eten.",
+    "Ik heb hier geen tijd voor, ik heb een kubus om op te lossen.",
+    "Hahaha, Hij heeft zn dingetje in de fik gezet",
+
 ];
 const leviQuotes = [
     "Ik wil jou mijn slang laten zien.",
@@ -51,14 +57,17 @@ const loekQuotes = [
     "Control Shift N, Is liking femboys gay?",
     "Een Elifont.",
     "Dat mag je echt niet in quotes zetten, dat is privé.",
-    "<b>*nies*</b>, herpes?"
+    "<b>*nies*</b>, herpes?",
+    "Omg een Jezus koe.",
+    "Ik hou van worsten en lul en ballen"
 ];
 const luukQuotes = [
     "George in de wielstoel.",
     "Wie doet mij?",
     "Nee Levi, sssh. Niet typen rotjoch.",
     "Noise reducetion.",
-    "Hocus pocus ik zit in amogus."
+    "Hocus pocus ik zit in amogus.",
+    "En ik ben een weegschaal"
 ];
 const stefQuotes = [
     "Das echt Fiat he, werkt pas als je er tegenaan slaat. Net als een vrouw.",
@@ -69,7 +78,11 @@ const stefQuotes = [
     "lgbtiq+ staat voor limburger-, belg-, en trans-iq, toch?",
     "Zelfs Danjo vindt jullie geklefbek niks.",
     "En al is het niet goed kan ze het in d'r anus rammen, d'n vuile slet dat ze is.",
-    "Mond open want ik moet poepen."
+    "Mond open want ik moet poepen.",
+    "Jezus penguin.",
+    "Gisteren reden wij ook door rood, maar dat was heel donker oranje.",
+    "Politie hotdogs",
+    "Ik wil helemaal geen mobiele salade wagen"
 ];
 
 function getRandomQuote(quotes) {

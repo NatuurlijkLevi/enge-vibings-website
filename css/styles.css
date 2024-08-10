@@ -113,6 +113,105 @@ footer > p {
     font-weight: var(--semi-bold);
 }
 
+#challenge-container {
+    position: absolute;
+    top: 3vh;
+    left: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    transition: 1s ease-out;
+}
+
+#challenges {
+    border: var(--purple-color) 1px solid;
+    border-left: none;
+    border-right: none;
+    transition: 500ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 19vh;
+    padding: 2vh 3vw;
+    gap: 3vw;
+    overflow: hidden;
+    background-color: var(--transparent-black-color);
+}
+
+#challenges > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vh;
+    transition: 500ms;
+}
+
+#challenges > a > img {
+    width: 12vh;
+    height: 12vh;
+    box-shadow: black 0 0 1vw;
+    border-radius: 1.5vh;
+    overflow: hidden;
+    transition: 500ms;
+}
+
+#challenges > a > p {
+    font-size: 1.25vh;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: var(--semi-bold);
+}
+
+#challenges > a:hover{
+    transform: scale(1.05);
+    transition: 500ms;
+}
+
+#challenges > a:hover > img{
+    box-shadow: grey 0 0 1vw;
+}
+
+#challenges > a:hover > p{
+    text-shadow: 0 4px 4px rgba(225, 225, 225, 0.25);
+}
+
+#challenge-button {
+    padding: 0;
+    border-radius: 1vw 1vw 0 0;
+    transform: translate(-38%, 150%) rotate(90deg);
+    width: 19vh;
+    font-size: 1.65vh;
+    height: 4.75vh;
+}
+
+#challenge-button:hover + #challenges {
+    border: var(--hover-blue-color) 1px solid;
+    border-left: none;
+    border-right: none;
+    transition: 500ms;
+}
+
+#challenge-button.clicked + #challenges {
+    border: var(--pink-color) 1px solid;
+    border-left: none;
+    border-right: none;
+    transition: 500ms;
+}
+
+#challenge-button.clicked {
+    background-color: var(--pink-color);
+}
+
+#challenge-button.clicked:hover {
+    background-color: var(--hover-blue-color);
+}
+
+#challenge-button.clicked:hover + #challenges {
+    border: var(--hover-blue-color) 1px solid;
+    border-left: none;
+    border-right: none;
+    transition: 500ms;
+}
+
 @media only screen and (max-width: 1040px) {
     body::before {
         content: 'Sorry, you need to be on a desktop to use this page.';

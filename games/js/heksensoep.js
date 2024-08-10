@@ -65,7 +65,7 @@ function sipSoep() {
 
   alert("Je neemt een slok...");
   let message;
-  if (randomNumber < 0.45) {
+  if (randomNumber < 0.5) {
     const randomBackward = backward[Math.floor(Math.random() * backward.length)];
     const randomBadResponse = badResponse[Math.floor(Math.random() * badResponse.length)];
     const randomMoveResponse = moveResponse[Math.floor(Math.random() * moveResponse.length)];
