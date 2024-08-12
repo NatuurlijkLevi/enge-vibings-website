@@ -1,6 +1,5 @@
 :root {
     --kokend-water: #8ed1e3;
-
     --monsterratstoom-insoep: rgba(203, 224, 255, 0.5); /* LightSteelBlue */
     --zuurvandedoden-insoep: rgba(0, 255, 0, 0.3);      /* Red */
     --spinnenweb-insoep: rgba(255, 255, 255, 0.1);     /* White */
@@ -9,7 +8,7 @@
     --voetenmartelaar-insoep: rgba(127, 0, 0, 0.3);     /* Maroon */
     --regenworm-insoep: rgba(255, 0, 255, 0.3);         /* Pink */
     --strontvliegje-insoep: rgba(255, 255, 0, 0.3);     /* Yellow */
-    --kleinduimpje-insoep: rgba(255, 0, 0, 0.3);        /* Red */
+    --junkybloed-insoep: rgba(255, 0, 0, 0.3);        /* Red */
     --spiddermanen-insoep: rgba(0, 0, 0, 0.3);          /* Black */
     --levenderijst-insoep: rgba(245, 245, 220, 0.3);    /* Beige */
     --oggysangst-insoep: rgba(255, 127, 0, 0.3);        /* Orange */

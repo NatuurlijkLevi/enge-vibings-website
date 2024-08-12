@@ -95,24 +95,47 @@ ingredienten.forEach(ingredient => {
       ingredient.classList.toggle('used');
 
       // Create a new image element
-      const imgElement = document.createElement('img');
-      imgElement.src = ingredient.children[0].src;
-      imgElement.width = ingredientImgRect.width;
-      imgElement.height = ingredientImgRect.height;
-      imgElement.opacity = 0;
+      ingredientImg.width = ingredientImgRect.width;
+      ingredientImg.height = ingredientImgRect.height;
+      ingredientImg.opacity = 0;
 
       // Append the new image element to the bubbles container
-      bubbles.appendChild(imgElement);
+      bubbles.appendChild(ingredientImg);
       setTimeout(() => {
         ingredientForSoep = ingredientName.toLowerCase().replace('’', '');
         while (ingredientForSoep.includes(' ')) {
           ingredientForSoep = ingredientForSoep.replace(' ', '');
         }
-        changeSoupWaterColorByAdding(ingredientForSoep);
-        setTimeout(() => {
-          sipSoep();
-        }, 1000);
-      }, 1250);
+        if (ingredientForSoep === 'zuurvandedoden') {
+          const secondIngredientImg = ingredientImg.cloneNode(true);
+          secondIngredientImg.width = ingredientImgRect.width;
+          secondIngredientImg.height = ingredientImgRect.height;
+          secondIngredientImg.opacity = 0;
+          bubbles.appendChild(secondIngredientImg);
+          setTimeout(() => {
+            const thirdIngredientImg = ingredientImg.cloneNode(true);
+            thirdIngredientImg.width = ingredientImgRect.width;
+            thirdIngredientImg.height = ingredientImgRect.height;
+            thirdIngredientImg.opacity = 0;
+            bubbles.appendChild(thirdIngredientImg);
+          }, 600);
+        }
+        if (ingredientForSoep != 'zuurvandedoden') {
+          changeSoupWaterColorByAdding(ingredientForSoep);
+          setTimeout(() => {
+            sipSoep();
+          }, 1000);
+        }
+        else {
+          setTimeout(() => {
+            changeSoupWaterColorByAdding(ingredientForSoep);
+          }, 1200);
+          changeSoupWaterColorByAdding(ingredientForSoep);
+          setTimeout(() => {
+            sipSoep();
+          }, 2200);
+        }
+      }, 600);
     } else {
       alert(`Je hebt dit ingrediënt al gebruikt!`);
     }
