@@ -63,7 +63,7 @@ article {
     align-items: center;
 }
 
-.ingredient, #monsterratstoom, #zuurvandedoden, #spinnenweb, #konijnenkeutel, #uilenveer, #voetenmartelaar, #regenworm, #strontvliegje, #junkybloed, #spiddermanen, #levenderijst, #oggysangst{
+.ingredient, #monsterratstoom, #zuurvandedoden, #spinnenweb, #konijnenkeutel, #uilenveer, #voetenmartelaar, #regenwurm, #strontvliegje, #junkybloed, #spiddermanen, #levenderijst, #oggysangst{
     border-radius: 1vw;
     background-image: radial-gradient(var(--kokend-water), #D9D9D9 80%);
     align-items: center;
@@ -75,7 +75,7 @@ article {
     overflow: hidden;
 }
 
-.ingredient, #monsterratstoom, #zuurvandedoden, #spinnenweb, #konijnenkeutel, #uilenveer, #voetenmartelaar, #regenworm, #strontvliegje, #junkybloed, #spiddermanen, #levenderijst, #oggysangst{
+.ingredient, #monsterratstoom, #zuurvandedoden, #spinnenweb, #konijnenkeutel, #uilenveer, #voetenmartelaar, #regenwurm, #strontvliegje, #junkybloed, #spiddermanen, #levenderijst, #oggysangst{
     width: 100%;
     height: 100%;
     background-image: radial-gradient(var(--kokend-water), #D9D9D9 80%);
@@ -92,7 +92,7 @@ article {
 #konijnenkeutel {background-image: radial-gradient(var(--konijnenkeutel-insoep), transparent 80%);}
 #uilenveer      {background-image: radial-gradient(var(--uilenveer-insoep), transparent 80%);}
 #voetenmartelaar{background-image: radial-gradient(var(--voetenmartelaar-insoep), transparent 80%);}
-#regenworm      {background-image: radial-gradient(var(--regenworm-insoep), transparent 80%);}
+#regenwurm      {background-image: radial-gradient(var(--regenwurm-insoep), transparent 80%);}
 #strontvliegje  {background-image: radial-gradient(var(--strontvliegje-insoep), transparent 80%);}
 #junkybloed   {background-image: radial-gradient(var(--junkybloed-insoep), transparent 80%);}
 #spiddermanen   {background-image: radial-gradient(var(--spiddermanen-insoep), transparent 80%);}
@@ -169,7 +169,7 @@ svg {
     transition: 500ms;
 }
 
-.used #monsterratstoom, .used #zuurvandedoden, .used #spinnenweb, .used #konijnenkeutel, .used #uilenveer, .used #voetenmartelaar, .used #regenworm, .used #strontvliegje, .used #junkybloed, .used #spiddermanen, .used #levenderijst, .used #oggysangst{
+.used #monsterratstoom, .used #zuurvandedoden, .used #spinnenweb, .used #konijnenkeutel, .used #uilenveer, .used #voetenmartelaar, .used #regenwurm, .used #strontvliegje, .used #junkybloed, .used #spiddermanen, .used #levenderijst, .used #oggysangst{
     background: none;
     transition: 500ms;
 }
