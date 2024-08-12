@@ -18,7 +18,7 @@ function changeSoupWaterColorByAdding(ingredient){
   const newLayer = '<path d="M621.5 81C621.5 81.6405 621.197 83.1776 618.606 85.6363C616.013 88.0964 611.777 90.8267 605.635 93.6462C593.396 99.2649 575.212 104.515 552.15 108.993C506.151 117.925 442.277 123.5 371.5 123.5C300.723 123.5 236.849 117.925 190.85 108.993C167.788 104.515 149.604 99.2649 137.365 93.6462C131.223 90.8267 126.987 88.0964 124.394 85.6363C121.803 83.1776 121.5 81.6405 121.5 81C121.5 80.3595 121.803 78.8224 124.394 76.3637C126.987 73.9036 131.223 71.1733 137.365 68.3538C149.604 62.7351 167.788 57.4851 190.85 53.0071C236.849 44.0752 300.723 38.5 371.5 38.5C442.277 38.5 506.151 44.0752 552.15 53.0071C575.212 57.4851 593.396 62.7351 605.635 68.3538C611.777 71.1733 616.013 73.9036 618.606 76.3637C621.197 78.8224 621.5 80.3595 621.5 81Z" fill="var(--' + ingredient + '-insoep)" class="added-color"/>';
   ketelSvgGroup.innerHTML += newLayer;
   bubble.forEach(bubbleElement => {
-    const newChild = document.createElement('div');
+    let newChild = document.createElement('div');
     newChild.id = ingredient;
     let currentElement = bubbleElement;
     while (currentElement.children.length > 0) {
@@ -124,13 +124,12 @@ ingredienten.forEach(ingredient => {
           changeSoupWaterColorByAdding(ingredientForSoep);
           setTimeout(() => {
             sipSoep();
-          }, 1000);
+          }, 1250);
         }
         else {
           setTimeout(() => {
             changeSoupWaterColorByAdding(ingredientForSoep);
           }, 1200);
-          changeSoupWaterColorByAdding(ingredientForSoep);
           setTimeout(() => {
             sipSoep();
           }, 2200);
