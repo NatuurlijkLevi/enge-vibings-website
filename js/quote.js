@@ -1,5 +1,9 @@
 const article = document.querySelector("article");
 
+const minutesForQuote = 15;
+const secondsForQuote = minutesForQuote * 60;
+const millisecondsForQuote = secondsForQuote * 1000;
+
 const amberNames = ["Amber", "Wasbeer", "HammieDeHam", "HammieDeHamer", "Amber Meijer"]
 const jordanNames = ["Jordan", "iJordan_", "jordansoerendonk", "ItsJordanNL", "Zratan", "Jordan Johannes Romanus Adrianus Koevoets"];
 const leviNames = ["Levi", "NatuurlijkLevi", "Leviman", "GewoonLevi", "HenryJonesJunior1", "HenryGamingYT", "Levi Meijer"];
@@ -129,6 +133,6 @@ function newQuote() {
 
 window.onload = function() {
     newQuote();
-    setInterval(newQuote,5000);
+    setInterval(newQuote,millisecondsForQuote);
 }
 
