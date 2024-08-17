@@ -108,10 +108,27 @@ function chooseRandomPerson(){
     return randomPerson;
 }
 
+function newQuote() {
+    const person = chooseRandomPerson();
+    const personQuote = (getRandomQuote(eval(person + "Quotes")));
+    const personName = (getRandomName(eval(person + "Names")));
+    article.innerHTML = '<p><i class="quote-text">“'+ personQuote +'”</i></p><p class="quote-text">~ ' + personName + '</p>'
+    const quoteText = new SplitType('.quote-text', {
+        types: 'lines, words, chars',
+        tagName: 'span'
+      });    
+    gsap.from('.quote-text .line', {
+      y: '100%',
+      opacity: 0,
+      duration: 0.80,
+      ease: 'power2.out',
+      stagger: 0.15,
+      
+    })
+}
+
 window.onload = function() {
-    person = chooseRandomPerson();
-    personQuote = (getRandomQuote(eval(person + "Quotes")));
-    personName = (getRandomName(eval(person + "Names")));
-    article.innerHTML = '<p><i>“'+ personQuote +'”</i></p><p>~ ' + personName + '</p>'
+    newQuote();
+    setInterval(newQuote,5000);
 }
 
