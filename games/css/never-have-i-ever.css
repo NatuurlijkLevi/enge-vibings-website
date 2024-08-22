@@ -1,0 +1,93 @@
+:root {
+    --blue-color: #005AE6;
+    --purple-color: #391A83;
+    --dark-color: #0C041E;
+    --button-unselected: rgba(255, 255, 255, 0.14);
+    --button-hover: rgba(255, 255, 255, 0.3);
+    --button-selected: rgba(255, 255, 255, 0.56);
+}
+
+body {
+    background: linear-gradient(180deg, var(--dark-color), var(--purple-color));
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+#button-wrapper {
+    display: flex;
+    gap: 1vw;
+}
+
+#button-wrapper > button {
+    border: none;
+    background-color: var(--button-unselected);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5vh;
+    font-weight: var(--semi-bold);
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+    padding: 1vh 1vw;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+#button-wrapper > button:hover {
+    background-color: var(--button-hover);
+}
+
+#button-wrapper > button:active, #button-wrapper > button#selected {
+    background-color: var(--button-selected);
+}
+
+#button-wrapper > button#selected {
+    cursor: default;
+}
+
+#next-button {
+    border: none;
+    padding: 1vh 1vw;
+    background-color: var(--blue-color);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5vh;
+    font-weight: var(--semi-bold);
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: 500ms;
+    overflow: hidden;
+}
+
+#next-button:hover {
+    background-color: var(--purple-color);
+}
+
+section#top, section#bottom, section#middle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+p, h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+p {
+    font-weight: var(--semi-bold);
+}
+
+h1 {
+    font-weight: var(--bold);
+    font-size: 4vh;
+}
