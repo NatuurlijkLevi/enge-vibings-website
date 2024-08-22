@@ -1,3 +1,10 @@
+:root {
+    --regular: normal;
+    --medium: 500;
+    --semi-bold: 600;
+    --bold: bold;
+}
+
 * {
     margin: 0;
     padding: 0;

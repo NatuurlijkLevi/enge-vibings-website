@@ -5,17 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Would You Rather</title>
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/monsterrat-font.css">
     <link rel="stylesheet" href="css/would-you-rather.css">
     <script src="js/would-you-rather.js"></script>
 </head>
 <body>
-    <section>
-        <div id="blue-option">
-            <article></article>
+    <section id="top">
+        <div id="button-wrapper">
+            <button id="selected"><p>Normal</p></button>
+            <button><p>Crazy</p></button>
+            <button><p>Hard Choices</p></button>
+            <button><p>Hot</p></button>
+            <button><p>Mixed</p></button>
         </div>
-        <div id="red-option">
-            <article></article>
+        <h1>Would you rather...</h1>
+    </section>
+    <section id="options">
+        <div id="blue-border">
+            <article id="blue-option">
+                <div class="radialgradient"></div>
+                <span class="percentage">50%</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="sidecircle"></div>
+            </article>
         </div>
+        <div id="or-border">
+            <div id="or">or</div>
+        </div>
+        <div id="red-border">
+            <article id="red-option">
+                <div class="radialgradient"></div>
+                <span class="percentage">50%</span>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <div class="sidecircle"></div>
+            </article>
+        </div>
+    </section>
+    <section id="bottom">
+        <p id="ai-choice">Omschrijving AI waarom A beter is dan B Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <button id="next-button"><div class="button-inner"></div><p>Next</p></button>
     </section>
 </body>
 </html>
