@@ -1,6 +1,6 @@
 const article = document.querySelector("article");
 
-const minutesForQuote = 15;
+const minutesForQuote = 5;
 const secondsForQuote = minutesForQuote * 60;
 const millisecondsForQuote = secondsForQuote * 1000;
 
@@ -127,7 +127,6 @@ function newQuote() {
       duration: 0.80,
       ease: 'power2.out',
       stagger: 0.15,
-      
     })
 }
 

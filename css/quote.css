@@ -30,5 +30,5 @@ p {
 
 p > i {
     font-weight: var(--regular);
-    font-size: 9vh;
+    font-size: 8.5vh;
 }
