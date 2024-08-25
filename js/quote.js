@@ -23,7 +23,8 @@ const amberQuotes = [
     "Australiaans.",
     "Ik zeg altijd au als iemand Texas zegt.",
     "Oh lekker, stenen!<br>♪♪ Ik eet graag stenen voor ontbijt ♪♪",
-    "Het hoort geen soep te zijn"
+    "Het hoort geen soep te zijn",
+    "Levi, wil je even de pijpzak pakken?"
 ];
 const jordanQuotes = [
     "Dillema.",
@@ -53,7 +54,8 @@ const leviQuotes = [
     "Ik gebruik geen medischijnen.",
     "De wijn is belangrijk.",
     "Ik ben niet eng.",
-    "<b>*high pitched screaming*</b><br>Het was een mug."
+    "<b>*high pitched screaming*</b><br>Het was een mug.",
+    "Ik ben eigenlijk een printer."
 ];
 const loekQuotes = [
     "Je kan nooit te weinig hebben.",
