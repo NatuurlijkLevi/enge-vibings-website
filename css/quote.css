@@ -30,5 +30,32 @@ p {
 
 p > i {
     font-weight: var(--regular);
-    font-size: 8.5vh;
+    font-size: 8vh;
+}
+
+svg {
+    position: absolute;
+    bottom: 5vh;
+    right: 5vh;
+    width: 10vh;
+    height: 7vh;
+    opacity: 0;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+svg path {
+    fill: var(--text-color);
+    stroke: var(--text-color);
+    transition: 500ms;
+}
+
+svg:hover path {
+    fill: var(--hover-blue-color);
+    stroke: var(--hover-blue-color);
+}
+
+svg:active path {
+    fill: var(--pink-color);
+    stroke: var(--pink-color);
 }

@@ -1,4 +1,8 @@
+const body = document.querySelector("body");
 const article = document.querySelector("article");
+const soundButton = document.querySelector("svg");
+let currentIndexOfBogdanQuote;
+let soundButtonClickable = false;
 
 const minutesForQuote = 5;
 const secondsForQuote = minutesForQuote * 60;
@@ -89,8 +93,42 @@ const stefQuotes = [
     "Ik wil helemaal geen mobiele salade wagen"
 ];
 
+const bogdanQuotes = [
+    "American agents. You are making a grave mistakes",
+    "You may know me as Codename Bogdan. I am commander of ze subbarin",
+    "And for record, Bogdan is not just codename. It is real name. Clever coding.",
+    "We are ready to die, every man and boy. We have job to do.",
+    "Do you know what you're fighting for? Bleeder Burgers and Deludamol? Wake up.",
+    "You are biggest idiots of whole wide world. Americans.",
+    "This is a big mistake, like crap in pants.",
+    "Wait a minute... wait a minute, wait we've can we calm down for just one minute? For less than one minute.",
+    "Look, you look very much like you have wrong end of shit.",
+    "You got stuck in the stick you're up creek with paddle of crap!",
+    "No, kill me all you like but stop lis-listen, listen, listen, listen, listen, listen, listen.",
+    "Sure I would like to destroy America, control Russia and destroy fabric of civilization as we know it but these are all piping dreams.",
+    "You... you are real problem.",
+    "Oh, cigarette, cigarette.",
+    "If you let insecure little egomaniac play God then fake human brain he build will be brain of insecure little egomaniac.",
+    "My Scientists have studied Cliffford. Cliffford is asshole.",
+    "Scuba gear by hatch over there. I have secret escape pod, good luck!",
+    "Democracy is problem. People have too many ideas. In my day, ideas BAD.",
+    "Always. Evil computer get weapon, weapon, weapon, and then kills, kills, kills all carbon-based intelligent life.",
+    "This Barrage SUV, heavily weaponize, he make very quickly into evil robot kill car.",
+    "Bombs, they kill the big group of human. Cars get the human in little hard-to-reach places. Hunt and kill everyone you know and love. Not fun.",
+    "Not pretty, not nice. Contemporary art, bleak existence.",
+    "We take and hold. If Cliffford want airfield, we want airfield",
+    "No time to celebrate. Maybe robots kill us a couple of days later than before, a few.",
+    "Peoples. This is very dangerous weapon. In some very dangerous hand. We don't like any American have this tank, particulary not American AI though.",
+    "Us Russians, we don't understand. If we build tank, we want large, scary tank you see from miles away when we drive in procession through city with our missles and our armies and our tanks. Everyone look how big and mighty we are.",
+    "This tank is black, and sneaky looking. We don't trust this tank at all.",
+    "Exactly kind of creepy tank that creepy computer made by creepy man try to control world with.",
+    "SAM, Surface-to-Air Missile, sites all over the Mount Chilli Pepper.",
+    "My men are killed, my submarine sunk, I am traitor in Russia and criminal here. Goodbye and good luck to all of us."
+];
+
 function getRandomQuote(quotes) {
     const randomIndex = Math.floor(Math.random() * quotes.length);
+    if (quotes === bogdanQuotes) { currentIndexOfBogdanQuote = randomIndex; }
     const randomQuote = quotes[randomIndex];
     return randomQuote;
 }
@@ -112,11 +150,32 @@ function chooseRandomPerson(){
     return randomPerson;
 }
 
-function newQuote() {
+function getPersonQuote(){
     const person = chooseRandomPerson();
     const personQuote = (getRandomQuote(eval(person + "Quotes")));
     const personName = (getRandomName(eval(person + "Names")));
     article.innerHTML = '<p><i class="quote-text">“'+ personQuote +'”</i></p><p class="quote-text">~ ' + personName + '</p>'
+}
+
+function getBogdanQuote(){
+    const bogdanQuote = (getRandomQuote(bogdanQuotes));
+    article.innerHTML = '<p><i class="quote-text">“'+ bogdanQuote +'”</i></p><p class="quote-text">~ Bogdan</p>'
+    soundButton.style.opacity = "1";
+    soundButton.style.pointerEvents = "auto";
+    soundButtonClickable = true;
+}
+
+function newQuote() {
+    let randomNumber = Math.random();
+    if (randomNumber > 0.3) {
+        soundButtonClickable = false;
+        soundButton.style.opacity = "0";
+        soundButton.style.pointerEvents = "none";
+        getPersonQuote()
+    }
+    else {
+        getBogdanQuote()
+    }
     const quoteText = new SplitType('.quote-text', {
         types: 'lines, words, chars',
         tagName: 'span'
@@ -131,7 +190,18 @@ function newQuote() {
 }
 
 window.onload = function() {
-    newQuote();
-    setInterval(newQuote,millisecondsForQuote);
+    setTimeout( function() {
+        newQuote();
+        setInterval(newQuote,millisecondsForQuote);
+    }, 1);
 }
+soundButton.addEventListener('click', () => {
+    if (soundButtonClickable) {new Audio('audio/bogdanquote' + currentIndexOfBogdanQuote + '.ogg').play();}
+});
+
+addEventListener('keydown', (event) => {
+    if (event.key === 'q') {
+        newQuote();
+    }
+});
 
