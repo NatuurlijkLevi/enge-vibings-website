@@ -3,6 +3,7 @@ const koningH1 = document.querySelector("h1");
 const koningP = document.querySelector("p");
 
 let numberNine = false;
+let lastTimeNegative = false;
 const card = [
     [
         // -
@@ -430,11 +431,22 @@ function drawRandomCard()
         }
         numberNine = false;
     }
+    if (lastTimeNegative) {
+        cardValue = Math.floor(r * 100 + 100);
+    }
     koningH1.innerHTML = card[0][cardValue];
     koningP.innerHTML = card[1][cardValue];
 
     if (cardValue === 9) {
         numberNine = true;
+    }
+    if (cardValue > 100)
+    {
+        lastTimeNegative = false;
+    }
+    else
+    {
+        lastTimeNegative = true;
     }
 }    
 
