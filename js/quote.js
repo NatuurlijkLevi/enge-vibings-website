@@ -2,6 +2,7 @@ const body = document.querySelector("body");
 const article = document.querySelector("article");
 const soundButton = document.querySelector("svg");
 let currentIndexOfBogdanQuote;
+let currentSound;
 let soundButtonClickable = false;
 
 const minutesForQuote = 5;
@@ -162,14 +163,16 @@ function getPersonQuote(){
 function getBogdanQuote(){
     const bogdanQuote = (getRandomQuote(bogdanQuotes));
     article.innerHTML = '<p><i class="quote-text">“'+ bogdanQuote +'”</i></p><p class="quote-text">~ Bogdan</p>'
+    currentSound = new Audio('audio/bogdanquote' + currentIndexOfBogdanQuote + '.ogg')
+    currentSound.play();
     soundButton.style.opacity = "1";
     soundButton.style.pointerEvents = "auto";
     soundButtonClickable = true;
 }
 
-function newQuote() {
+function newQuote(firstQuote) {
     let randomNumber = Math.random();
-    if (randomNumber > 0.3) {
+    if (randomNumber > 0.2 || firstQuote) {
         soundButtonClickable = false;
         soundButton.style.opacity = "0";
         soundButton.style.pointerEvents = "none";
@@ -193,17 +196,19 @@ function newQuote() {
 
 window.onload = function() {
     setTimeout( function() {
-        newQuote();
-        setInterval(newQuote,millisecondsForQuote);
+        newQuote(true);
+        setInterval(function() {
+            newQuote(false);
+        }, millisecondsForQuote);
     }, 1);
 }
 soundButton.addEventListener('click', () => {
-    if (soundButtonClickable) {new Audio('audio/bogdanquote' + currentIndexOfBogdanQuote + '.ogg').play();}
+    if (soundButtonClickable) {currentSound.play();}
 });
 
 addEventListener('keydown', (event) => {
     if (event.key === 'q') {
-        newQuote();
+        newQuote(false);
     }
 });
 

@@ -12,3 +12,8 @@
     text-decoration: none;
     list-style: none;
 }
+
+button, button *, li, li * {
+    cursor: pointer;
+    user-select: none;
+}
