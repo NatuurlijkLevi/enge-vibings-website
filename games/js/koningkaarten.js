@@ -317,7 +317,7 @@ const card = [
             /* 1   */     "Je verwisselt de plek met de speler die voor je is. Sta je zelf helemaal vooraan dan gebeurt er niks.",
             /* 2   */     "Je vindt een verborgen kortere route die je 8 vakjes vooruit brengt.",
             /* 3   */     "Een vriendelijke handelaar biedt je een snelle lift aan waardoor je 6 vakjes vooruit gaat.",
-            /* 4   */     "Een behulpzame gids leidt je langs een geheime doorgang waardoor je 5 vakjes vooruit gaat.",
+            /* 4   */     "Een behulpzame gids met steen Henk leidt je langs een geheime doorgang waardoor je het laatste vakje van het bord bereikt.",
             /* 5   */     "Je ontvangt een magische spreuk waardoor je 6 vakjes vooruit gaat.",
             /* 6   */     "Een vriendelijke dierenvriend biedt je een rit op zijn snelle paard aan, waardoor je 7 vakjes vooruit gaat.",
             /* 7   */     "Je krijgt een vleugje wind in de rug dat je 5 vakjes vooruit blaast.",

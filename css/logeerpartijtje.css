@@ -9,13 +9,38 @@ body {
     overflow: hidden;
 }
 
+@keyframes toggledashboard {
+    0% {
+        top: 200vh;
+    }
+    100% {
+        top: 50vh;
+    }
+}
+
+@keyframes hidewheelspinner {
+    0% {
+        top: 50vh;
+    }
+    100% {
+        top: -50vh;
+    }
+}
+
 div#dashboard {
-    height: 100vh;
+    position: relative;
+    top: 50vh;
+    animation-name: toggledashboard;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transition: 2s ease-in-out;
+    height: 200vh;
     width: 84vw;
     display: grid;
     grid-template-columns: 4fr 2fr 2fr 2fr;
-    grid-template-rows: 4fr 3fr 1fr;
-    grid-template-areas:    "ws hs hs hs"
+    grid-template-rows: 8fr 4fr 3fr 1fr;
+    grid-template-areas:    "ws ws ws ws"
+                             ". hs hs hs"
                             "kk hs hs hs"
                             "kk pt hw kw";
     box-shadow: 0 0 2vw rgba(0, 0, 0, 1);

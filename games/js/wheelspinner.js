@@ -35,15 +35,15 @@ let linkItems;
 let volgordeSpel;
 let koningSpel;
 let heksSpel;
+let dashboard;
 
 const volgorde = document.querySelector('aside > div#buttonwrapper > button:nth-child(1)');
 const koning = document.querySelector('aside > div#buttonwrapper > button:nth-child(2)');
 const heks = document.querySelector('aside > div#buttonwrapper > button:nth-child(3)');
-const naam = document.querySelector('aside > div#buttonwrapper > button:nth-child(4)');
 
-let volgordeDone = false;
-let koningDone = false;
-let heksDone = false;
+let volgordeDone = localStorage.getItem("volgordeDone");
+let koningDone = localStorage.getItem("koningDone");
+let heksDone = localStorage.getItem("heksDone");
 
 let volgordeCount = 0;
 
@@ -59,12 +59,43 @@ if (inIframe()) {
   volgordeSpel = parent.document.querySelector('article > div > section > ul');
   koningSpel = parent.document.querySelector('article > div > section:nth-child(2)');
   heksSpel = parent.document.querySelector('article > div > section:nth-child(3)');
+  dashboard = parent.document.querySelector('#dashboard');
 }
 else {
   buttonItems = document.querySelector("aside");
   buttonItems.innerHTML = "";
 }
 let buttonIsClicked = false;
+
+let savedVolgorde = localStorage.getItem("volgorde");
+console.log(savedVolgorde);
+let savedKoning = localStorage.getItem("koning");
+let savedHeks = localStorage.getItem("heks");
+let currentVolgorde = [];
+let currentKoning;
+let currentHeks;
+
+if (savedVolgorde !== null) {
+  savedVolgorde.split(",").forEach((item) => {
+    volgordeSpel.innerHTML += `<li>${item}</li>`;
+  });
+  volgordeCount = 6;
+}
+
+if (savedKoning !== null) {
+  koningSpel.innerHTML += `<p>${savedKoning}</p>`;
+}
+
+if (savedHeks !== null) {
+  heksSpel.innerHTML += `<p>${savedHeks}</p>`;
+}
+
+function checkIfAllDone() {
+  if (volgordeDone && koningDone && heksDone) {
+    dashboard.style.animationName = "hidewheelspinner";
+  }
+}
+checkIfAllDone();
 
 let props = {
     items: [
@@ -164,18 +195,25 @@ spinButton.addEventListener("click", () => {
           switch (volgordeCount) {
             case 1:
               alert(`${winner} is als eerste aan de beurt!`);
+              currentVolgorde[0] = winner;
               break;
             case 2:
               alert(`Daarna is ${winner} aan de beurt!`);
+              currentVolgorde[1] = winner;
               break;
             case 3:
               alert(`${winner} komt daarna als derde aan de beurt!`);
+              currentVolgorde[2] = winner;
               break;
             case 4:
               alert(`Vervolgens is ${winner} aan de beurt!`);
+              currentVolgorde[3] = winner;
               break;
             case 5:
-              alert(`Als tweederlaatste is ${winner} aan de beurt! Dit betekent dat ${props.items[getLastPlayer(winnerIndex)].label} als laatste aan de beurt is!`);
+              const lastPlayer = props.items[getLastPlayer(winnerIndex)].label;
+              alert(`Als tweederlaatste is ${winner} aan de beurt! Dit betekent dat ${lastPlayer} als laatste aan de beurt is!`);
+              currentVolgorde[4] = winner;
+              currentVolgorde[5] = lastPlayer;
               break;
           }
           props.items.splice(winnerIndex, 1);
@@ -186,12 +224,14 @@ spinButton.addEventListener("click", () => {
             volgordeSpel.innerHTML += `<li>${winner}</li>`;
             volgordeCount++;
             volgordeDone = true;
+            localStorage.setItem("volgordeDone", volgordeDone);
             resetNames();
             resetWheel();
             selected.id = "";
             koning.id = "selected";
             selected = koning;
           }
+          localStorage.setItem("volgorde", currentVolgorde);
         }
         else if (volgordeDone && selected == volgorde)
         {
@@ -200,9 +240,12 @@ spinButton.addEventListener("click", () => {
         else if (koning == selected && !koningDone) {
           koningSpel.innerHTML += `<p>${winner}</p>`;
           alert(`De koning is ${winner}!`);
+          currentKoning = winner;
+          localStorage.setItem("koning", currentKoning);
           props.items.splice(winnerIndex, 1);
           resetWheel();
           koningDone = true;
+          localStorage.setItem("koningDone", koningDone);
           selected.id = "";
           heks.id = "selected";
           selected = heks;
@@ -213,12 +256,13 @@ spinButton.addEventListener("click", () => {
         else if (heks == selected && !heksDone) {
           heksSpel.innerHTML += `<p>${winner}</p>`;
           alert(`De heks is ${winner}!`);
+          currentHeks = winner;
+          localStorage.setItem("heks", currentHeks);
           heksDone = true;
+          localStorage.setItem("heksDone", heksDone);
           resetNames();
           resetWheel();
           selected.id = "";
-          naam.id = "selected";
-          selected = naam;
         }
         else if (heksDone && selected == heks) {
           alert("De heks is al gekozen!")
@@ -229,6 +273,7 @@ spinButton.addEventListener("click", () => {
       } else {
         alert(`De gekozenen is ${winner}!`);
       }
+      checkIfAllDone();
       buttonIsClicked = false;
     }, 8500);
   }
