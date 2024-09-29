@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=home/jordan/public_html/engevibings/
-    - /bin/cp -R images $DEPLOYPATH
+    - /usr/bin/rsync -av --exclude '.git' . $DEPLOYPATH
