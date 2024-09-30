@@ -1,4 +1,6 @@
+---
 deployment:
   tasks:
     - export DEPLOYPATH=/home/jordan/public_html/engevibings
-    - /bin/cp index.html $DEPLOYPATH
+    - /bin/git clone git@github.com:ItsJordanNL/enge-vibings.git $DEPLOYPATH || (cd $DEPLOYPATH && /bin/git pull origin main)
+    - /bin/echo "Deployment completed."
