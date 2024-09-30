@@ -3,3 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/jordan/public_html/engevibings/
     - /bin/cp index.html $DEPLOYPATH
+    # add perms
+    - /bin/chmod 755 ${DEPLOYPATH}
+    - /bin/find ${DEPLOYPATH} -type d -exec /bin/chmod 755 '{}' \;
+    - /bin/find ${DEPLOYPATH} -type f -exec /bin/chmod 644 '{}' \;
