@@ -1,3 +1,4 @@
+// Initialize variables
 const blueOption = document.getElementById('blue-option');
 const redOption = document.getElementById('red-option');
 const blueOptionText = document.querySelector('#blue-option > p');
@@ -9,6 +10,7 @@ let optionA;
 let optionB;
 let choiceMade = false;
 
+// Fetch the would-you-rather.json file and select a random would you rather
 async function newWouldYouRather() {
     const response = await fetch("json/would-you-rather.json");
     const data = await response.json();
@@ -33,6 +35,7 @@ async function newWouldYouRather() {
 
 newWouldYouRather();
 
+// When clicked the next button, the next would you rather will be selected
 nextButton.addEventListener('click', () => {
     optionText.revert();
     optionA = "";

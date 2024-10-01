@@ -1,3 +1,4 @@
+// Initialize variables
 const body = document.querySelector("body");
 const article = document.querySelector("article");
 const soundButton = document.querySelector("svg");
@@ -5,10 +6,12 @@ let currentIndexOfBogdanQuote;
 let currentSound;
 let soundButtonClickable = false;
 
+// Constants for the quote interval
 const minutesForQuote = 5;
 const secondsForQuote = minutesForQuote * 60;
 const millisecondsForQuote = secondsForQuote * 1000;
 
+// Arrays with names and quotes
 const amberNames = ["Amber", "Wasbeer", "HammieDeHam", "HammieDeHamer", "Amber Meijer"]
 const jordanNames = ["Jordan", "iJordan_", "jordansoerendonk", "ItsJordanNL", "Zratan", "Jordan Johannes Romanus Adrianus Koevoets"];
 const leviNames = ["Levi", "NatuurlijkLevi", "Leviman", "GewoonLevi", "HenryJonesJunior1", "HenryGamingYT", "Levi Meijer"];
@@ -129,6 +132,8 @@ const bogdanQuotes = [
     "My men are killed, my submarine sunk, I am traitor in Russia and criminal here. Goodbye and good luck to all of us."
 ];
 
+// Function to get a random quote
+// @param {array} quotes - The array of quotes to choose from
 function getRandomQuote(quotes) {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     if (quotes === bogdanQuotes) { currentIndexOfBogdanQuote = randomIndex; }
@@ -136,6 +141,8 @@ function getRandomQuote(quotes) {
     return randomQuote;
 }
 
+// Function to get a random name
+// @param {array} names - The array of names to choose from
 function getRandomName(names) {
     const randomNumber = Math.random();
 
@@ -146,6 +153,7 @@ function getRandomName(names) {
     }
 }
 
+// Function to choose a random person
 function chooseRandomPerson(){
     const namesArray = ["amber", "jordan", "levi", "loek", "luuk", "stef"];
     const randomIndex = Math.floor(Math.random() * (namesArray.length));
@@ -153,6 +161,7 @@ function chooseRandomPerson(){
     return randomPerson;
 }
 
+// Function to get a quote from a random person
 function getPersonQuote(){
     const person = chooseRandomPerson();
     const personQuote = (getRandomQuote(eval(person + "Quotes")));
@@ -160,6 +169,7 @@ function getPersonQuote(){
     article.innerHTML = '<p><i class="quote-text">“'+ personQuote +'”</i></p><p class="quote-text">~ ' + personName + '</p>'
 }
 
+// Function to get a quote from Bogdan
 function getBogdanQuote(){
     const bogdanQuote = (getRandomQuote(bogdanQuotes));
     article.innerHTML = '<p><i class="quote-text">“'+ bogdanQuote +'”</i></p><p class="quote-text">~ Bogdan</p>'
@@ -170,6 +180,7 @@ function getBogdanQuote(){
     soundButtonClickable = true;
 }
 
+// Function to get a new quote
 function newQuote(firstQuote) {
     let randomNumber = Math.random();
     if (randomNumber > 0.2 || firstQuote) {
@@ -194,6 +205,7 @@ function newQuote(firstQuote) {
     })
 }
 
+// Function to get a new quote every 5 minutes
 window.onload = function() {
     setTimeout( function() {
         newQuote(true);
@@ -206,6 +218,7 @@ soundButton.addEventListener('click', () => {
     if (soundButtonClickable) {currentSound.play();}
 });
 
+// if the user presses the 'q' key, a new quote will show
 addEventListener('keydown', (event) => {
     if (event.key === 'q') {
         newQuote(false);

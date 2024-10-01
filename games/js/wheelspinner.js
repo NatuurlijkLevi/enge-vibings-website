@@ -1,6 +1,8 @@
+// Import the Wheel class from the Spin Wheel package
 import {Wheel} from 'https://cdn.jsdelivr.net/npm/spin-wheel@5.0.0/dist/spin-wheel-esm.js';
 import * as easing from './easing.js';
 
+// Initialize variables
 const easingFunctions = [
   {
     label: 'default (easeSinOut)',
@@ -47,6 +49,7 @@ let heksDone = localStorage.getItem("heksDone");
 
 let volgordeCount = 0;
 
+// Function to check if the game is played in an iframe
 function inIframe () {
   try {
       return window.self !== window.top;
@@ -55,12 +58,15 @@ function inIframe () {
   }
 }
 
+// Check if the game is played in an iframe
+// If the game is played in an iframe, the parent document will be used
 if (inIframe()) {
   volgordeSpel = parent.document.querySelector('article > div > section > ul');
   koningSpel = parent.document.querySelector('article > div > section:nth-child(2)');
   heksSpel = parent.document.querySelector('article > div > section:nth-child(3)');
   dashboard = parent.document.querySelector('#dashboard');
 }
+// If the game is not played in an iframe, the current document will be used
 else {
   buttonItems = document.querySelector("aside");
   buttonItems.innerHTML = "";
@@ -75,6 +81,7 @@ let currentVolgorde = [];
 let currentKoning;
 let currentHeks;
 
+// Check if the volgorde is saved
 if (savedVolgorde !== null) {
   savedVolgorde.split(",").forEach((item) => {
     volgordeSpel.innerHTML += `<li>${item}</li>`;
@@ -82,14 +89,17 @@ if (savedVolgorde !== null) {
   volgordeCount = 6;
 }
 
+// Check if the koning is saved
 if (savedKoning !== null) {
   koningSpel.innerHTML += `<p>${savedKoning}</p>`;
 }
 
+// Check if the heks is saved
 if (savedHeks !== null) {
   heksSpel.innerHTML += `<p>${savedHeks}</p>`;
 }
 
+// Check if all the games are done
 function checkIfAllDone() {
   if (volgordeDone && koningDone && heksDone) {
     dashboard.style.animationName = "hidewheelspinner";
@@ -97,6 +107,7 @@ function checkIfAllDone() {
 }
 checkIfAllDone();
 
+// Initialize the props object
 let props = {
     items: [
       {
@@ -124,6 +135,7 @@ props.items.sort(() => Math.random() - 0.5);
 const container = document.querySelector('.wheel-container');
 let wheel;
 
+// Reset the names
 function resetNames(){
   props.items = [
     {
@@ -148,6 +160,7 @@ function resetNames(){
   props.items.sort(() => Math.random() - 0.5);
 }
 
+// Create a new Wheel instance
 function resetWheel() {
   container.innerHTML = "";
   wheel = new Wheel(container, props);
@@ -162,11 +175,13 @@ function resetWheel() {
 }
 resetWheel();
 
+// Get a random item index
 const getRandomItemIndex = () => {
   const randomIndex = Math.floor(Math.random() * props.items.length);
   return randomIndex;
 };
 
+// Get the last player
 let getLastPlayer = (winnerIndex) => {
   if (winnerIndex === 0) {
     return 1;
@@ -176,6 +191,8 @@ let getLastPlayer = (winnerIndex) => {
   }
 }
 
+// Add an event listener to the spinButton
+// If the button is clicked, the wheel will spin to a random item
 spinButton.addEventListener("click", () => {
   if (!buttonIsClicked) {
     let easing = easingFunctions[2];
@@ -279,20 +296,26 @@ spinButton.addEventListener("click", () => {
   }
 })
 
+// Add an event listener to the buttonItems
 buttonItems.forEach((item) => {
+  // If the item is clicked, the item will be selected
   item.addEventListener("click", () => {
+    // If the koning is already selected, the heks must be selected
     if (koning.id == "selected" && heks == !item) {
       alert("De koning is al gekozen! Kies nu de heks.");
     }
+    // If the item is not selected and the volgorde is either finished or not started, the item will be selected
     if (item.id !== "selected" && !buttonIsClicked && (volgordeCount == 0 || volgordeCount == 6))
     {
       selected.id = "";
       item.id = "selected";
       selected = item;
     }
+    // If the button is clicked to spin the wheel, you can't switch what you want to spin for 
     else if (buttonIsClicked) {
       alert("Je bent al aan het rad aan het draaien!");
     }
+    // If the volgorde is not finished, the volgorde must be finished first
     else if (volgordeCount > 0 && volgordeCount < 6) {
       alert("Je bent nog bezig met de volgorde! Maak deze eerst af.");
     }

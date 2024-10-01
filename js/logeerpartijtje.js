@@ -1,21 +1,27 @@
+// Initialize variables
 const nieuweKoningButton = document.querySelector('#koningwisselaar > button');
 const nieuweKoningInput = document.querySelector('#koningwisselaar > input');
 const nieuweHeksButton = document.querySelector('#hekswisselaar > button');
 const nieuweHeksInput = document.querySelector('#hekswisselaar > input');
 const presentatieButton = document.querySelector('#presentatie > button');
 
+// Add an event listener to the nieuweKoningButton
+// If the button is clicked, the current king will be replaced with the new king
 nieuweKoningButton.addEventListener('click', () => {
     const huidigeKoning = document.querySelector('article > div > section:nth-child(2) > p');
     huidigeKoning.innerHTML = nieuweKoningInput.value;
     nieuweKoningInput.value = '';
 })
 
+// Add an event listener to the nieuweHeksButton
+// If the button is clicked, the current witch will be replaced with the new witch
 nieuweHeksButton.addEventListener('click', () => {
     const huidigeHeks = document.querySelector('article > div > section:nth-child(3) > p');
     huidigeHeks.innerHTML = nieuweHeksInput.value;
     nieuweHeksInput.value = '';
 })
 
+// Initialize an array of presentations
 const presentaties = [
   {
     label: 'https://docs.google.com/presentation/d/17GtBJ6Zrmpreg9glYcUw8EYfQzJQi8fWDKHNHNbnqt0/edit#slide=id.p',
@@ -40,6 +46,9 @@ const presentaties = [
   }
 ]
 
+
+// Add an event listener to the presentatieButton
+// If the button is clicked, a random presentation will be opened in a new tab
 presentatieButton.addEventListener('click', () => {
     const presentatie = presentaties[Math.floor(Math.random() * presentaties.length)];
     window.open(presentatie.label, '_blank');

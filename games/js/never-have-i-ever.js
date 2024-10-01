@@ -1,9 +1,11 @@
+// Initialize variables
 const neverHaveIEverText = document.querySelector('#middle > p');
 const nextButton = document.getElementById('next-button');
 
 let splitText;
 let neverHaveIEver;
 
+// Fetch the never-have-i-ever.json file and select a random never have I ever
 async function newNeverHaveIEver() {
     const response = await fetch("json/never-have-i-ever.json");
     const data = await response.json();
@@ -24,8 +26,11 @@ async function newNeverHaveIEver() {
     
 }
 
+// Call the newNeverHaveIEver function
 newNeverHaveIEver();
 
+// Add an event listener to the nextButton
+// If the button is clicked, the text will be split and the next never have I ever will be selected
 nextButton.addEventListener('click', () => {
     splitText.revert();
     neverHaveIEver = "";

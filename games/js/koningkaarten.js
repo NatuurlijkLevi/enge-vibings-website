@@ -1,3 +1,4 @@
+// Initialize variables
 const koningButton = document.querySelector("button");
 const koningH1 = document.querySelector("h1");
 const koningP = document.querySelector("p");
@@ -416,8 +417,8 @@ const card = [
             /* 100 */     "Een betoverde vijver opent een doorgang naar een verborgen onderwaterwereld, waar je 7 vakjes vooruit gaat."
         ]
     ];
-
-        
+    
+// function to draw a random card
 function drawRandomCard()
 {
     let cardValue = 0;
@@ -450,6 +451,7 @@ function drawRandomCard()
     }
 }    
 
+// If you press the button, draw a random card
 koningButton.addEventListener('click', function() {
     drawRandomCard();
 });

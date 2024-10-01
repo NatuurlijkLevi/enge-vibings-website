@@ -1,3 +1,4 @@
+// Initialize variables
 const body = document.querySelector('body');
 const truthOrDareText = document.querySelector('#middle > p');
 const truthOrDareHeadText = document.querySelector('#middle > h1');
@@ -10,6 +11,7 @@ let firstTruthOrDare = true;
 let lastTimeClickedTruth = false;
 let lastTimeClickedDare = false;
 
+// Make a split text animation
 function splitTextAnimation() {
     splitText = new SplitType('.split-text', {
         types: 'lines, words, chars',
@@ -24,6 +26,7 @@ function splitTextAnimation() {
     })
 }
 
+// Fetch the truth-or-dare.json file and select a random truth
 async function newTruth() {
     const response = await fetch("json/truth-or-dare.json");
     const data = await response.json();
@@ -35,6 +38,7 @@ async function newTruth() {
     splitTextAnimation();
 }
 
+// Fetch the truth-or-dare.json file and select a random dare
 async function newDare() {
     const response = await fetch("json/truth-or-dare.json");
     const data = await response.json();
@@ -46,6 +50,7 @@ async function newDare() {
     splitTextAnimation();
 }
 
+// Add an event listener to the truthButton
 truthButton.addEventListener('click', () => {
     if (!firstTruthOrDare)
     {
@@ -75,6 +80,7 @@ truthButton.addEventListener('click', () => {
     newTruth();
 });
 
+// Add an event listener to the dareButton
 dareButton.addEventListener('click', () => {
     if (!firstTruthOrDare)
     {
