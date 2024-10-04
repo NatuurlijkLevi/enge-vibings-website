@@ -14,6 +14,28 @@ iframe.onload = () => {
   bubbles = innerDoc.getElementById('bubbles');
   iframeRoot = innerDoc.querySelector(':root');
   bubble = innerDoc.querySelectorAll('.bubble');
+
+  // If there is local storage, get the ingredients that are already used
+  let usedIngredients = JSON.parse(localStorage.getItem('usedIngredients')) || [];
+  console.log(usedIngredients);
+  
+  if (Array.isArray(usedIngredients)) {
+    usedIngredients.forEach(ingredient => {
+      changeSoupWaterColorByAdding(ingredient);
+      ingredienten.forEach(ingredientElement => {
+        let storedIngredientForSoep = ingredientElement.querySelector('p').innerText.toLowerCase().replace('’', '');
+        while (storedIngredientForSoep.includes(' ')) {
+          storedIngredientForSoep = storedIngredientForSoep.replace(' ', '');
+        }
+        if (storedIngredientForSoep === ingredient) {
+          ingredientElement.classList.toggle('used');
+        }
+      });
+    });
+  } else {
+    console.error('usedIngredients is not an array:', usedIngredients);
+  }
+
 };
 
 let ingredientForSoep;
@@ -44,6 +66,16 @@ function changeSoupWaterColorByAdding(ingredient) {
       }
     }, 500);
   });
+
+  // Store the used ingredient in an array in the local storage
+  usedIngredients = JSON.parse(localStorage.getItem('usedIngredients')) || [];
+  if (!usedIngredients.includes(ingredient)) {
+    if (!Array.isArray(usedIngredients)) {
+      usedIngredients = [];
+    }
+    usedIngredients.push(ingredient);
+    localStorage.setItem('usedIngredients', JSON.stringify(usedIngredients));
+  }
 }
 
 // Sip the soup
