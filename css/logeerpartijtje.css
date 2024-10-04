@@ -41,7 +41,7 @@ div#dashboard {
     grid-template-columns: 4fr 2fr 2fr 2fr;
     grid-template-rows: 8fr 4fr 3fr 1fr;
     grid-template-areas:    "ws ws ws ws"
-                             ". hs hs hs"
+                            "vk hs hs hs"
                             "kk hs hs hs"
                             "kk pt hw kw";
     box-shadow: 0 0 2vw rgba(0, 0, 0, 1);
@@ -50,7 +50,7 @@ div#dashboard {
 #koningkaarten {grid-area: kk;}
 #heksensoep {grid-area: hs;}
 #wheelspinner {grid-area: ws;}
-
+#voorwaardenkaarten {grid-area: vk;}
 #presentatie {grid-area: pt;}
 #koningwisselaar {grid-area: kw;}
 #hekswisselaar {grid-area: hw;}
