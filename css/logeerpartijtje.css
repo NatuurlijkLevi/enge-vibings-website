@@ -7,6 +7,7 @@ body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    background: linear-gradient(0deg, #8A4084, #1E1C4B);
 }
 
 @keyframes toggledashboard {
@@ -59,11 +60,11 @@ div#dashboard {
     align-items: center;
     justify-content: center;
     gap: 10%;
-    background-color: #3CBEDE11;
+    background: linear-gradient(0deg, #CB9DCE, #4B225F);
 }
 
-#hekswisselaar{
-    background-color: #DD41B811;
+#hekswisselaar {
+    background: linear-gradient(0deg, #afb2d1, #1E1C4B);
 }
 
 #presentatie > button {

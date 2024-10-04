@@ -11,10 +11,29 @@ body {
     width: 100vw;
 }
 
+@keyframes headerSlideUp {
+    0% {
+        opacity: 0;
+        height: 0;
+        top: 0;
+    }
+    1% {
+        top: 25vh;
+        height: 25vh;
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        height: 25vh;
+        top: 0;
+    }
+}
+
 header {
     position: fixed;
-    top: 0;
+    opacity: 0;
     height: 0;
+    top: 0;
     width: 100vw;
     z-index: 5;
     overflow: hidden;
@@ -22,7 +41,8 @@ header {
 }
 
 header.visible {
-    height: 25vh;
+    opacity: 1;
+    animation: headerSlideUp 1250ms forwards 1s ease-in-out;
 }
 
 
@@ -36,7 +56,7 @@ main {
     z-index: 10;
 }
 
-main#home, main#games {
+main#home, main#games, main#settings {
     width: 69vw;
     border: var(--purple-color) 1px solid;
     border-bottom: none;
@@ -55,9 +75,32 @@ main#games{
 
 nav {
     background-color: var(--purple-color);
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+div.objectcontainer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    bottom: 0;
+    height: 0;
+    right: 0;
+    width: 6%;
+    transition: 500ms;
+}
+
+div.objectcontainer.visible {
+    height: 125%;
+}   
+
+nav object {
+    height: inherit;
+    width: auto;
+    transform: translate(-10%, 20%) rotate(15deg);
 }
 
 nav > ul {

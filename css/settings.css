@@ -1,0 +1,12 @@
+body {
+    display: grid;
+    gap: 2vw;
+    padding: 2vw;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}

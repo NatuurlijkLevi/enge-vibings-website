@@ -1,0 +1,53 @@
+name: Commit to other Enge Vibings repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.name 'NatuurlijkLevi[bot]'
+        git config --global user.email 'NatuurlijkLevi[bot]@users.noreply.github.com'
+
+    - name: Get latest commit message
+      id: get_commit_message
+      run: |
+        COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+        echo "::set-output name=message::$COMMIT_MESSAGE"
+
+    - name: Check if commit is from bot
+      id: check_actor
+      run: |
+        echo "::set-output name=from_bot::$(if [ $GITHUB_ACTOR == 'NatuurlijkLevi[bot]' ]; then echo 'true'; else echo 'false'; fi)"
+
+    - name: Clone target repository
+      if: steps.check_actor.outputs.from_bot == 'false'
+      env:
+        TARGET_REPO: https://NatuurlijkLevi:${{ secrets.TARGET_REPO_PAT }}@github.com/ItsJordanNL/enge-vibings.git
+      run: |
+        git clone $TARGET_REPO target-repo
+
+    - name: Copy changes to target repository folder
+      if: steps.check_actor.outputs.from_bot == 'false'
+      run: |
+        mkdir -p target-repo/leip-logeerpartijtje
+        rsync -av --exclude='.git' --exclude='.github/workflows/main.yml' --exclude='target-repo' ./ target-repo/leip-logeerpartijtje/
+
+    - name: Commit and push changes
+      if: steps.check_actor.outputs.from_bot == 'false'
+      env:
+        COMMIT_MESSAGE: ${{ steps.get_commit_message.outputs.message }}
+      run: |
+        cd target-repo
+        git add .
+        git commit -m "${COMMIT_MESSAGE}"
+        git push origin main
