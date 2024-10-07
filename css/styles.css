@@ -3,12 +3,22 @@ body {
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: end;
     height: 100vh;
     width: 100vw;
+}
+
+@keyframes showConsole {
+    0% {
+        
+    }
+    100% {
+        bottom: 20vh;
+    }
 }
 
 @keyframes headerSlideUp {
@@ -175,6 +185,10 @@ main#home, main#games, main#settings {
     border-radius: 1vw 1vw 0 0;
 }
 
+main#settings {
+    height: 4.5vh;
+}
+
 main#logeerpartijtje {
     width: 100vw;
     box-shadow: none;
@@ -261,6 +275,7 @@ footer{
     padding: 2vh;
     text-align: center;
     width: 100vw;
+    z-index: 10;
 }
 
 footer > p {
@@ -364,6 +379,21 @@ footer > p {
     border-left: none;
     border-right: none;
     transition: 500ms;
+}
+
+section#console{
+    position: absolute;
+    bottom: -50vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50vw;
+    height: 50vh;
+    background-color: black;
+    border: var(--hover-blue-color) 2px solid;
+    border-radius: 1vh;
+    box-shadow: black 0 0 1vw;
+    transition: 1s;
+    z-index: 1;
 }
 
 @media only screen and (max-width: 1040px) {

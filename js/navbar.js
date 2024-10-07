@@ -4,6 +4,8 @@ const navObjectcontainer = document.querySelector("nav > div.objectcontainer")
 const header = document.querySelector("header");
 const main = document.querySelector("main");
 const linkItems = document.querySelectorAll("nav > ul > li");
+const console = document.querySelector("section#console");
+const consoleAppear = "showConsole 1s ease-in-out forwards"
 let bodyRect = body.getBoundingClientRect(body);
 
 // For each link item in the navbar
@@ -15,6 +17,10 @@ linkItems.forEach((item) => {
       // Change the current page to the clicked item if exists
       if (document.getElementById("currentpage")) {
         document.getElementById("currentpage").id = "";
+      }
+      // If it does not exist, the console is shown, so hide it
+      else {
+        console.style.bottom = "-50vh";
       }
       
       item.id = "currentpage";
@@ -64,6 +70,7 @@ navObjectcontainer.addEventListener("click", () => {
   navObjectcontainer.classList.remove("visible");
   main.children[1].children[0].style.display = "none";
   setTimeout(() => {
-    main.children[1].innerHTML = "<iframe src='settings.html'></iframe>";
+    main.children[1].innerHTML = "<iframe src=''></iframe>";
+    console.style.bottom = "20vh";
   }, 750);
 });
