@@ -186,7 +186,7 @@ main#home, main#games, main#settings {
 }
 
 main#settings {
-    height: 4.5vh;
+    height: calc(2vh + 1em);
 }
 
 main#logeerpartijtje {
