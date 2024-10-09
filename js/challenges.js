@@ -17,8 +17,6 @@ const ontstopperContainerAnimation = "ontstopperPullChallenges 5s linear";
 const banaanContainerAnimation = "bananaAppear 2500ms ease-in-out";
 const banaanAnimation = "bananaShootToCloseChallenges 2500ms ease-in-out";
 
-console.log(ontstopperContainer, ontstopperContainerAnimation)
-
 let animationBusy = false;
 
 // Add an event listener to the challenge button
