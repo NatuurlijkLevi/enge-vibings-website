@@ -162,17 +162,25 @@ function resetNames(){
 
 // Create a new Wheel instance
 function resetWheel() {
-  container.innerHTML = "";
-  wheel = new Wheel(container, props);
-  wheel.itemBackgroundColors = ['#3CBEDE', '#DD41B8', '#455DA5', '#96299C', '#455DA5', '#DD41B8'];
-  wheel.lineWidth = 0;
-  wheel.borderWidth = 0;
-  wheel.itemLabelColors = ['#FCFAFA'];
-  wheel.itemLabelFont = "'Montserrat', sans-serif";
-  wheel.isInteractive = true;
-  wheel.itemLabelAlign = 'right';
-  wheel.itemLabelFontSizeMax = 35;
+    container.innerHTML = "";
+    wheel = new Wheel(container, props);
+    wheel.itemBackgroundColors = ['#3CBEDE', '#DD41B8', '#455DA5', '#96299C', '#455DA5', '#DD41B8'];
+    wheel.lineWidth = 0;
+    wheel.borderWidth = 0;
+    wheel.itemLabelColors = ['#FCFAFA'];
+    wheel.itemLabelFont = "'Montserrat', sans-serif";
+    wheel.isInteractive = false;
+    wheel.itemLabelAlign = 'right';
+    wheel.itemLabelFontSizeMax = 35;
 }
+
+// Create a new Wheel instance with a delay of 500ms to help with the pop up animation
+function resetWheelWithDelay() {
+  setTimeout(() => {
+    resetWheel();
+  }, 500);
+}
+
 resetWheel();
 
 // Get a random item index
@@ -211,24 +219,24 @@ spinButton.addEventListener("click", () => {
           volgordeCount++;
           switch (volgordeCount) {
             case 1:
-              alert(`${winner} is als eerste aan de beurt!`);
+              showPopUp("wheelspinner", `${winner} is als eerste aan de beurt!`);
               currentVolgorde[0] = winner;
               break;
             case 2:
-              alert(`Daarna is ${winner} aan de beurt!`);
+              showPopUp("wheelspinner", `Daarna is ${winner} aan de beurt!`);
               currentVolgorde[1] = winner;
               break;
             case 3:
-              alert(`${winner} komt daarna als derde aan de beurt!`);
+              showPopUp("wheelspinner", `${winner} komt daarna als derde aan de beurt!`);
               currentVolgorde[2] = winner;
               break;
             case 4:
-              alert(`Vervolgens is ${winner} aan de beurt!`);
+              showPopUp("wheelspinner", `Vervolgens is ${winner} aan de beurt!`);
               currentVolgorde[3] = winner;
               break;
             case 5:
               const lastPlayer = props.items[getLastPlayer(winnerIndex)].label;
-              alert(`Als tweederlaatste is ${winner} aan de beurt! Dit betekent dat ${lastPlayer} als laatste aan de beurt is!`);
+              showPopUp("wheelspinner", `Als tweederlaatste is ${winner} aan de beurt! Dit betekent dat ${lastPlayer} als laatste aan de beurt is!`);
               currentVolgorde[4] = winner;
               currentVolgorde[5] = lastPlayer;
               break;
@@ -243,7 +251,7 @@ spinButton.addEventListener("click", () => {
             volgordeDone = true;
             localStorage.setItem("volgordeDone", volgordeDone);
             resetNames();
-            resetWheel();
+            resetWheelWithDelay();
             selected.id = "";
             koning.id = "selected";
             selected = koning;
@@ -252,15 +260,15 @@ spinButton.addEventListener("click", () => {
         }
         else if (volgordeDone && selected == volgorde)
         {
-          alert("De volgorde is al bepaald!")
+          showPopUp("wheelspinner", "De volgorde is al bepaald!")
         }
         else if (koning == selected && !koningDone) {
           koningSpel.innerHTML += `<p>${winner}</p>`;
-          alert(`De koning is ${winner}!`);
+          showPopUp("wheelspinner", `De koning is ${winner}!`);
           currentKoning = winner;
           localStorage.setItem("koning", currentKoning);
           props.items.splice(winnerIndex, 1);
-          resetWheel();
+          resetWheelWithDelay();
           koningDone = true;
           localStorage.setItem("koningDone", koningDone);
           selected.id = "";
@@ -268,29 +276,45 @@ spinButton.addEventListener("click", () => {
           selected = heks;
         }
         else if (koningDone && selected == koning) {
-          alert("De koning is al gekozen!")
+          showPopUp("wheelspinner", "De koning is al gekozen!")
         }
         else if (heks == selected && !heksDone) {
           heksSpel.innerHTML += `<p>${winner}</p>`;
-          alert(`De heks is ${winner}!`);
+          showPopUp("wheelspinner", `De heks is ${winner}!`);
           currentHeks = winner;
           localStorage.setItem("heks", currentHeks);
           heksDone = true;
           localStorage.setItem("heksDone", heksDone);
           resetNames();
-          resetWheel();
+          resetWheelWithDelay();
           selected.id = "";
         }
         else if (heksDone && selected == heks) {
-          alert("De heks is al gekozen!")
+          showPopUp("wheelspinner", "De heks is al gekozen!")
         }
         else if (naam == selected) {
-          alert(`De gekozenen is ${winner}!`);
+          showPopUp("wheelspinner", `De gekozenen is ${winner}!`);
         }
       } else {
-        alert(`De gekozenen is ${winner}!`);
+        showPopUp("wheelspinner", `De gekozenen is ${winner}!`);
       }
-      checkIfAllDone();
+      // Create a promise that resolves when the pop-up is closed
+      const waitForPopUpToClose = new Promise((resolve) => {
+        const checkPopUpClosed = setInterval(() => {
+          if (popUpIsClosed) {
+        clearInterval(checkPopUpClosed);
+        resolve();
+          }
+        }, 100); // Check every 100ms
+      });
+
+      // Use the promise to check if all games are done after the pop-up is closed
+      waitForPopUpToClose.then(() => {
+        checkIfAllDone();
+      }).catch((error) => {
+        console.error('Error waiting for pop-up to close:', error);
+      });
+      
       buttonIsClicked = false;
     }, 8500);
   }
@@ -302,7 +326,7 @@ buttonItems.forEach((item) => {
   item.addEventListener("click", () => {
     // If the koning is already selected, the heks must be selected
     if (koning.id == "selected" && heks == !item) {
-      alert("De koning is al gekozen! Kies nu de heks.");
+      showPopUp("wheelspinner", "De koning is al gekozen! Kies nu de heks.");
     }
     // If the item is not selected and the volgorde is either finished or not started, the item will be selected
     if (item.id !== "selected" && !buttonIsClicked && (volgordeCount == 0 || volgordeCount == 6))
@@ -313,11 +337,11 @@ buttonItems.forEach((item) => {
     }
     // If the button is clicked to spin the wheel, you can't switch what you want to spin for 
     else if (buttonIsClicked) {
-      alert("Je bent al aan het rad aan het draaien!");
+      showPopUp("wheelspinner", "Je bent al aan het rad aan het draaien!");
     }
     // If the volgorde is not finished, the volgorde must be finished first
     else if (volgordeCount > 0 && volgordeCount < 6) {
-      alert("Je bent nog bezig met de volgorde! Maak deze eerst af.");
+      showPopUp("wheelspinner", "Je bent nog bezig met de volgorde! Maak deze eerst af.");
     }
   });
 });

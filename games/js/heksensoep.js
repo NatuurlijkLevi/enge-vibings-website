@@ -12,6 +12,8 @@ let bubble;
 iframe.onload = () => {
   innerDoc = iframe.contentDocument || iframe.contentWindow.document;
   bubbles = innerDoc.getElementById('bubbles');
+  console.log(innerDoc);
+  console.log(bubbles);
   iframeRoot = innerDoc.querySelector(':root');
   bubble = innerDoc.querySelectorAll('.bubble');
 
@@ -83,19 +85,17 @@ function sipSoep() {
   const randomNumber = Math.random();
   const forward = [5, 6, 7, 8];
   const goodResponse = [
-    "Het smaakt heerlijk! Hierdoor ga je ",
-    "De soep is verrukelijk! Daarom ga je ",
-    "De soep is om je vingers bij af te likken! Ga hierom ",
-    "Het is om van te smullen! Hierom ga je ",
-    "De soep is zo lekker dat je "
+    "Het smaakt heerlijk!</p><p class='pop-up-text'>Hierdoor ga je ",
+    "De soep is verrukelijk!</p><p class='pop-up-text'>Daarom ga je ",
+    "De soep is om je vingers bij af te likken!</p><p class='pop-up-text'>Ga hierom ",
+    "Het is om van te smullen!</p><p class='pop-up-text'>Hierom ga je "
   ];
   const backward = [3, 4, 9, 10];
   const badResponse = [
-    "Het smaakt afschuwelijk! Hierdoor moet je door je mond uit te spoelen ",
-    "De soep is niet te drinken! Hierdoor ga je ",
-    "Het is niet te eten! Daarom moet je ",
-    "De soep is niet te vreten! Daarom ga je ",
-    "De soep is zo vies dat je "
+    "Het smaakt afschuwelijk!</p><p class='pop-up-text'>Hierdoor moet je door je mond uit te spoelen ",
+    "De soep is niet te drinken!</p><p class='pop-up-text'>Hierdoor ga je ",
+    "Het is niet te eten!</p><p class='pop-up-text'>Daarom moet je ",
+    "De soep is niet te vreten!</p><p class='pop-up-text'>Daarom ga je "
   ];
   const moveResponse = [
     " vakjes ",
@@ -103,7 +103,6 @@ function sipSoep() {
     " hokjes ",
   ];
 
-  alert("Je neemt een slok...");
   let message;
   if (randomNumber < 0.21) {
     const randomBackward = backward[Math.floor(Math.random() * backward.length)];
@@ -116,8 +115,19 @@ function sipSoep() {
     const randomMoveResponse = moveResponse[Math.floor(Math.random() * moveResponse.length)];
     message = randomGoodResponse + randomForward + randomMoveResponse + "vooruit.";
   }
-  message = "Je neemt een slok...\n\n\n\n" + message;
-  alert(message);
+
+  showPopUp("heksensoep", message);
+  const quoteText = new SplitType('.pop-up-text', {
+      type: 'lines, words, chars',
+      tagName: 'span'
+    });
+  gsap.from('.pop-up-text .char', {
+    y: '100%',
+    opacity: 0,
+    duration: 0.80,
+    ease: 'back.out',
+    stagger: 0.15,
+  });
 }
 
 // Add an event listener to each ingredient
@@ -178,9 +188,6 @@ ingredienten.forEach(ingredient => {
           }, 2200);
         }
       }, 600);
-    }
-    else {
-      alert(`Je hebt dit ingrediënt al gebruikt!`);
     }
   });
 });

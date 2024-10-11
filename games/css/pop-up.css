@@ -1,0 +1,109 @@
+@keyframes pop-up-appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.pop-up-container{
+    animation: pop-up-appear 1s forwards;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pop-up {
+    border-radius: 1vw;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    grid-template-rows: 1fr 2fr 6fr;
+    grid-template-areas:    ". x"
+                            "h h" 
+                            "p p";
+    padding: 1vw;
+    width: 50vw;
+    height: 50vh;
+}
+
+.pop-up > .x {
+    border-radius: 1vw;
+    grid-area: x;
+    display: flex;
+    background-image: url(../../img/cross.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 500ms;    
+
+}
+
+div.pop-up > h1 {
+    grid-area: h;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: black;
+}
+
+div.pop-up > p {
+    font-family: 'Montserrat', sans-serif;
+    grid-area: p;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: black;
+}
+
+.pop-up.wheelspinner {
+    background-color: var(--text-color);
+}
+
+.pop-up.wheelspinner > .x {
+    background-color: var(--hover-blue-color);
+}
+
+.pop-up.wheelspinner > .x:hover{
+    background-color: var(--light-blue-color);
+}
+
+.pop-up.heksensoep {
+    background-image: linear-gradient(to bottom, #D9BADD, #AAAEBC);
+    grid-template-rows: 1fr 2fr 3fr 3fr;
+    gap: 1vw;
+    grid-template-areas:    ". x"
+                            "h h" 
+                            "pi pi" 
+                            "pii pii";
+}
+
+.pop-up.heksensoep > .x {
+    background-color: #623488;
+}
+
+.pop-up.heksensoep > .x:hover{
+    background-color: #91389f;
+}
+
+div.pop-up-container > .pop-up.heksensoep > p {
+    font-weight: 600;
+    grid-area: pi;
+    align-items: end;
+}
+
+div.pop-up-container > div.pop-up.heksensoep > p:nth-last-of-type(1) {
+    grid-area: pii;
+    align-items: center;
+}

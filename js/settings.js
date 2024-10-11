@@ -5,8 +5,13 @@ consoleLog.innerHTML = localStorage.getItem("consoleLogContent");
 
 function clearLocalStorage() {
     localStorage.clear();
-    consoleLog.innerHTML += "game progress clear - clear the game progress<br>";
+    consoleLog.innerHTML += "Cleared all local storage<br>";
     location.reload();
+}
+
+function clearHeksensoep() {
+    localStorage.removeItem("usedIngredients");
+    consoleLog.innerHTML += "Cleared heksensoep progress<br>";
 }
 
 document.addEventListener("keyup", (event) => {
@@ -16,10 +21,14 @@ document.addEventListener("keyup", (event) => {
                 consoleLog.innerHTML += consoleInput.value + " is not a valid command type 'help' for a list of commands<br>";
                 break;
             case "help":
-                consoleLog.innerHTML += "clear localstorage - clear all localstorage data<br>";
+                consoleLog.innerHTML += "localstorage clear - clear all localstorage data<br>";
+                consoleLog.innerHTML += "localstorage clear heksensoep - clear heksensoep progress<br>";
                 break;
-            case "clear localstorage":
+            case "localstorage clear":
                 clearLocalStorage();
+                break;
+            case "localstorage clear heksensoep":
+                clearHeksensoep();
                 break;
         }
         consoleInput.value = "";
