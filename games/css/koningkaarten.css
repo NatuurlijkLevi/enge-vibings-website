@@ -4,7 +4,8 @@
 }
 
 body{
-    background-image: url("../../img/koning.png");
+    background: url("../../img/koning.png");
+    box-shadow: inset 0 0 0 100vmax rgba(255, 255, 255, 0.6);
     background-size: 15vw;
     background-position: center;
     height: 100vh;
@@ -42,8 +43,8 @@ button, p {
 button{
     background-color: var(--beige);
     border: none;
-    border-radius: 1vw;
-    padding: 1vw;
+    border-radius: 2vw;
+    padding: 3vh 2vw;
     cursor: pointer;
     transition: 500ms linear;
     text-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.25);
