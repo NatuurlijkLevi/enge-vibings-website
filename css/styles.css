@@ -1,3 +1,12 @@
+@keyframes pop-up-appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 body {
     background-image: url('../img/bg.png');
     background-position: top;
@@ -394,6 +403,98 @@ section#console{
     box-shadow: black 0 0 1vw;
     transition: 1s;
     z-index: 1;
+}
+
+a#horrorspel {
+    cursor: pointer
+}
+
+div:has(> #horrorspel-popup){
+    animation: pop-up-appear 1s forwards;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+div > div#horrorspel-popup {
+    background-color: var(--text-color);
+    border-radius: 1vw;
+    gap: 1vw;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    width: 50vw;
+    height: 50vh;
+}
+
+div > div#horrorspel-popup > h1 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+div > div#horrorspel-popup > p {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+div > div#horrorspel-popup > #ogen-container {
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+    margin: 4vh;
+}
+
+div > div#horrorspel-popup > #ogen-container > #ogen1 {
+    width: 10vh;
+    height: 10vh;
+    font-size: 5vh;
+    color: white;
+    background-color: blue;
+    text-align: center;
+
+}
+
+div > div#horrorspel-popup > #ogen-container > #ogen2 {
+    width: 10vh;
+    height: 10vh;
+    font-size: 5vh;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+div > div#horrorspel-popup > #ogen-container > #ogen1:focus, div > div#horrorspel-popup > #ogen-container > #ogen2:focus {
+    outline: none;
+}
+
+div > div#horrorspel-popup > button {
+    font-size: 3vh;
+    width: 50%;
+}
+
+div > div#horrorspel-popup > a {
+    font-size: 2vh;
+    transition: 300ms;
+    cursor: pointer;
+    color: blue;
+}
+
+div > div#horrorspel-popup > a:hover {
+    color: var(--hover-blue-color);
 }
 
 @media only screen and (max-width: 1040px) {
