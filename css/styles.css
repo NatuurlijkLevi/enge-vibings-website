@@ -1,14 +1,5 @@
-@keyframes pop-up-appear {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
 body {
-    background-image: url('../img/bg.png');
+    background-image: url('../img/engevibingsbg1.png');
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,6 +10,15 @@ body {
     justify-content: end;
     height: 100vh;
     width: 100vw;
+}
+
+@keyframes pop-up-appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes showConsole {
@@ -125,6 +125,10 @@ body {
 
 header {
     position: fixed;
+    background-image: url(../img/logeerpartijtje-alt.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     opacity: 0;
     height: 0;
     top: 0;
@@ -297,7 +301,7 @@ footer > p {
     left: 0;
     display: flex;
     flex-direction: row-reverse;
-    transition: 1s ease-out;
+    transition: 500ms ease-out;
 }
 
 #challenges {

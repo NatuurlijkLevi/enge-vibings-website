@@ -13,9 +13,9 @@ const banaanContainer = document.getElementById("banaancontainer");
 const banaan = document.querySelector("#banaancontainer > object:nth-child(1)");
 
 // Initialize variables for the ontstopper and banaan animations
-const ontstopperContainerAnimation = "ontstopperPullChallenges 5s linear";
-const banaanContainerAnimation = "bananaAppear 2500ms ease-in-out";
-const banaanAnimation = "bananaShootToCloseChallenges 2500ms ease-in-out";
+const ontstopperContainerAnimation = "ontstopperPullChallenges 2500ms linear";
+const banaanContainerAnimation = "bananaAppear 1250ms ease-in-out";
+const banaanAnimation = "bananaShootToCloseChallenges 1250ms ease-in";
 
 let animationBusy = false;
 const horrorSpelButton = document.getElementById("horrorspel");
@@ -33,14 +33,14 @@ challengeButton.addEventListener("click", () => {
         setTimeout(() => {
             challengeContainer.style.transform = "translate(-" + challengeWidth + "px)";
             challengeButton.classList.remove("clicked");
-        }, 2000);
+        }, 1000);
         setTimeout(() => {
             banaan.style.animation = "";
             banaanContainer.style.animation = "";
             setTimeout(() => {
                 animationBusy = false;
             }, 100);
-        }, 2500);
+        }, 1250);
     }
     else if (!animationBusy)
     {
@@ -49,13 +49,13 @@ challengeButton.addEventListener("click", () => {
         setTimeout(() => {
             challengeContainer.style.transform = "translate(0)";
             challengeButton.classList.add("clicked");
-        }, 3500);
+        }, 1750);
         setTimeout(() => {
             ontstopperContainer.style.animation = "";
             setTimeout(() => {
                 animationBusy = false;
             }, 100);
-        }, 5000);
+        }, 2500);
     }
 });
 
