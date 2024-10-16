@@ -28,8 +28,11 @@ let oldAiPercentageA;
 let oldAiPercentageB;
 let oldAiChoice;
 
+let firstResponse = true;
+let secondResponse = false;
 let choiceMade = false;
-let timeSinceOptionsCreated = 0;
+let timeSinceOptionsCreatedNewWYR = 0;
+let timeSinceOptionsCreatedShowDetails = 0;
 
 const promptChooseOption = "You are good at making choices and you are a helpful AI. You can explain clearly why one is better than the other."
 
@@ -51,36 +54,59 @@ async function AskAI(systemPrompt, UserPrompt)
 }
 
 async function getOpinionAI(blue, red){
-  let metaOption = await AskAI(promptChooseOption, "Would you rather: Blue: " + blue + " or Red: " + red + ". Also give the percentage blue and red with how good they are. Keep in mind that the percentage of blue + red equal is to 100. Keep it to the point and don't make it too long. The explainations should be before everything and dont but text after the last percentage. separate the things from eachother like below:\m\n Explaination: for example: Blue is better because... and red is not better because...;\n percentageBlue: percentageBlue (example: 70)\n percentageRed: percentageRed (example 30)");
-  metaOption = metaOption.replace(/\n/g, "");
-  let explanationMatch = metaOption.match(/Explaination:\s*(.*)\s*percentageBlue:/);
-  let percentageBlueMatch = metaOption.match(/percentageBlue:\s*(\d+)/);
-  let percentageRedMatch = metaOption.match(/percentageRed:\s*(\d+)/);
-  let metaChoice = explanationMatch ? explanationMatch[1].trim() : '';
-  let metaPercentageA = percentageBlueMatch ? parseInt(percentageBlueMatch[1], 10) : 0;
-  let metaPercentageB = percentageRedMatch ? parseInt(percentageRedMatch[1], 10) : 0;
-  
-  // Update the original variables with the acquired information
-  if (blue === optionA && red === optionB)
+  if (!secondResponse)
   {
-    aiChoice = metaChoice;
-    aiPercentageA = metaPercentageA;
-    aiPercentageB = metaPercentageB;
-    console.log(metaChoice);
-    console.log(metaPercentageA);
-    console.log(metaPercentageB);
-    console.log(aiChoice);
-    console.log(aiPercentageA);
-    console.log(aiPercentageB);
+    let metaOption = await AskAI(promptChooseOption, "Would you rather: Blue: " + blue + " or Red: " + red + ". Also give the percentage blue and red with how good they are. Keep in mind that the percentage of blue + red equal is to 100. Keep it to the point and don't make it too long. The explainations should be before everything and dont but text after the last percentage. Don't use *. separate the things from eachother like below:\m\n Explaination: for example: Blue is better because... and red is not better because...;\n percentageBlue: percentageBlue (example: 70)\n percentageRed: percentageRed (example 30)");
+    metaOption = metaOption.replace(/\n/g, "");
+    let explanationMatch = metaOption.match(/Explaination:\s*(.*)\s*percentageBlue:/);
+    console.log(metaOption, firstResponse);
+    if (explanationMatch == null)
+    {
+      explanationMatch = metaOption.match(/\*\*Explaination*\*\s*(.*)\s*percentageBlue:/);
+    }
+    let percentageBlueMatch = metaOption.match(/percentageBlue:\s*(\d+)/);
+    if (percentageBlueMatch == null)
+    {
+      percentageBlueMatch = metaOption.match(/percentage Blue:\s*(\d+)/);
+    }
+    let percentageRedMatch = metaOption.match(/percentageRed:\s*(\d+)/);
+    if (percentageRedMatch == null)
+    {
+      percentageRedMatch = metaOption.match(/percentage Red:\s*(\d+)/);
+    }
+    let metaChoice = explanationMatch ? explanationMatch[1].trim() : '';
+    let metaPercentageA = percentageBlueMatch ? parseInt(percentageBlueMatch[1], 10) : 0;
+    let metaPercentageB = percentageRedMatch ? parseInt(percentageRedMatch[1], 10) : 0;
+    
+    // Update the original variables with the acquired information
+    if (blue === optionA && red === optionB)
+    {
+      aiChoice = metaChoice;
+      aiPercentageA = metaPercentageA;
+      aiPercentageB = metaPercentageB;
+      console.log("AI generate")
+      console.log(aiChoice);
+      console.log(aiPercentageA);
+      console.log(aiPercentageB);
+    }
+    else if (blue === extraOptionA && red === extraOptionB)
+    {
+      extraAiChoice = metaChoice;
+      extraAiPercentageA = metaPercentageA;
+      extraAiPercentageB = metaPercentageB;
+      console.log("AI generate Extra")
+      console.log(extraAiChoice);
+      console.log(extraAiPercentageA);
+      console.log(extraAiPercentageB);
+    }
+    if (firstResponse)
+    {
+      firstResponse = false;
+      secondResponse = true;
+    }
   }
-  else if (blue === extraOptionA && red === extraOptionB)
-  {
-    extraAiChoice = metaChoice;
-    extraAiPercentageA = metaPercentageA;
-    extraAiPercentageB = metaPercentageB;
-    console.log(extraAiChoice);
-    console.log(extraAiPercentageA);
-    console.log(extraAiPercentageB);
+  else {
+    secondResponse = false;
   }
 }
 
@@ -154,21 +180,23 @@ async function newWouldYouRather(type, makeExtra, putWouldYouRatherInContainers,
       if (makeExtra) {
         getOpinionAI(extraOptionA, extraOptionB);
       }
-      timeSinceOptionsCreated++;
+      timeSinceOptionsCreatedNewWYR++;
     }
 }
 
 newWouldYouRather('Normal', true, true, optionA, optionB);
 optionA = "";
-optionA = "";
-newWouldYouRather('Normal', false, true, optionA, optionB);
+optionB = "";
+setTimeout(() => {
+  newWouldYouRather('Normal', false, false, optionA, optionB);
+}, 60000)
 
 function showDetails() {
   nextButton.classList.remove('hidden');
       percent.forEach((element) => {
         element.innerHTML = "%";
       });
-    switch (timeSinceOptionsCreated)
+    switch (timeSinceOptionsCreatedShowDetails)
     {
       case 0:
         aiChoiceElement.innerHTML = aiChoice;
@@ -181,11 +209,15 @@ function showDetails() {
         redPercentage.innerHTML = extraAiPercentageB;
         break;
       case 2:
-        timeSinceOptionsCreated = 0;
         aiChoiceElement.innerHTML = oldAiChoice;
         bluePercentage.innerHTML = oldAiPercentageA;
         redPercentage.innerHTML = oldAiPercentageB;
         break;
+    }
+    timeSinceOptionsCreatedShowDetails++;
+    if (timeSinceOptionsCreatedShowDetails === 3)
+    {
+      timeSinceOptionsCreatedShowDetails = 0;
     }
 }
 
@@ -223,19 +255,19 @@ nextButton.addEventListener('click', () => {
     blueOptionText.innerHTML = "";
     redOptionText.innerHTML = "";
     choiceMade = false;
-    switch (timeSinceOptionsCreated)
+    switch (timeSinceOptionsCreatedShowDetails)
     {
       case 0:
         newWouldYouRather(null, null, true, optionA, optionB);
         optionA = "";
-        optionA = "";
+        optionB = "";
         newWouldYouRather('Normal', false);
         console.log("OptionA & B")
         break;
       case 1:
         newWouldYouRather(null, null, true, extraOptionA, extraOptionB);
         extraOptionA = "";
-        extraOptionA = "";
+        extraOptionB = "";
         oldOptionA = optionA;
         oldOptionB = optionB;
         oldAiPercentageA = aiPercentageA;
@@ -249,6 +281,11 @@ nextButton.addEventListener('click', () => {
         oldOptionA = "";
         oldOptionA = "";
         console.log("OldOptionA & B")
+        timeSinceOptionsCreatedNewWYR = 0;
         break;
     }
 });
+
+setInterval(() => {
+  console.log(timeSinceOptionsCreatedNewWYR, timeSinceOptionsCreatedShowDetails);
+}, 1000);
