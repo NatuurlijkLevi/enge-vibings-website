@@ -107,6 +107,32 @@ h1 {
     gap: 1vh;
 }
 
+#blue-option ~ #blueselected, #red-option ~ #redselected {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 116px;
+    height: 116px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+    opacity: 0;
+    transition: 500ms;
+}
+
+#blue-option.selected ~ #blueselected, #red-option.selected ~ #redselected {
+    opacity: 1;
+}
+
+#blueselected{
+    background-image: url(../blueselected.svg);
+}
+
+#redselected{
+    background-image: url(../redselected.svg);
+}
+
 #blue-option {
     background-image: linear-gradient(180deg, var(--light-blue), var(--blue));
 }
@@ -175,7 +201,11 @@ h1 {
     transform: translate(50%, -50%);
 }
 
-#blue-option > .percentage, #red-option > .percentage{
+div:has(> .percentage) {
+    display: flex;
+}
+
+#blue-option .percentage, #red-option .percentage, #blue-option .percent, #red-option .percent{
     font-family: 'Montserrat', sans-serif;
     font-size: 15vh;
     font-weight: var(--semi-bold);
@@ -183,17 +213,18 @@ h1 {
     box-shadow: none;
 }
 
-#blue-option > .percentage {
+#blue-option .percentage, #blue-option .percent {
     color: var(--text-blue);
 }
 
-#red-option > .percentage {
+#red-option .percentage, #red-option .percent {
     color: var(--text-red);
 }
 
 p#ai-choice{
     font-weight: var(--regular);
     font-size: 2vh;
+    margin: 0 2vw;
 }
 
 #button-wrapper {
@@ -242,6 +273,11 @@ p#ai-choice{
     cursor: pointer;
     transition: 500ms;
     overflow: hidden;
+}
+
+#next-button.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 #next-button > .button-inner {

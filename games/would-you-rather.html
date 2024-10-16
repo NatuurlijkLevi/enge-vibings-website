@@ -19,6 +19,7 @@
             <button><p>Hard Choices</p></button>
             <button><p>Hot</p></button>
             <button><p>Mixed</p></button>
+            <button><p>Custom</p></button>
         </div>
         <h1>Would you rather...</h1>
     </section>
@@ -26,10 +27,14 @@
         <div id="blue-border">
             <article id="blue-option">
                 <div class="radialgradient"></div>
-                <!-- <span class="percentage">50%</span> -->
+                <div>
+                    <span class="percentage"></span>
+                    <span class="percent"></span>
+                </div>
                 <p class="option-text"></p>
                 <div class="sidecircle"></div>
             </article>
+            <div id="blueselected"></div>
         </div>
         <div id="or-border">
             <div id="or">or</div>
@@ -37,15 +42,19 @@
         <div id="red-border">
             <article id="red-option">
                 <div class="radialgradient"></div>
-                <!-- <span class="percentage">50%</span> -->
+                <div>
+                    <span class="percentage"></span>
+                    <span class="percent"></span>
+                </div>
                 <p class="option-text"></p>
                 <div class="sidecircle"></div>
             </article>
+            <div id="redselected"></div>
         </div>
     </section>
     <section id="bottom">
-        <!-- <p id="ai-choice">Omschrijving AI waarom A beter is dan B Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
-        <button id="next-button"><div class="button-inner"></div><p>Next</p></button>
+        <p id="ai-choice"></p>
+        <button id="next-button" class="hidden"><div class="button-inner"></div><p>Next</p></button>
     </section>
 </body>
 </html>
