@@ -10,29 +10,16 @@ const nextButton = document.getElementById('next-button');
 const aiChoiceElement = document.getElementById('ai-choice');
 
 let optionText;
-let optionA;
-let optionB;
-let aiPercentageA;
-let aiPercentageB;
-let aiChoice;
 
-let extraOptionA = "";
-let extraOptionB = "";
-let extraAiPercentageA;
-let extraAiPercentageB;
-let extraAiChoice;
-
-let oldOptionA;
-let oldOptionB;
-let oldAiPercentageA;
-let oldAiPercentageB;
-let oldAiChoice;
+let options = Array.from({ length: 5 }, () => Array(6).fill(null));
+let extraOptions = Array.from({ length: 5 }, () => Array(6).fill(null));
 
 let firstResponse = true;
 let secondResponse = false;
 let choiceMade = false;
-let timeSinceOptionsCreatedNewWYR = 0;
-let timeSinceOptionsCreatedShowDetails = 0;
+
+let useExtraOptions = false;
+let useArrayNumber = 0;
 
 const promptChooseOption = "You are good at making choices and you are a helpful AI. You can explain clearly why one is better than the other."
 
@@ -53,51 +40,54 @@ async function AskAI(systemPrompt, UserPrompt)
   return data.choices[0].message.content;
 }
 
-async function getOpinionAI(blue, red){
+async function getOpinionAI(blue, red, arrayNumber){
   if (!secondResponse)
   {
-    let metaOption = await AskAI(promptChooseOption, "Would you rather: Blue: " + blue + " or Red: " + red + ". Also give the percentage blue and red with how good they are. Keep in mind that the percentage of blue + red equal is to 100. Keep it to the point and don't make it too long. The explainations should be before everything and dont but text after the last percentage. Don't use *. separate the things from eachother like below:\m\n Explaination: for example: Blue is better because... and red is not better because...;\n percentageBlue: percentageBlue (example: 70)\n percentageRed: percentageRed (example 30)");
+    let metaOption = await AskAI(promptChooseOption, "Would you rather: Blue: " + blue + " or Red: " + red + ". Also give the percentage blue and red with how good they are. Keep in mind that the percentage of blue + red equal is to 100. Keep it to the point and don't make it too long. Don't use *. separate the things from eachother like below as an JSON as below:{explanation: for example: Blue is better because... and red is not better because...;\n percentageBlue:percentage-blue: (example: 70)percentage-red: (example 30)}Output only the JSON format, nothing else.");
     metaOption = metaOption.replace(/\n/g, "");
-    let explanationMatch = metaOption.match(/Explaination:\s*(.*)\s*percentageBlue:/);
-    console.log(metaOption, firstResponse);
-    if (explanationMatch == null)
-    {
-      explanationMatch = metaOption.match(/\*\*Explaination*\*\s*(.*)\s*percentageBlue:/);
-    }
-    let percentageBlueMatch = metaOption.match(/percentageBlue:\s*(\d+)/);
-    if (percentageBlueMatch == null)
-    {
-      percentageBlueMatch = metaOption.match(/percentage Blue:\s*(\d+)/);
-    }
-    let percentageRedMatch = metaOption.match(/percentageRed:\s*(\d+)/);
-    if (percentageRedMatch == null)
-    {
-      percentageRedMatch = metaOption.match(/percentage Red:\s*(\d+)/);
-    }
-    let metaChoice = explanationMatch ? explanationMatch[1].trim() : '';
-    let metaPercentageA = percentageBlueMatch ? parseInt(percentageBlueMatch[1], 10) : 0;
-    let metaPercentageB = percentageRedMatch ? parseInt(percentageRedMatch[1], 10) : 0;
     
-    // Update the original variables with the acquired information
-    if (blue === optionA && red === optionB)
+    const parsedData = JSON.parse(metaOption);
+    
+    let explanation = parsedData.explanation;
+    let percentageBlue = parsedData.percentageBlue;
+    let percentageRed = parsedData.percentageRed;
+    
+    if (percentageBlue === null && percentageRed === null)
     {
-      aiChoice = metaChoice;
-      aiPercentageA = metaPercentageA;
-      aiPercentageB = metaPercentageB;
-      console.log("AI generate")
-      console.log(aiChoice);
-      console.log(aiPercentageA);
-      console.log(aiPercentageB);
+      percentageBlue = 50;
+      percentageRed = 50;
     }
-    else if (blue === extraOptionA && red === extraOptionB)
+    else if (percentageBlue != null && percentageRed === null)
     {
-      extraAiChoice = metaChoice;
-      extraAiPercentageA = metaPercentageA;
-      extraAiPercentageB = metaPercentageB;
+      percentageRed = 100 - percentageBlue;
+    }
+    else if (percentageRed != null && percentageBlue === null)
+    {
+      percentageBlue = 100 - percentageRed;
+    }
+
+    // Update the original variables with the acquired information
+    if (blue === options[arrayNumber][0] && red === options[arrayNumber][1])
+    {
+      options[arrayNumber][2] = explanation;
+      options[arrayNumber][3] = percentageBlue;
+      options[arrayNumber][4] = percentageRed;
+      options[arrayNumber][5] = true;
+      console.log("AI generate")
+      console.log(options[arrayNumber][2]);
+      console.log(options[arrayNumber][3]);
+      console.log(options[arrayNumber][4]);
+    }
+    else if (blue === extraOptions[arrayNumber][0] && red === extraOptions[arrayNumber][1])
+    {
+      extraOptions[arrayNumber][2] = explanation;
+      extraOptions[arrayNumber][3] = percentageBlue;
+      extraOptions[arrayNumber][4] = percentageRed;
+      extraOptions[arrayNumber][5] = true;
       console.log("AI generate Extra")
-      console.log(extraAiChoice);
-      console.log(extraAiPercentageA);
-      console.log(extraAiPercentageB);
+      console.log(extraOptions[arrayNumber][2]);
+      console.log(extraOptions[arrayNumber][3]);
+      console.log(extraOptions[arrayNumber][4]);
     }
     if (firstResponse)
     {
@@ -111,28 +101,27 @@ async function getOpinionAI(blue, red){
 }
 
 // Fetch the would-you-rather.json file and select a random would you rather
-async function newWouldYouRather(type, makeExtra, putWouldYouRatherInContainers, A, B) {
+async function newWouldYouRather(type, putWouldYouRatherInContainers, A, B) {
     if (type === 'Normal')
     {
       console.log('Normal');
       const response = await fetch("json/would-you-rather.json");
       const data = await response.json();
-      for (let i = 0; i < 2; i++)
+      for (let i = 0; i < 10; i++)
       {
         let randomIndex = Math.floor(Math.random() * data.length);
-        if (i === 0)
+        if (i < 5)
         {
-          optionA = data[randomIndex][0];
-          optionB = data[randomIndex][1];
+          options[i][0] = data[randomIndex][0];
+          options[i][1] = data[randomIndex][1];
+          options[i][5] = false;
         }
-        else if (i === 1)
+        else if (i >= 5)
         {
-          extraOptionA = data[randomIndex][0];
-          extraOptionB = data[randomIndex][1];
-        }
-        if (!makeExtra)
-        {
-          i = 2;
+          let extraArrayNumber = i - 5;
+          extraOptions[extraArrayNumber][0] = data[randomIndex][0];
+          extraOptions[extraArrayNumber][1] = data[randomIndex][1];
+          extraOptions[extraArrayNumber][5] = false;
         }
       }
     }
@@ -156,69 +145,63 @@ async function newWouldYouRather(type, makeExtra, putWouldYouRatherInContainers,
     {
 
     }
-    A = A || optionA || extraOptionA || oldOptionA;
-    B = B || optionB || extraOptionB || oldOptionB;
+    A = A || options[useArrayNumber][0] || extraOptions[useArrayNumber][0];
+    B = B || options[useArrayNumber][1] || extraOptions[useArrayNumber][1];
     if (putWouldYouRatherInContainers)
     {
       blueOptionText.innerHTML = A;
       redOptionText.innerHTML = B;
+      optionText = new SplitType('.option-text', {
+          types: 'lines, words, chars',
+          tagName: 'span'
+        });    
+      gsap.from('.option-text .line', {
+        y: '100%',
+        opacity: 0,
+        duration: 0.80,
+        ease: 'power2.out',
+        stagger: 0.15,
+      })
     }
-    optionText = new SplitType('.option-text', {
-        types: 'lines, words, chars',
-        tagName: 'span'
-      });    
-    gsap.from('.option-text .line', {
-      y: '100%',
-      opacity: 0,
-      duration: 0.80,
-      ease: 'power2.out',
-      stagger: 0.15,
-    })
-    if (type !== null)
-    {
-      getOpinionAI(optionA, optionB);
-      if (makeExtra) {
-        getOpinionAI(extraOptionA, extraOptionB);
-      }
-      timeSinceOptionsCreatedNewWYR++;
-    }
+    await generateWouldYouRatherOpinions();
 }
 
-newWouldYouRather('Normal', true, true, optionA, optionB);
-optionA = "";
-optionB = "";
-setTimeout(() => {
-  newWouldYouRather('Normal', false, false, optionA, optionB);
-}, 60000)
+function generateWouldYouRatherOpinions()
+{
+  for (let i = 0; i < 10; i++)
+  {
+    if (i < 5)
+    {
+      getOpinionAI(options[i][0], options[i][1], i);
+    }
+    else if (i >= 5)
+    {
+      let extraArrayNumber = i - 5;
+      getOpinionAI(extraOptions[extraArrayNumber][0], extraOptions[extraArrayNumber][1], i);
+    }
+  }
+}
+
+newWouldYouRather('Normal', true, options[useArrayNumber][0], options[useArrayNumber][1]);
 
 function showDetails() {
+  if ((!useExtraOptions && options[useArrayNumber][5] == true) || (useExtraOptions && extraOptions[useArrayNumber][5] == true))
   nextButton.classList.remove('hidden');
-      percent.forEach((element) => {
-        element.innerHTML = "%";
-      });
-    switch (timeSinceOptionsCreatedShowDetails)
-    {
-      case 0:
-        aiChoiceElement.innerHTML = aiChoice;
-        bluePercentage.innerHTML = aiPercentageA;
-        redPercentage.innerHTML = aiPercentageB;
-        break;
-      case 1:
-        aiChoiceElement.innerHTML = extraAiChoice;
-        bluePercentage.innerHTML = extraAiPercentageA;
-        redPercentage.innerHTML = extraAiPercentageB;
-        break;
-      case 2:
-        aiChoiceElement.innerHTML = oldAiChoice;
-        bluePercentage.innerHTML = oldAiPercentageA;
-        redPercentage.innerHTML = oldAiPercentageB;
-        break;
-    }
-    timeSinceOptionsCreatedShowDetails++;
-    if (timeSinceOptionsCreatedShowDetails === 3)
-    {
-      timeSinceOptionsCreatedShowDetails = 0;
-    }
+  percent.forEach((element) => {
+    element.innerHTML = "%";
+  });
+  if (!useExtraOptions)
+  {
+      aiChoiceElement.innerHTML = options[useArrayNumber][2];
+      bluePercentage.innerHTML = options[useArrayNumber][3];
+      redPercentage.innerHTML = options[useArrayNumber][4];
+  }
+  else
+  {
+      aiChoiceElement.innerHTML = extraOptions[useArrayNumber][2];
+      bluePercentage.innerHTML = extraOptions[useArrayNumber][3];
+      redPercentage.innerHTML = extraOptions[useArrayNumber][4];
+  }
 }
 
 // When clicked the blue option, the blue option will be selected
@@ -255,37 +238,16 @@ nextButton.addEventListener('click', () => {
     blueOptionText.innerHTML = "";
     redOptionText.innerHTML = "";
     choiceMade = false;
-    switch (timeSinceOptionsCreatedShowDetails)
+    if (!useExtraOptions)
     {
-      case 0:
-        newWouldYouRather(null, null, true, optionA, optionB);
-        optionA = "";
-        optionB = "";
-        newWouldYouRather('Normal', false);
-        console.log("OptionA & B")
-        break;
-      case 1:
-        newWouldYouRather(null, null, true, extraOptionA, extraOptionB);
-        extraOptionA = "";
-        extraOptionB = "";
-        oldOptionA = optionA;
-        oldOptionB = optionB;
-        oldAiPercentageA = aiPercentageA;
-        oldAiPercentageB = aiPercentageB;
-        oldAiChoice = aiChoice;
-        newWouldYouRather('Normal', true);
-        console.log("ExtraOptionA & B")
-        break;
-      case 2:
-        newWouldYouRather(null, null, true, oldOptionA, oldOptionB);
-        oldOptionA = "";
-        oldOptionA = "";
-        console.log("OldOptionA & B")
-        timeSinceOptionsCreatedNewWYR = 0;
-        break;
+      newWouldYouRather(null, true, options[useArrayNumber][0], options[useArrayNumber][1])
+    }
+    else
+    {
+      newWouldYouRather(null, true, extraOptions[useArrayNumber][0], extraOptions[useArrayNumber][1])
     }
 });
 
 setInterval(() => {
-  console.log(timeSinceOptionsCreatedNewWYR, timeSinceOptionsCreatedShowDetails);
+  console.log(useExtraOptions);
 }, 1000);
