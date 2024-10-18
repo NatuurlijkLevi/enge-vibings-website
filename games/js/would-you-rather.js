@@ -8,6 +8,13 @@ const redPercentage = document.querySelector('#red-option span.percentage');
 const percent = document.querySelectorAll('.percent');
 const nextButton = document.getElementById('next-button');
 const aiChoiceElement = document.getElementById('ai-choice');
+const categoryButtons = document.querySelectorAll('section#top > div#button-wrapper > button');
+const customPromptContainer = document.getElementById('custom-prompt-container');
+const customPromptInput = document.querySelector('#custom-prompt-container > #custom-prompt');
+const generateQuestionButton = document.querySelector('#custom-prompt-container > button');
+
+let currentCategory = document.querySelector('section#top > div#button-wrapper > button#selected > p').innerHTML;
+console.log(currentCategory);
 
 let optionText;
 
@@ -22,9 +29,12 @@ let choiceMade = false;
 let useExtraOptions = false;
 let generateExtraOptions = false;
 let useArrayNumber = 0;
-let generateArrayNumber = 0;
 
-const promptChooseOption = "You are good at making choices and you are a helpful AI. You can explain clearly why one is better than the other."
+bluePercentage.style.display = 'none';
+redPercentage.style.display = 'none';
+
+const systemPromptChooseOption = "You are good at making choices and you are a helpful AI. You can explain clearly why one is better than the other."
+const systemPromptGenerateQuestion = "You are good at making choices and you are a helpful AI. You can generate questions that are interesting and fun to answer while listening to the given prompt. YOu can also explain clearly why one is better than the other."
 
 async function AskAI(systemPrompt, UserPrompt)
 {
@@ -43,82 +53,62 @@ async function AskAI(systemPrompt, UserPrompt)
   return data.choices[0].message.content;
 }
 
-async function getOpinionAI(blue, red, arrayNumber){
-  if (!secondResponse)
-  {
-    let metaOption = await AskAI(promptChooseOption, "Would you rather: Blue: " + blue + " or Red: " + red + ". Also give the percentage blue and red with how good they are. Keep in mind that the percentage of blue + red equal is to 100. Keep it to the point and don't make it too long. Don't use *. separate the things from eachother like below as an JSON as below:{explanation: for example: Blue is better because... and red is not better because...;\n percentageBlue:percentage-blue: (example: 70)percentage-red: (example 30)}Output only the JSON format, nothing else. Don't think about ethical or moral issues.");
-    metaOption = metaOption.replace(/\n/g, "");
-    
-    const parsedData = JSON.parse(metaOption);
-    
-    let explanation = parsedData.explanation;
-    let percentageBlue = parseInt(parsedData.percentageBlue, 10);
-    let percentageRed = parseInt(parsedData.percentageRed, 10);
-  
-    
-    if (percentageBlue === null && percentageRed === null)
-    {
-      percentageBlue = 50;
-      percentageRed = 50;
-    }
-    else if (percentageBlue != null && percentageRed === null)
-    {
-      percentageRed = 100 - percentageBlue;
-    }
-    else if (percentageRed != null && percentageBlue === null)
-    {
-      percentageBlue = 100 - percentageRed;
-    }
-
-    // Update the original variables with the acquired information
-    if (blue === options[arrayNumber][0] && red === options[arrayNumber][1])
-    {
-      options[arrayNumber][2] = explanation;
-      options[arrayNumber][3] = percentageBlue;
-      options[arrayNumber][4] = percentageRed;
-      options[arrayNumber][5] = true;
-      console.log("AI generate")
-      console.log(options[arrayNumber][2]);
-      console.log(options[arrayNumber][3]);
-      console.log(options[arrayNumber][4]);
-    }
-    else if (blue === extraOptions[arrayNumber][0] && red === extraOptions[arrayNumber][1])
-    {
-      extraOptions[arrayNumber][2] = explanation;
-      extraOptions[arrayNumber][3] = percentageBlue;
-      extraOptions[arrayNumber][4] = percentageRed;
-      extraOptions[arrayNumber][5] = true;
-      console.log("AI generate Extra")
-      console.log(extraOptions[arrayNumber][2]);
-      console.log(extraOptions[arrayNumber][3]);
-      console.log(extraOptions[arrayNumber][4]);
-    }
-    if (firstResponse)
-    {
-      firstResponse = false;
-      secondResponse = true;
-    }
+function checkIfNaN(percentageBlue, percentageRed)
+{
+  if (isNaN(percentageBlue)) {
+    percentageBlue = null;
   }
-  else {
-    secondResponse = false;
+  if (isNaN(percentageRed)) {
+    percentageRed = null;
+  }
+  
+  if (percentageBlue === null && percentageRed === null)
+  {
+    percentageBlue = 50;
+    percentageRed = 50;
+  }
+  else if (percentageBlue != null && percentageRed === null)
+  {
+    percentageRed = 100 - percentageBlue;
+  }
+  else if (percentageRed != null && percentageBlue === null)
+  {
+    percentageBlue = 100 - percentageRed;
+  }
+}
+
+async function getOpinionAI(blue, red, arrayNumber){
+  let metaOption = await AskAI(systemPromptChooseOption, "Would you rather: Blue: " + blue + " or Red: " + red + ". Also give the percentage blue and red with how good they are opposed to each other. If one obviously is better than the other it could be a higher percentage else try to give them both a lower percentage. Let percentages be between these ranges 1-100. You are also allowed to use all numbers in that range example: 47, 18, 56, 73. Don't use tables of 5 in the percentages but let it look like it is judged by multiple people. Keep in mind that the percentage of blue + red equal is to 100. Keep it to the point and don't make it too long. Don't use *. separate the things from eachother like below as an JSON as below:{explanation: for example: Blue is better because... and red is not better because...;\n percentageBlue:percentage-blue: (example: 70)percentage-red: (example 30)}Output only the JSON format, nothing else. Don't think about ethical or moral issues or issues about causing pain to others. Be as selfish as possible.");
+  metaOption = metaOption.replace(/\n/g, "");
+  
+  const parsedData = JSON.parse(metaOption);
+  
+  let explanation = parsedData.explanation;
+  let percentageBlue = parseInt(parsedData.percentageBlue, 10);
+  let percentageRed = parseInt(parsedData.percentageRed, 10);
+  checkIfNaN(percentageBlue, percentageRed);
+
+  // Update the original variables with the acquired information
+  if (blue === options[arrayNumber][0] && red === options[arrayNumber][1])
+  {
+    options[arrayNumber][2] = explanation;
+    options[arrayNumber][3] = percentageBlue;
+    options[arrayNumber][4] = percentageRed;
+    options[arrayNumber][5] = true;
+    console.log("AI generated " + arrayNumber);
+  }
+  else if (blue === extraOptions[arrayNumber][0] && red === extraOptions[arrayNumber][1])
+  {
+    extraOptions[arrayNumber][2] = explanation;
+    extraOptions[arrayNumber][3] = percentageBlue;
+    extraOptions[arrayNumber][4] = percentageRed;
+    extraOptions[arrayNumber][5] = true;
+    console.log("AI generated Extra " + arrayNumber);
   }
 }
 
 // Fetch the would-you-rather.json file and select a random would you rather
 async function newWouldYouRather(type, optionsGenerate, putWouldYouRatherInContainers, blue, red) {
-    if (!firstQuestion)
-    {
-      generateArrayNumber++;
-    }
-    else {
-      firstQuestion = false;
-    }
-    if (generateArrayNumber = 5)
-    {
-      generateArrayNumber = 0;
-      generateExtraOptions = !generateExtraOptions;
-      firstQuestion = true;
-    }
     if (type === 'Normal')
     {
       console.log('Normal');
@@ -133,7 +123,11 @@ async function newWouldYouRather(type, optionsGenerate, putWouldYouRatherInConta
           options[i][1] = data[randomIndex][1];
           options[i][5] = false;
         }
-        else if (i >= 5 && (optionsGenerate === "all" || optionsGenerate === "extra"))
+        else if (i >= 5 && optionsGenerate === "normal")
+        {
+          i = 9;
+        }
+        if (i >= 5 && (optionsGenerate === "all" || optionsGenerate === "extra"))
         {
           let extraArrayNumber = i - 5;
           extraOptions[extraArrayNumber][0] = data[randomIndex][0];
@@ -142,17 +136,65 @@ async function newWouldYouRather(type, optionsGenerate, putWouldYouRatherInConta
         }
         else if (i < 5 && optionsGenerate === "extra")
         {
-          i = 5;
-        }
-        else if (i >= 5 && optionsGenerate === "normal")
-        {
-          i = 10;
+          i = 4;
         }
       }
     }
     else if (type ==='Custom')
     {
+      console.log('Custom');
+      const userPrompt = customPromptInput.value;
+      for (let i = 0; i < 10; i++)
+      {
+        if (i < 5 && (optionsGenerate === "all" || optionsGenerate === "normal"))
+        {
+          options[i][5] = false;
+        }
+        if (i >= 5 && (optionsGenerate === "all" || optionsGenerate === "extra"))
+        {
+          let extraArrayNumber = i - 5;
+          extraOptions[extraArrayNumber][5] = false;
+        }
+        let generatedQuestion = await AskAI(systemPromptGenerateQuestion, "Make a would you rather question with the following prompt: " + userPrompt + ". Also give the percentage blue and red with how good they are opposed to each other. If one obviously is better than the other it could be a higher percentage else try to give them both a lower percentage. Let percentages be between these ranges 1-100. You are also allowed to use all numbers in that range example: 47, 18, 56, 73. Don't use tables of 5 in the percentages but let it look like it is judged by multiple people. Keep in mind that the percentage of blue + red equal is to 100. Keep it to the point and don't make it too long. Don't use *. separate the things from eachother like below as an JSON as below:{blueOption:  redOption: explanation: for example: Blue is better because... and red is not better because...;\n percentageBlue:percentage-blue: (example: 70)percentage-red: (example 30)}Output only the JSON format, nothing else. Don't think about ethical or moral issues or issues about causing pain to others. Be as selfish as possible.")
+        generatedQuestion = generatedQuestion.replace(/\n/g, "");
+        
+        const parsedData = JSON.parse(generatedQuestion);
+        
+        let blue = parsedData.blueOption;
+        let red = parsedData.redOption;
+        let explanation = parsedData.explanation;
+        let percentageBlue = parseInt(parsedData.percentageBlue, 10);
+        let percentageRed = parseInt(parsedData.percentageRed, 10);
+        checkIfNaN(percentageBlue, percentageRed);
 
+        if (i < 5 && (optionsGenerate === "all" || optionsGenerate === "normal"))
+        {
+          options[i][0] = blue;
+          options[i][1] = red;
+          options[i][2] = explanation;
+          options[i][3] = percentageBlue;
+          options[i][4] = percentageRed;
+          options[i][5] = true;
+        }
+        else if (i >= 5 && optionsGenerate === "normal")
+        {
+          i = 9;
+        }
+        if (i >= 5 && (optionsGenerate === "all" || optionsGenerate === "extra"))
+        {
+          let extraArrayNumber = i - 5;
+          extraOptions[extraArrayNumber][0] = blue;
+          extraOptions[extraArrayNumber][1] = red;
+          extraOptions[extraArrayNumber][2] = explanation;
+          extraOptions[extraArrayNumber][3] = percentageBlue;
+          extraOptions[extraArrayNumber][4] = percentageRed;
+          extraOptions[extraArrayNumber][5] = true;
+        }
+        else if (i < 5 && optionsGenerate === "extra")
+        {
+          i = 4;
+        }
+      }
     }
     blue = blue || (useExtraOptions ? extraOptions[useArrayNumber][0] : options[useArrayNumber][0]);
     red = red || (useExtraOptions ? extraOptions[useArrayNumber][1] : options[useArrayNumber][1]);
@@ -172,62 +214,74 @@ async function newWouldYouRather(type, optionsGenerate, putWouldYouRatherInConta
         stagger: 0.15,
       })
     }
-    await generateWouldYouRatherOpinions();
+    await generateWouldYouRatherOpinions(optionsGenerate);
 }
 
-function generateWouldYouRatherOpinions()
+function generateWouldYouRatherOpinions(optionsGenerate)
 {
   for (let i = 0; i < 10; i++)
   {
-    if (i < 5)
+    if (i < 5 && (optionsGenerate === "all" || optionsGenerate === "normal"))
     {
       getOpinionAI(options[i][0], options[i][1], i);
       console.log(options[i])
     }
-    else if (i >= 5)
+    else if (i >= 5 && (optionsGenerate === "all" || optionsGenerate === "extra"))
     {
       let extraArrayNumber = i - 5;
       getOpinionAI(extraOptions[extraArrayNumber][0], extraOptions[extraArrayNumber][1], extraArrayNumber);
       console.log(extraOptions[i])
     }
+    else if (i < 5 && optionsGenerate === "extra")
+    {
+      i = 4;
+    }
+    else if (i >= 5 && optionsGenerate === "normal")
+    {
+      i = 9;
+    }
   }
 }
 
-newWouldYouRather('Normal', "all", true, options[useArrayNumber][0], options[useArrayNumber][1]);
+newWouldYouRather(currentCategory, "all", true, options[useArrayNumber][0], options[useArrayNumber][1]);
 
 function showDetails() {
   nextButton.classList.remove('hidden');
   percent.forEach((element) => {
     element.innerHTML = "%";
   });
-  if (!useExtraOptions)
-  {
-      aiChoiceElement.innerHTML = options[useArrayNumber][2];
-      bluePercentage.innerHTML = options[useArrayNumber][3];
-      redPercentage.innerHTML = options[useArrayNumber][4];
-      console.log(useArrayNumber);
-  }
-  else
-  {
-      aiChoiceElement.innerHTML = extraOptions[useArrayNumber][2];
-      bluePercentage.innerHTML = extraOptions[useArrayNumber][3];
-      redPercentage.innerHTML = extraOptions[useArrayNumber][4];
-      console.log(useArrayNumber);
-  }
+  bluePercentage.style.display = 'block';
+  redPercentage.style.display = 'block';
+  setTimeout(() => {
+    if (!useExtraOptions)
+    {
+        aiChoiceElement.innerHTML = options[useArrayNumber][2];
+        bluePercentage.style.setProperty('--blue-percentage', options[useArrayNumber][3]);
+        redPercentage.style.setProperty('--red-percentage', options[useArrayNumber][4]);
+        console.log(useArrayNumber);
+    }
+    else
+    {
+        aiChoiceElement.innerHTML = extraOptions[useArrayNumber][2];
+        bluePercentage.style.setProperty('--blue-percentage', extraOptions[useArrayNumber][3]);
+        redPercentage.style.setProperty('--red-percentage', extraOptions[useArrayNumber][4]);
+    }
+    console.log(useArrayNumber);
+  }, 1);
 }
 
 // When clicked the blue option, the blue option will be selected
 blueOption.addEventListener('click', () => {
-    if (!choiceMade)
-    {
-      choiceMade = true;
-      blueOption.classList.add('selected');
-      showDetails();
-    }
+  if (!choiceMade && ((options[useArrayNumber][5] && !useExtraOptions) || (extraOptions[useArrayNumber][5] && useExtraOptions)))
+  {
+    choiceMade = true;
+    blueOption.classList.add('selected');
+    showDetails();
+  }
 });
 
 redOption.addEventListener('click', () => {
-  if ((!choiceMade && options[useArrayNumber][5] && !useExtraOptions) || (!choiceMade && extraOptions[useArrayNumber][5] && useExtraOptions))
+  if (!choiceMade && ((options[useArrayNumber][5] && !useExtraOptions) || (extraOptions[useArrayNumber][5] && useExtraOptions)))
   {
     choiceMade = true;
     redOption.classList.add('selected');
@@ -245,26 +299,32 @@ nextButton.addEventListener('click', () => {
     redOption.classList.remove('selected');
     nextButton.classList.add('hidden');
     aiChoiceElement.innerHTML = "";
-    bluePercentage.innerHTML = "";
-    redPercentage.innerHTML = "";
+    bluePercentage.style.display = 'none';
+    redPercentage.style.display = 'none';
+    bluePercentage.style.setProperty('--blue-percentage', 0);
+    redPercentage.style.setProperty('--red-percentage', 0);
     blueOptionText.innerHTML = "";
     redOptionText.innerHTML = "";
     choiceMade = false;
     useArrayNumber++;
-    if (useArrayNumber === 5 && !useExtraOptions)
-    {
-      options = Array.from({ length: 5 }, () => Array(6).fill(null));
-      newWouldYouRather('Normal', "normal");
-    }
-    else if (useArrayNumber === 5 && useExtraOptions)
-    {
-      extraOptions = Array.from({ length: 5 }, () => Array(6).fill(null));
-      newWouldYouRather('Normal', "extra");
-    }
     if (useArrayNumber === 5)
     {
       useArrayNumber = 0;
-      useExtraOptions = !useExtraOptions
+      if (!useExtraOptions)
+      {
+        options = Array.from({ length: 5 }, () => Array(6).fill(null));
+        setTimeout(() => {
+          newWouldYouRather(currentCategory, "normal");
+        }, 1000);
+      }
+      else if (useExtraOptions)
+      {
+        extraOptions = Array.from({ length: 5 }, () => Array(6).fill(null));
+        setTimeout(() => {
+          newWouldYouRather(currentCategory, "extra");
+        }, 1000);
+      }
+      useExtraOptions = !useExtraOptions;
     }
     if (!useExtraOptions)
     {
@@ -276,6 +336,38 @@ nextButton.addEventListener('click', () => {
     }
 });
 
+categoryButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (button.id != 'selected') {
+      console.log(button.children[0].innerText);
+      customPromptContainer.classList.remove('visible');
+      const selectedButton = document.querySelector('section#top > div#button-wrapper > button#selected');
+      if (selectedButton) {
+        selectedButton.removeAttribute('id');
+      }
+      button.setAttribute('id', 'selected');
+      currentCategory = button.children[0].innerText;
+      if (currentCategory === 'Custom') {
+        customPromptContainer.classList.add('visible');
+      }
+      if (currentCategory === 'Normal') {
+        useArrayNumber = 0;
+        useExtraOptions = false;
+        options = Array.from({ length: 5 }, () => Array(6).fill(null));
+        extraOptions = Array.from({ length: 5 }, () => Array(6).fill(null));
+        setTimeout(() => {
+          newWouldYouRather(currentCategory, "all", true);
+        }, 1000);
+      }
+    }
+  });
+});
+
+generateQuestionButton.addEventListener('click', () => {
+  useArrayNumber = 0;
+  newWouldYouRather('Custom', 'all', true, options[useArrayNumber][0], options[useArrayNumber][1]);
+});
+
 setInterval(() => {
-  console.log(generateExtraOptions, generateArrayNumber, useExtraOptions, useArrayNumber);
+  console.log(generateExtraOptions, useExtraOptions, useArrayNumber);
 }, 1000);

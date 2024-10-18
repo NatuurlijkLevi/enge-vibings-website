@@ -1,3 +1,7 @@
+* {
+    user-select: none;
+}
+
 :root {
     --background-color: #1A1D1C;
     --stroke-blue: #99DCED;
@@ -14,6 +18,18 @@
     --button-hover: rgba(255, 255, 255, 0.3);
     --button-selected: rgba(255, 255, 255, 0.56);
 }
+
+@property --blue-percentage {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+  }
+
+  @property --red-percentage {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+  }
 
 body {
     background-color: #1A1D1C;
@@ -221,6 +237,24 @@ div:has(> .percentage) {
     color: var(--text-red);
 }
 
+#blue-option .percentage {
+    transition: --blue-percentage 1s;
+    counter-set: blue-percentage var(--blue-percentage);
+}
+
+#red-option .percentage {
+    transition: --red-percentage 1s;
+    counter-set: red-percentage var(--red-percentage);
+}
+
+#blue-option .percentage::after {
+    content: counter(blue-percentage);
+}
+
+#red-option .percentage::after {
+    content: counter(red-percentage);
+}
+
 p#ai-choice{
     font-weight: var(--regular);
     font-size: 2vh;
@@ -298,4 +332,67 @@ p#ai-choice{
     padding: 1vh 1vw;
     position: relative;
     z-index: 100;
+}
+
+#custom-prompt-container
+{
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 2vw;
+    transition: 300ms;
+}
+
+#custom-prompt-container.visible
+{
+    opacity: 1;
+    pointer-events: all;
+}
+
+#custom-prompt
+{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2vh;
+    padding: 1vh 1vw;
+    resize: none;
+    border: none;
+    border-radius: 0 0 1vh 1vh;
+    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+}
+
+#custom-prompt:focus
+{
+    outline: none;
+}
+
+#custom-prompt-container > button
+{
+    border: none;
+    background-color: var(--button-unselected);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5vh;
+    font-weight: var(--semi-bold);
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+    padding: 1vh 1vw;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: 250ms;
+}
+
+#custom-prompt-container > button:hover
+{
+    background-color: var(--button-hover);
+}
+
+#custom-prompt-container > button:active
+{
+    background-color: var(--button-selected);
 }

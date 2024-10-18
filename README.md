@@ -1,4 +1,4 @@
-# Enge Vibings Website
+# Enge Vibings Website (Leip Logeerpartijtje)
 This website is made to replace the [linktree](linktr.ee/engevibings) to support my board game. This way you also don't have to open the different programs I made for this game so everything can quickly be used. There are also some fun party games like Would You Rather and Truth Or Dare.
 
 ## Installation
@@ -9,6 +9,15 @@ This website is made to replace the [linktree](linktr.ee/engevibings) to support
 4. Select a folder where you want the project to be.
 5. Then press open.
 6. You have now successfully installed the project.
+
+If you want AI integration for the games you are not done yet. You will need LM Studio to run commands through AI. To do this, you need to do the following:
+1. Install [LM Studio](https://lmstudio.ai/) if you don't have it yet.
+2. After the installation, you have to download a AI model. It doesn't matter which one, but I used 'Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf'.
+3. Load the model you downloaded in LM Studio (by either pressing Ctrl + L or using the button on the top middle of the screen)
+4. Go to the navbar on the left (in LM Studio) and press Developer mode (green button)
+5. Enable CORS
+6. Start the LM Studio Server.
+7. Now you successfully started the AI server
 
 ## Usage
 
