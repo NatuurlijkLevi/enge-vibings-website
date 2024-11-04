@@ -6,10 +6,10 @@ console.log(cssTheme, monthOfYear, dayOfMonth);
 if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
     localStorage.setItem('theme', 'christmas');
 }
-else if (monthOfYear === 11)
-{
-    localStorage.setItem('theme', 'christmas');
-}
+// else if (monthOfYear === 11)
+// {
+//     localStorage.setItem('theme', 'christmas');
+// }
 else {
     localStorage.setItem('theme', null);
 }
