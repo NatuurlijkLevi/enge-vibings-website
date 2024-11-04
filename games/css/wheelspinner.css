@@ -28,15 +28,16 @@ section {
 #spinbutton {
     width: 19vh;
     height: 19vh;
-    background-image: linear-gradient(180deg, #C29EAF, #5C4B53);
+    background-image: linear-gradient(180deg, var(--light-gray-color), var(--gray-color));
     color: var(--text-color);
+    -webkit-text-stroke: -0.1vh var(--gray-color);
     font-size: 6vh;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
-    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
+    text-shadow: var(--wheelspinner-button-text-shadow);
     border-radius: 50%;
     user-select: none;
 }
@@ -45,7 +46,7 @@ section {
     position: absolute;
     top: 50%;
     left: 50%;
-    background-image: linear-gradient(180deg, #5C4B53, #C29EAF);
+    background-image: linear-gradient(180deg, var(--gray-color), var(--light-gray-color));
     transform: translate(-50%, -50%);
     width: 20vh;
     height: 20vh;
@@ -77,7 +78,7 @@ aside {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(180deg, #836a7599, #93778499);
+    background-image: linear-gradient(180deg, var(--transparent-gray-border), var(--transparent-gray-border));
 }
 
 aside > div#buttonwrapper {
@@ -88,5 +89,5 @@ aside > div#buttonwrapper {
     flex-direction: column;
     gap: 5vh;
     padding: 5vh;
-    background-image: linear-gradient(180deg, #C29EAF99, #927E8799);
+    background-image: linear-gradient(180deg, var(--transparent-light-gray-color), var(--transparent-gray-color));
 }

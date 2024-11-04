@@ -5,6 +5,7 @@ const nieuweHeksButton = document.querySelector('#hekswisselaar > button');
 const nieuweHeksInput = document.querySelector('#hekswisselaar > input');
 const presentatieButton = document.querySelector('#presentatie > button');
 
+
 // Add an event listener to the nieuweKoningButton
 // If the button is clicked, the current king will be replaced with the new king
 nieuweKoningButton.addEventListener('click', () => {
@@ -53,3 +54,20 @@ presentatieButton.addEventListener('click', () => {
     const presentatie = presentaties[Math.floor(Math.random() * presentaties.length)];
     window.open(presentatie.label, '_blank');
 })
+
+let currentTheme = localStorage.getItem('theme');
+const koningkaarten = document.getElementById('koningkaarten');
+const heksensoep = document.getElementById('heksensoep');
+const hekswisselaar = document.querySelector('#hekswisselaar > input');
+const koningwisselaar = document.querySelector('#koningwisselaar > input');
+const koningLabel = document.querySelector('article > div > section:nth-child(2) > h1');
+const heksLabel = document.querySelector('article > div > section:nth-child(3) > h1');
+
+if (currentTheme === "christmas") {
+  koningkaarten.src = "games/kerstkaarten.html"
+  heksensoep.src = "games/kerstboom.html"
+  hekswisselaar.placeholder = "Nieuwe grinch"
+  koningwisselaar.placeholder = "Nieuwe kerstman"
+  koningLabel.innerHTML = "Kerstman:"
+  heksLabel.innerHTML = "Grinch:"
+}

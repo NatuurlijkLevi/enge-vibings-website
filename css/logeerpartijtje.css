@@ -7,7 +7,7 @@ body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background: linear-gradient(0deg, #8A4084, #1E1C4B);
+    background: var(--logeerpartijtje-background);
 }
 
 @keyframes toggledashboard {
@@ -41,7 +41,7 @@ div#dashboard {
     grid-template-columns: 4fr 2fr 2fr 2fr;
     grid-template-rows: 8fr 4fr 3fr 1fr;
     grid-template-areas:    "ws ws ws ws"
-                            "vk hs hs hs"
+                            ". hs hs hs"
                             "kk hs hs hs"
                             "kk pt hw kw";
     box-shadow: 0 0 2vw rgba(0, 0, 0, 1);
@@ -50,7 +50,7 @@ div#dashboard {
 #koningkaarten {grid-area: kk;}
 #heksensoep {grid-area: hs;}
 #wheelspinner {grid-area: ws;}
-#voorwaardenkaarten {grid-area: vk;}
+#nieuwe
 #presentatie {grid-area: pt;}
 #koningwisselaar {grid-area: kw;}
 #hekswisselaar {grid-area: hw;}
@@ -60,11 +60,11 @@ div#dashboard {
     align-items: center;
     justify-content: center;
     gap: 10%;
-    background: linear-gradient(0deg, #CB9DCE, #4B225F);
+    background: linear-gradient(0deg, var(--gradient-purple-light), var(--gradient-purple-dark));
 }
 
 #hekswisselaar {
-    background: linear-gradient(0deg, #afb2d1, #1E1C4B);
+    background: linear-gradient(0deg, var(--gradient-blue-light), var(--gradient-blue-dark));
 }
 
 #presentatie > button {
@@ -95,7 +95,7 @@ article {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--purple-color);
+    border: 0.5vh solid var(--purple-color);
     border-radius: 2vw;
     height: 92vh;
     width: 12vw;

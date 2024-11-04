@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="css/wheelspinner.css">
     <link rel="stylesheet" href="css/pop-up.css">
     <link rel="stylesheet" href="../css/monsterrat-font.css">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" id="css-theme" href="../css/main.css">
     <link rel="stylesheet" href="../css/reset.css">
+    <script src="../js/theme.js" defer></script>
     <script src="easing.js" defer></script>
     <script src="js/pop-up.js" defer></script>
     <script type="module" src="js/wheelspinner.js" defer></script>
@@ -39,13 +40,13 @@
                     <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_47_166" result="shape"/>
                 </filter>
                 <linearGradient id="paint0_linear_47_166" x1="48" y1="-25" x2="48" y2="75" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#927E87"/>
-                    <stop offset="1" stop-color="#C29EAF"/>
+                    <stop stop-color="var(--gray-color)"/>
+                    <stop offset="1" stop-color="var(--light-gray-color)"/>
                 </linearGradient>
                 <linearGradient id="paint1_linear_47_166" x1="48" y1="0.500004" x2="48" y2="75" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#9F808F"/>
-                    <stop offset="0.9999" stop-color="#947F89"/>
-                    <stop offset="1" stop-color="#8A7780"/>
+                    <stop stop-color="var(--transparent-gray-color)"/>
+                    <stop offset="0.9999" stop-color="var(--transparent-gray-color)"/>
+                    <stop offset="1" stop-color="var(--transparent-gray-border)"/>
                 </linearGradient>
             </defs>
         </svg>        

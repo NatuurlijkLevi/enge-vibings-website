@@ -164,7 +164,14 @@ function resetNames(){
 function resetWheel() {
     container.innerHTML = "";
     wheel = new Wheel(container, props);
-    wheel.itemBackgroundColors = ['#3CBEDE', '#DD41B8', '#455DA5', '#96299C', '#455DA5', '#DD41B8'];
+    if (localStorage.getItem("theme") === null)
+    {
+      wheel.itemBackgroundColors = ['#3CBEDE', '#DD41B8', '#455DA5', '#96299C', '#455DA5', '#DD41B8'];
+    }
+    else if (localStorage.getItem("theme") === "christmas")
+    {
+      wheel.itemBackgroundColors = ['#c9472d', '#006223', '#9d1900', '#01812e', '#9d1900', '#006223'];
+    }
     wheel.lineWidth = 0;
     wheel.borderWidth = 0;
     wheel.itemLabelColors = ['#FCFAFA'];

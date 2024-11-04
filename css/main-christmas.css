@@ -4,27 +4,27 @@ p, h1, h2, h3, h4, h5, h6, i {
 }
 
 :root {
-    --purple-color: #A22F9B;
-    --pink-color: #DD41B8;
-    --hover-pink-color: #DD41B85a;
-    --hover-blue-color: #455DA5;
-    --light-blue-color: #3CBEDE;
-    --blue-color: #09072B;
+    --purple-color: #9d1900;
+    --pink-color: #c9472d;
+    --hover-pink-color: #c9472d5a;
+    --hover-blue-color: #01812e;
+    --light-blue-color: #80A256;
+    --blue-color: #006223;
     --transparent-black-color: rgba(0, 0, 0, 0.85);
     --text-color: #FCFAFA;
     --transparent-white-color: rgba(255, 255, 255, 0.7);
-    --background-image: url('../img/engevibingsbg1.png');
-    --logeerpartijtje-background: linear-gradient(0deg, #8A4084, #1E1C4B);
-    --gray-color: #5C4B53;
-    --light-gray-color: #C29EAF;
-    --transparent-gray-color: #927E8799;
-    --transparent-light-gray-color: #C29EAF99;
-    --transparent-gray-border: #836a7599;
-    --wheelspinner-button-text-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
-    --gradient-purple-dark: #4B225F;
-    --gradient-purple-light: #CB9DCE;
-    --gradient-blue-dark: #1E1C4B;
-    --gradient-blue-light: #afb2d1;
+    --background-image: url('../img/engevibingsbg-xmas1-withball.jpg');
+    --logeerpartijtje-background: linear-gradient(to top, #331313, #63652E);
+    --gray-color: #ECA424;
+    --light-gray-color: #F0EC66;
+    --transparent-gray-color: #e0a53d99;
+    --transparent-light-gray-color: #F0EC6699;
+    --transparent-gray-border: #F4C44B99;
+    --wheelspinner-button-text-shadow: 0.35vh 0.5vh 1vh rgba(0, 0, 0, 0.75);
+    --gradient-purple-dark: #aa4646;
+    --gradient-purple-light: #febfbf;
+    --gradient-blue-dark: #1b511b;
+    --gradient-blue-light: #bbe5bc;
 }
 
 iframe{
