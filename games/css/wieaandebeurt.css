@@ -1,0 +1,33 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vh;
+    background-color: #3cbede33;
+}
+
+div#roleicon{
+    position: absolute;
+    right: 5vw;
+    bottom: 5vh;
+}
+
+h1 {
+    font-size: 15vh;
+}
+
+p{
+    font-size: 30vh;
+    font-weight: bold;
+}
+
+button{
+    font-size: 10vh;
+    font-weight: var(--semi-bold);
+    width: auto;
+    padding: 3vh 3vw;
+    border-radius: 3vw;
+}
