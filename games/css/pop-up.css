@@ -48,6 +48,7 @@
 
 div.pop-up > h1 {
     grid-area: h;
+    user-select: none;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -58,6 +59,7 @@ div.pop-up > h1 {
 
 div.pop-up > p {
     font-family: 'Montserrat', sans-serif;
+    user-select: none;
     grid-area: p;
     text-align: center;
     display: flex;

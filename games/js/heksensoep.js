@@ -8,15 +8,15 @@ let bubbles;
 let iframeRoot;
 let bubble;
 
-// If the iFrame is loaded, get the inner document and the bubbles container
-iframe.onload = () => {
+// Initialize the game elements so the iframe gets always loaded (the iframe.onload event listener is not always working)
+async function initializeGameElements() {
   innerDoc = iframe.contentDocument || iframe.contentWindow.document;
   bubbles = innerDoc.getElementById('bubbles');
+  bubble = innerDoc.querySelectorAll('.bubble');
+  iframeRoot = innerDoc.querySelector(':root');
   console.log(innerDoc);
   console.log(bubbles);
-  iframeRoot = innerDoc.querySelector(':root');
-  bubble = innerDoc.querySelectorAll('.bubble');
-
+  
   // If there is local storage, get the ingredients that are already used
   let usedIngredients = JSON.parse(localStorage.getItem('usedIngredients')) || [];
   console.log(usedIngredients);
@@ -37,8 +37,9 @@ iframe.onload = () => {
   } else {
     console.error('usedIngredients is not an array:', usedIngredients);
   }
+}
 
-};
+initializeGameElements();
 
 let ingredientForSoep;
 
@@ -124,9 +125,9 @@ function sipSoep() {
   gsap.from('.pop-up-text .char', {
     y: '100%',
     opacity: 0,
-    duration: 0.80,
+    duration: 0.40,
     ease: 'back.out',
-    stagger: 0.15,
+    stagger: 0.125,
   });
 }
 

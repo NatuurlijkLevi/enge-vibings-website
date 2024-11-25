@@ -20,10 +20,10 @@ if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
     localStorage.setItem('theme', 'christmas');
 }
 // Purely for testing
-else if (monthOfYear === 11)
-{
-    localStorage.setItem('theme', 'christmas');
-}
+// else if (monthOfYear === 11)
+// {
+//     localStorage.setItem('theme', 'christmas');
+// }
 // Else set the theme to null
 else {
     localStorage.setItem('theme', null);
@@ -32,21 +32,16 @@ else {
 // get the href of the css object if it's not null'
 let href
 if (cssTheme != null)
-    {
-        href = cssTheme.href;
-    }
-// if it's christmas, change the css and make it snow
-if (localStorage.getItem('theme') === "christmas") {
-    if (cssTheme != null)
-    {
-        href = href.replace("main.css", "main-christmas.css");
-    }
-    // If the cssTheme Element is null, and it's christmas. Make it snow
-    initSnowify();
-}
-
-// change the css if the cssTheme element is not null
-if (cssTheme != null)
 {
+    href = cssTheme.href;
+    // if it's christmas, change the css and make it snow
+    if (localStorage.getItem('theme') === "christmas") {
+        if (cssTheme != null)
+        {
+            href = href.replace("main.css", "main-christmas.css");
+        }
+        // If the cssTheme Element is null, and it's christmas. Make it snow
+        initSnowify();
+    }
     cssTheme.href = href;
 }
