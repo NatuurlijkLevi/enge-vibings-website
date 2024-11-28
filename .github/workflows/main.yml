@@ -1,4 +1,4 @@
-name: Commit to other Enge Vibings repository
+name: Commit to other Enge Vibings repositories
 
 on:
   push:
@@ -29,6 +29,29 @@ jobs:
       run: |
         echo "::set-output name=from_bot::$(if [ $GITHUB_ACTOR == 'NatuurlijkLevi[bot]' ]; then echo 'true'; else echo 'false'; fi)"
 
+    - name: Clone target repository for GitLab
+      if: steps.check_actor.outputs.from_bot == 'false'
+      env:
+        GITLAB_REPO: https://oauth2:${{ secrets.GITLAB_TOKEN }}@git.fhict.nl/I527898/enge-vibings-leip-logeerpartijtje.git
+      run: |
+        git clone $GITLAB_REPO gitlab-repo
+
+    - name: Copy changes to target repository folder for GitLab
+      if: steps.check_actor.outputs.from_bot == 'false'
+      run: |
+        mkdir -p gitlab-repo/leip-logeerpartijtje
+        rsync -av --exclude='.git' --exclude='.github/workflows/main.yml' --exclude='target-repo' ./ target-repo/leip-logeerpartijtje/
+
+    - name: Commit and push changes for GitLab
+      if: steps.check_actor.outputs.from_bot == 'false'
+      env:
+        COMMIT_MESSAGE: ${{ steps.get_commit_message.outputs.message }}
+      run: |
+        cd gitlab-repo
+        git add .
+        git commit -m "${COMMIT_MESSAGE}"
+        git push origin main
+
     - name: Clone target repository
       if: steps.check_actor.outputs.from_bot == 'false'
       env:
@@ -44,29 +67,6 @@ jobs:
         rsync -av --exclude='.git' --exclude='.github/workflows/main.yml' --exclude='target-repo' ./ target-repo/leip-logeerpartijtje/
 
     - name: Commit and push changes
-      if: steps.check_actor.outputs.from_bot == 'false'
-      env:
-        COMMIT_MESSAGE: ${{ steps.get_commit_message.outputs.message }}
-      run: |
-        cd target-repo
-        git add .
-        git commit -m "${COMMIT_MESSAGE}"
-        git push origin main
-
-    - name: Clone target repository for GitLab
-      if: steps.check_actor.outputs.from_bot == 'false'
-      env:
-        GITLAB_REPO: https://oauth2:${{ secrets.GITLAB_TOKEN }}@git.fhict.nl/I527898/enge-vibings-leip-logeerpartijtje.git
-      run: |
-        git clone $GITLAB_REPO target-repo
-
-    - name: Copy changes to target repository folder for GitLab
-      if: steps.check_actor.outputs.from_bot == 'false'
-      run: |
-        mkdir -p target-repo/leip-logeerpartijtje
-        rsync -av --exclude='.git' --exclude='.github/workflows/main.yml' --exclude='target-repo' ./ target-repo/leip-logeerpartijtje/
-
-    - name: Commit and push changes for GitLab
       if: steps.check_actor.outputs.from_bot == 'false'
       env:
         COMMIT_MESSAGE: ${{ steps.get_commit_message.outputs.message }}
