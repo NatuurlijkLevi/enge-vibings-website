@@ -34,20 +34,20 @@ jobs:
       env:
         GITLAB_REPO: https://oauth2:${{ secrets.GITLAB_TOKEN }}@git.fhict.nl/I527898/enge-vibings-leip-logeerpartijtje.git
       run: |
-        git clone $GITLAB_REPO target-repo
+        git clone $GITLAB_REPO gitlab-repo
 
     - name: Copy changes to target repository folder for GitLab
       if: steps.check_actor.outputs.from_bot == 'false'
       run: |
-        mkdir -p target-repo/leip-logeerpartijtje
-        rsync -av --exclude='.git' --exclude='.github/workflows/main.yml' --exclude='target-repo' ./ target-repo/leip-logeerpartijtje/
+        mkdir -p gitlab-repo
+        rsync -av --exclude='.git' --exclude='.github/workflows/main.yml' --exclude='gitlab-repo' ./ gitlab-repo/
 
     - name: Commit and push changes for GitLab
       if: steps.check_actor.outputs.from_bot == 'false'
       env:
         COMMIT_MESSAGE: ${{ steps.get_commit_message.outputs.message }}
       run: |
-        cd target-repo
+        cd gitlab-repo
         git add .
         git commit -m "${COMMIT_MESSAGE}"
         git push origin main
