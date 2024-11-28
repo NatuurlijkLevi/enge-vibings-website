@@ -1,3 +1,8 @@
+:root {
+    --koning-icon-src: url("../../img/rollen/koning.svg");
+    --heks-icon-src: url("../../img/rollen/heks.svg");
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -11,8 +16,25 @@ body {
 
 div#roleicon{
     position: absolute;
-    right: 5vw;
-    bottom: 5vh;
+    right: 8vw;
+    bottom: 8vh;
+    width: 20vh;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 300ms;
+    opacity: 0;
+}
+
+div#roleicon.koning{
+    opacity: 1;
+    background-image: var(--koning-icon-src);
+}
+
+div#roleicon.heks{
+    opacity: 1;
+    background-image: var(--heks-icon-src);
 }
 
 h1 {
@@ -30,4 +52,5 @@ button{
     width: auto;
     padding: 3vh 3vw;
     border-radius: 3vw;
+    box-shadow: 0 0 1vw 0.5vw #00000033;
 }
