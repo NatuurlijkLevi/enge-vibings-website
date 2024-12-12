@@ -15,6 +15,15 @@ const bodyElement = document.querySelector('body')
 const monthOfYear = new Date().getMonth() + 1;
 const dayOfMonth = new Date().getDate();
 
+// Function to check if the page is in an iframe
+function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+  }
+
 // If the month of year is 12 (december) and between dates 6 and 29, set the theme to christmas an save in localstorage
 if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
     localStorage.setItem('theme', 'christmas');
@@ -28,7 +37,6 @@ if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
 else {
     localStorage.setItem('theme', null);
 }
-
 // get the href of the css object if it's not null'
 let href
 if (cssTheme != null)
@@ -40,8 +48,11 @@ if (cssTheme != null)
         {
             href = href.replace("main.css", "main-christmas.css");
         }
-        // If the cssTheme Element is null, and it's christmas. Make it snow
-        initSnowify();
+        // If the cssTheme Element is null it's christmas, make it snow
+        if (!inIframe())
+        {
+            initSnowify();
+        }
     }
     cssTheme.href = href;
 }
