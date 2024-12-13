@@ -11,7 +11,7 @@ body {
     align-items: center;
     flex-direction: column;
     gap: 5vh;
-    background-color: #3cbede33;
+    background-color: var(--wieaandebeurt-background);
 }
 
 div#roleicon{

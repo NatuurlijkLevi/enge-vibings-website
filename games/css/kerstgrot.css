@@ -1,5 +1,5 @@
 body {
-    background-image: url('../../img/kerstgrot-bg.svg');
+    background: linear-gradient(69deg, #3B2F2F, #160d00 80%);
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
@@ -70,11 +70,11 @@ article {
 }
 
 .kerstmat, .kerstkrans, .kerstboom, .koenkiesenmelnk, .kerstverlichting{
-    background-image: linear-gradient(to bottom, var(--purple-color), #D9D9D9);
+    background-image: linear-gradient(to bottom, var(--purple-color), #cdbf94);
 }
 
 .zuurstonkies, .kerstsokken, .kerststal{
-    background-image: linear-gradient(to bottom, var(--blue-color), #D9D9D9);
+    background-image: linear-gradient(to bottom, var(--blue-color), #cdbf94);
 }
 
 .kerstspul .bgimg, .kerstspul .threebgimg {
@@ -126,7 +126,7 @@ article {
 
 p, h1, h2 {
     font-family: 'Vinque', sans-serif;
-    color: black;
+    color: var(--black-text-color);
     font-size: 3.5vh;
     margin: 1vh;
     margin-top: 0;
@@ -141,7 +141,7 @@ h1 {
 .kerstspul .threebgimg > h2 {
     font-size: 6vh;
     margin: 0;
-    color: white;
+    color: var(--text-color);
     position: absolute;
     left: 0.75vw;
     bottom: 0.75vh;
@@ -158,12 +158,19 @@ h1 {
     transition: 500ms;
 }
 
+section#vuur-container {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 50vw;
+}
+
 #vuur {
     margin: 7vh 0;    
 }
 
 #vuur > object{
-    width: 40vw;
+    width: 60vh;
     height: auto;
 }
 
@@ -173,15 +180,15 @@ body {
   }
   
 .vlam {
-font-size: 24px;
-filter: blur(0.02em);
--webkit-filter: blur(0.02em);
-margin: 3em auto 0 auto;
-position: absolute;
-bottom: 20vh;
-width: 10em;
-height: 12em;
-scale: 1;
+    font-size: 24px;
+    filter: blur(0.02em);
+    -webkit-filter: blur(0.02em);
+    margin: 3em auto 0 auto;
+    position: absolute;
+    bottom: 15vh;
+    width: 10em;
+    height: 12em;
+    scale: 1;
 }
 
 .particle {
@@ -195,6 +202,7 @@ bottom: 0;
 width: 5em;
 height: 5em;
 }
+
 .particle:nth-of-type(1) {
 animation-delay: 34.75659886s;
 left: calc((100% - 5em) * 0);
@@ -395,6 +403,8 @@ left: calc((100% - 5em) * 0.96);
 animation-delay: 67.96240628s;
 left: calc((100% - 5em) * 0.98);
 }
+
+
 
 @keyframes rise {
 from {

@@ -21,7 +21,7 @@ body{
 
 h1{
     grid-area: h1;
-    color: black;
+    color: var(--black-text-color);
     font-family: 'Kingthings Christmas 2', sans-serif;
     font-size: 15vh;
     align-self: end;
@@ -30,7 +30,7 @@ h1{
 
 button, p {
     font-family: 'Vinque', sans-serif;
-    color: black;
+    color: var(--black-text-color);
     font-size: 6vh;
 }
 

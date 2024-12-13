@@ -28,7 +28,7 @@ article{
 }
 
 h1{
-    color: black;
+    color: var(--black-text-color);
     font-family: 'FrederickText', sans-serif;
     font-size: 10vh;
     font-weight: 600;
@@ -36,7 +36,7 @@ h1{
 
 button, p {
     font-family: 'BlackChancery', sans-serif;
-    color: black;
+    color: var(--black-text-color);
     font-size: 6vh;
 }
 

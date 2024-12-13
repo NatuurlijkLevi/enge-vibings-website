@@ -135,7 +135,7 @@ article {
 
 p, h1, h2 {
     font-family: 'AnOldWitch', sans-serif;
-    color: black;
+    color: var(--black-text-color);
     font-size: 3.5vh;
     margin: 1vh;
     margin-top: 0;
@@ -150,8 +150,8 @@ h1 {
 .ingredient .threebgimg > h2 {
     font-size: 6vh;
     margin: 0;
-    color: white;
     position: absolute;
+    color: var(--text-color);
     left: 0.75vw;
     bottom: 0.75vh;
     font-weight: 100;

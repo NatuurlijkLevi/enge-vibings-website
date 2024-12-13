@@ -19,7 +19,7 @@ input, div {
 
 input {
     grid-area: i;
-    background-color: black;
+    background-color: var(--black-text-color);
     color: white;
     border: none;
     padding: 1vw 2vh;

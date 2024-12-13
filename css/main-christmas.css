@@ -11,20 +11,22 @@ p, h1, h2, h3, h4, h5, h6, i {
     --light-blue-color: #80A256;
     --blue-color: #006223;
     --transparent-black-color: rgba(0, 0, 0, 0.85);
-    --text-color: #FCFAFA;
+    --text-color: #f7f6dd;
+    --black-text-color: #20160b;
     --transparent-white-color: rgba(255, 255, 255, 0.7);
     --background-image: url('../img/engevibingsbg-xmas1-withball.jpg');
-    --logeerpartijtje-background: linear-gradient(to top, #331313, #63652E);
+    --logeerpartijtje-background: linear-gradient(to bottom, #5b1111, #012a11);
     --gray-color: #ECA424;
     --light-gray-color: #F0EC66;
     --transparent-gray-color: #e0a53d99;
     --transparent-light-gray-color: #F0EC6699;
     --transparent-gray-border: #F4C44B99;
     --wheelspinner-button-text-shadow: 0.35vh 0.5vh 1vh rgba(0, 0, 0, 0.75);
+    --wieaandebeurt-background: #b933335c;
     --gradient-purple-dark: #aa4646;
-    --gradient-purple-light: #febfbf;
+    --gradient-purple-light: #cdbf94;
     --gradient-blue-dark: #1b511b;
-    --gradient-blue-light: #bbe5bc;
+    --gradient-blue-light: #cdbf94;
 }
 
 iframe{

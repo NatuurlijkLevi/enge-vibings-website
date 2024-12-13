@@ -401,7 +401,7 @@ section#console{
     transform: translate(-50%, 0);
     width: 50vw;
     height: 50vh;
-    background-color: black;
+    background-color: var(--black-text-color);
     border: var(--hover-blue-color) 2px solid;
     border-radius: 1vh;
     box-shadow: black 0 0 1vw;
@@ -443,7 +443,7 @@ div > div#horrorspel-popup > h1 {
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: var(--black-text-color);
 }
 
 div > div#horrorspel-popup > p {
@@ -451,7 +451,7 @@ div > div#horrorspel-popup > p {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: var(--black-text-color);
 }
 
 div > div#horrorspel-popup > #ogen-container {
@@ -477,7 +477,7 @@ div > div#horrorspel-popup > #ogen-container > #ogen2 {
     height: 10vh;
     font-size: 5vh;
     background-color: white;
-    color: black;
+    color: var(--black-text-color);
     text-align: center;
 }
 

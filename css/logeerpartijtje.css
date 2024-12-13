@@ -112,7 +112,7 @@ article > div {
 }
 
 p, h1, li {
-    color: black;
+    color: var(--black-text-color);
     font-size: 5vh;
 }
 

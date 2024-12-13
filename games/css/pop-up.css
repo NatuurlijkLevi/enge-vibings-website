@@ -54,7 +54,7 @@ div.pop-up > h1 {
     justify-content: center;
     align-items: center;
     width: 100%;
-    color: black;
+    color: var(--black-text-color);
 }
 
 div.pop-up > p {
@@ -66,7 +66,7 @@ div.pop-up > p {
     justify-content: center;
     align-items: center;
     width: 100%;
-    color: black;
+    color: var(--black-text-color);
 }
 
 .pop-up.wheelspinner {

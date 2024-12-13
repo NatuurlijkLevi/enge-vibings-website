@@ -22,7 +22,7 @@ section {
     width: 80vh;
     height: 80vh;
     border-radius: 50%;
-    filter: drop-shadow(0 0 1vh black);
+    filter: drop-shadow(0 0 1vh var(--black-text-color));
 }
 
 #spinbutton {
