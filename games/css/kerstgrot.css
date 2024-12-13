@@ -1,0 +1,411 @@
+body {
+    background-image: url('../../img/kerstgrot-bg.svg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+}
+
+.ketel-inhoud {
+    transition: 500ms;
+    animation: addColorToSoep 500ms ease-in forwards;
+}
+
+#vuur {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+article {
+    margin: 7vh;
+    margin-left: 0;
+    width: 50vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    padding: 4vh;
+    justify-content: center;
+    align-items: left;
+    background-color: rgba(255, 255, 255, 0.65);
+    border-radius: 1vw;
+}
+
+#kerstspullen-grid {
+    display: grid;
+    grid-template-areas:    "kerstmat           zuurstonkies    kerstkrans"
+                            "kerstsokken        kerstboom       kerststal"
+                            "koenkiesenmelnk    kerstboom       kerstverlichting";
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.kerstmat{grid-area: kerstmat;}
+.zuurstonkies{grid-area: zuurstonkies;}
+.kerstkrans{grid-area: kerstkrans;}
+.kerstsokken{grid-area: kerstsokken;}
+.kerstboom{grid-area: kerstboom;}
+.kerststal{grid-area: kerststal;}
+.koenkiesenmelnk{grid-area: koenkiesenmelnk;}
+.kerstverlichting{grid-area: kerstverlichting;}
+
+.kerstspul{
+    border-radius: 1vw;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    transition: 500ms;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.kerstmat, .kerstkrans, .kerstboom, .koenkiesenmelnk, .kerstverlichting{
+    background-image: linear-gradient(to bottom, var(--purple-color), #D9D9D9);
+}
+
+.zuurstonkies, .kerstsokken, .kerststal{
+    background-image: linear-gradient(to bottom, var(--blue-color), #D9D9D9);
+}
+
+.kerstspul .bgimg, .kerstspul .threebgimg {
+    position: relative;
+    background-image: url('../../img/kerstspullen/bg.jpg');
+    background-size: cover;
+    background-position: left;
+    border-radius: 1vw;
+    width: 90%;
+    height: 14vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 500ms;
+    margin: 1vh;
+    margin-bottom: 0;
+}
+
+.kerstspul.kerstboom .bgimg{
+    height: 40vh;
+}
+
+.kerstspul .bgimg > img, .kerstspul .threebgimg > img {
+    width: 50%;
+    height: auto;
+    transition: 500ms;
+}
+
+.kerstspul:hover{
+    transform: scale(1.1);
+    transition: 500ms;
+    cursor: pointer;
+}
+
+.kerstspul:hover .bgimg > img, .kerstspul:hover .threebgimg > img {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 1vw rgba(0, 0, 0, 0.25));
+    transition: 500ms;
+}
+
+.kerstspul.used:hover {
+    transform: scale(1);
+    cursor: default;
+}
+
+.kerstspul.used:hover .bgimg > img, .ingredient.used:hover .threebgimg > img {
+    transform: scale(1);
+}
+
+p, h1, h2 {
+    font-family: 'Vinque', sans-serif;
+    color: black;
+    font-size: 3.5vh;
+    margin: 1vh;
+    margin-top: 0;
+    margin-bottom: 1vw;
+}
+
+h1 {
+    font-size: 7vh;
+    margin: 0;
+}
+
+.kerstspul .threebgimg > h2 {
+    font-size: 6vh;
+    margin: 0;
+    color: white;
+    position: absolute;
+    left: 0.75vw;
+    bottom: 0.75vh;
+    font-weight: 100;
+}
+
+.used {
+    filter: grayscale(100%);
+    transition: 500ms;
+}
+
+.used #monsterratstoom, .used #zuurvandedoden, .used #spinnenweb, .used #konijnenkeutel, .used #uilenveer, .used #voetenmartelaar, .used #regenwurm, .used #strontvliegje, .used #junkybloed, .used #spiddermanen, .used #levenderijst, .used #oggysangst{
+    background: none;
+    transition: 500ms;
+}
+
+#vuur {
+    margin: 7vh 0;    
+}
+
+#vuur > object{
+    width: 40vw;
+    height: auto;
+}
+
+body {
+    background-color: #300808;
+    margin: 0;
+  }
+  
+.vlam {
+font-size: 24px;
+filter: blur(0.02em);
+-webkit-filter: blur(0.02em);
+margin: 3em auto 0 auto;
+position: absolute;
+bottom: 20vh;
+width: 10em;
+height: 6em;
+scale: 1.125;
+}
+
+.particle {
+animation: rise 5s ease-in infinite;
+background-image: radial-gradient(#ff5000 20%, rgba(255, 80, 0, 0) 70%);
+border-radius: 50%;
+mix-blend-mode: screen;
+opacity: 0;
+position: absolute;
+bottom: 0;
+width: 5em;
+height: 5em;
+}
+.particle:nth-of-type(1) {
+animation-delay: 34.75659886s;
+left: calc((100% - 5em) * 0);
+}
+.particle:nth-of-type(2) {
+animation-delay: 37.37783134s;
+left: calc((100% - 5em) * 0.02);
+}
+.particle:nth-of-type(3) {
+animation-delay: 43.11768494s;
+left: calc((100% - 5em) * 0.04);
+}
+.particle:nth-of-type(4) {
+animation-delay: 4.31553938s;
+left: calc((100% - 5em) * 0.06);
+}
+.particle:nth-of-type(5) {
+animation-delay: 78.76809883s;
+left: calc((100% - 5em) * 0.08);
+}
+.particle:nth-of-type(6) {
+animation-delay: 91.11537531s;
+left: calc((100% - 5em) * 0.1);
+}
+.particle:nth-of-type(7) {
+animation-delay: 38.9582433s;
+left: calc((100% - 5em) * 0.12);
+}
+.particle:nth-of-type(8) {
+animation-delay: 95.96697184s;
+left: calc((100% - 5em) * 0.14);
+}
+.particle:nth-of-type(9) {
+animation-delay: 59.3305248s;
+left: calc((100% - 5em) * 0.16);
+}
+.particle:nth-of-type(10) {
+animation-delay: 29.21721329s;
+left: calc((100% - 5em) * 0.18);
+}
+.particle:nth-of-type(11) {
+animation-delay: 63.23366695s;
+left: calc((100% - 5em) * 0.2);
+}
+.particle:nth-of-type(12) {
+animation-delay: 94.96764282s;
+left: calc((100% - 5em) * 0.22);
+}
+.particle:nth-of-type(13) {
+animation-delay: 12.1156333s;
+left: calc((100% - 5em) * 0.24);
+}
+.particle:nth-of-type(14) {
+animation-delay: 61.12714676s;
+left: calc((100% - 5em) * 0.26);
+}
+.particle:nth-of-type(15) {
+animation-delay: 64.00051368s;
+left: calc((100% - 5em) * 0.28);
+}
+.particle:nth-of-type(16) {
+animation-delay: 8.34610006s;
+left: calc((100% - 5em) * 0.3);
+}
+.particle:nth-of-type(17) {
+animation-delay: 52.00598229s;
+left: calc((100% - 5em) * 0.32);
+}
+.particle:nth-of-type(18) {
+animation-delay: 98.17652122s;
+left: calc((100% - 5em) * 0.34);
+}
+.particle:nth-of-type(19) {
+animation-delay: 25.4372053s;
+left: calc((100% - 5em) * 0.36);
+}
+.particle:nth-of-type(20) {
+animation-delay: 28.32031212s;
+left: calc((100% - 5em) * 0.38);
+}
+.particle:nth-of-type(21) {
+animation-delay: 82.67036637s;
+left: calc((100% - 5em) * 0.4);
+}
+.particle:nth-of-type(22) {
+animation-delay: 66.20618373s;
+left: calc((100% - 5em) * 0.42);
+}
+.particle:nth-of-type(23) {
+animation-delay: 71.87482319s;
+left: calc((100% - 5em) * 0.44);
+}
+.particle:nth-of-type(24) {
+animation-delay: 70.2929153s;
+left: calc((100% - 5em) * 0.46);
+}
+.particle:nth-of-type(25) {
+animation-delay: 13.2269317s;
+left: calc((100% - 5em) * 0.48);
+}
+.particle:nth-of-type(26) {
+animation-delay: 12.04358656s;
+left: calc((100% - 5em) * 0.5);
+}
+.particle:nth-of-type(27) {
+animation-delay: 98.81872566s;
+left: calc((100% - 5em) * 0.52);
+}
+.particle:nth-of-type(28) {
+animation-delay: 35.87918271s;
+left: calc((100% - 5em) * 0.54);
+}
+.particle:nth-of-type(29) {
+animation-delay: 61.17300674s;
+left: calc((100% - 5em) * 0.56);
+}
+.particle:nth-of-type(30) {
+animation-delay: 63.15834231s;
+left: calc((100% - 5em) * 0.58);
+}
+.particle:nth-of-type(31) {
+animation-delay: 47.71526597s;
+left: calc((100% - 5em) * 0.6);
+}
+.particle:nth-of-type(32) {
+animation-delay: 50.02555553s;
+left: calc((100% - 5em) * 0.62);
+}
+.particle:nth-of-type(33) {
+animation-delay: 94.86602974s;
+left: calc((100% - 5em) * 0.64);
+}
+.particle:nth-of-type(34) {
+animation-delay: 96.59944393s;
+left: calc((100% - 5em) * 0.66);
+}
+.particle:nth-of-type(35) {
+animation-delay: 49.16989009s;
+left: calc((100% - 5em) * 0.68);
+}
+.particle:nth-of-type(36) {
+animation-delay: 22.59123849s;
+left: calc((100% - 5em) * 0.7);
+}
+.particle:nth-of-type(37) {
+animation-delay: 2.67052381s;
+left: calc((100% - 5em) * 0.72);
+}
+.particle:nth-of-type(38) {
+animation-delay: 17.22735122s;
+left: calc((100% - 5em) * 0.74);
+}
+.particle:nth-of-type(39) {
+animation-delay: 21.81389752s;
+left: calc((100% - 5em) * 0.76);
+}
+.particle:nth-of-type(40) {
+animation-delay: 67.75350018s;
+left: calc((100% - 5em) * 0.78);
+}
+.particle:nth-of-type(41) {
+animation-delay: 10.66457784s;
+left: calc((100% - 5em) * 0.8);
+}
+.particle:nth-of-type(42) {
+animation-delay: 82.13761626s;
+left: calc((100% - 5em) * 0.82);
+}
+.particle:nth-of-type(43) {
+animation-delay: 66.13514531s;
+left: calc((100% - 5em) * 0.84);
+}
+.particle:nth-of-type(44) {
+animation-delay: 70.77920089s;
+left: calc((100% - 5em) * 0.86);
+}
+.particle:nth-of-type(45) {
+animation-delay: 0.37473069s;
+left: calc((100% - 5em) * 0.88);
+}
+.particle:nth-of-type(46) {
+animation-delay: 21.50706655s;
+left: calc((100% - 5em) * 0.9);
+}
+.particle:nth-of-type(47) {
+animation-delay: 40.44342018s;
+left: calc((100% - 5em) * 0.92);
+}
+.particle:nth-of-type(48) {
+animation-delay: 27.6637512s;
+left: calc((100% - 5em) * 0.94);
+}
+.particle:nth-of-type(49) {
+animation-delay: 47.91744392s;
+left: calc((100% - 5em) * 0.96);
+}
+.particle:nth-of-type(50) {
+animation-delay: 67.96240628s;
+left: calc((100% - 5em) * 0.98);
+}
+
+@keyframes rise {
+from {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+}
+25% {
+    opacity: 1;
+}
+to {
+    opacity: 0;
+    transform: translateY(-10em) scale(0);
+}
+}

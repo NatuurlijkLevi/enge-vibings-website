@@ -65,7 +65,7 @@ const heksLabel = document.querySelector('article > div > section:nth-child(3) >
 
 if (currentTheme === "christmas") {
   koningkaarten.src = "games/kerstkaarten.html"
-  heksensoep.src = "games/kerstspullen.html"
+  heksensoep.src = "games/kerstgrot.html"
   hekswisselaar.placeholder = "Nieuwe grinch"
   koningwisselaar.placeholder = "Nieuwe kerstman"
   koningLabel.innerHTML = "Kerstman:"

@@ -1,0 +1,110 @@
+:root {
+    --background-color: #FDF7EB;
+    --button-gradient1: #ECA424;
+    --button-gradient2: #F0EC66;
+    --button-text-highlight: 0 1vh 1vh rgba(255, 255, 255, 0.5);
+}
+
+body{
+    background-color: var(--background-color);
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 37vw 26vw 22vw 15vw;
+    grid-template-rows: 25vh 45vh 30vh;
+    grid-template-areas:    "h1             h1              h1              decoration"
+                            "p              p               p               p"
+                            "zuurstoklinks  betweenzuurstok zuurstokrechts  zuurstokrechts";
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    grid-area: h1;
+    color: black;
+    font-family: 'Kingthings Christmas 2', sans-serif;
+    font-size: 15vh;
+    align-self: end;
+    font-weight: 500;
+}
+
+button, p {
+    font-family: 'Vinque', sans-serif;
+    color: black;
+    font-size: 6vh;
+}
+
+p {
+    grid-area: p;
+}
+
+p, h1 {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+#button-container{
+    grid-area: button;
+    background-image: linear-gradient(to top, var(--button-gradient1), var(--button-gradient2));
+    border-radius: 2vh;
+    cursor: pointer;
+    transition: 500ms linear;
+}
+
+#button-container > button {
+    background-image: linear-gradient(to bottom, var(--button-gradient1), var(--button-gradient2));
+    transition: 100ms ease-in-out;
+    border: none;
+    padding: 1.5vh 2vh;
+    margin: 0.75vh;
+    border-radius: 2vh;
+}
+
+#button-container:hover > button{
+    text-shadow: var(--button-text-highlight);
+}
+
+#button-container:active > button{
+    margin: 1.5vh;
+    padding: 0.75vh 1.25vh;
+}
+
+div#kerstdeco{
+    grid-area: decoration;
+    background-image: url("../../img/kerstdeco.svg");
+    background-size: contain;
+    background-position: right top;
+    background-repeat: no-repeat;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}
+
+div#zuurstok-links{
+    grid-area: zuurstoklinks;
+    background-image: url("../../img/zuurstok-links.svg");
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}
+
+div#between-zuurstok{
+    grid-area: betweenzuurstok;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#zuurstok-rechts{
+    grid-area: zuurstokrechts;
+    background-image: url("../../img/zuurstok-rechts.svg");
+    background-size: contain;
+    background-position: right center;
+    background-repeat: no-repeat;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}

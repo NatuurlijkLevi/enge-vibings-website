@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Kingthings Christmas 2';
+    src: url('../fonts/kerst/kingthingschristmas2.eot');
+    src: url('../fonts/kerst/kingthingschristmas2.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/kerst/kingthingschristmas2.woff2') format('woff2'),
+        url('../fonts/kerst/kingthingschristmas2.woff') format('woff'),
+        url('../fonts/kerst/kingthingschristmas2.ttf') format('truetype'),
+        url('../fonts/kerst/kingthingschristmas2.svg#kingthingschristmas2') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Vinque';
+    src: url('../fonts/kerst/vinque-regular.eot');
+    src: url('../fonts/kerst/vinque-regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/kerst/vinque-regular.woff2') format('woff2'),
+        url('../fonts/kerst/vinque-regular.woff') format('woff'),
+        url('../fonts/kerst/vinque-regular.ttf') format('truetype'),
+        url('../fonts/kerst/vinque-regular.svg#vinque-regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
