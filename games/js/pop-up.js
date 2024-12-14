@@ -1,5 +1,6 @@
 let closeX;
 let popUpIsClosed = true;
+let heksensoepPopUp = false;
 
 function showPopUp(type, message) {
     popUpIsClosed = false;
@@ -12,6 +13,7 @@ function showPopUp(type, message) {
                                     <h1>Wheelspinner</h1>
                                     <p>${message}</p>
                                 </div>`;
+            heksensoepPopUp = false;
             break;
         case "heksensoep":
             popUp.innerHTML += `<div class="pop-up heksensoep">
@@ -19,6 +21,7 @@ function showPopUp(type, message) {
                                     <h1 class="pop-up-text">Je neemt een slok...</h1>
                                     <p class="pop-up-text">${message}</p>
                                 </div>`;
+            heksensoepPopUp = true;
             break;
     }
     closeX = popUp.querySelector(".x");
@@ -33,5 +36,8 @@ function hidePopUp() {
         closeX = null;
         popUp.remove();
         popUpIsClosed = true;
+        if (heksensoepPopUp){
+            localStorage.setItem("specialActionDone", "heksensoep");
+        }
     }
 }

@@ -23,7 +23,7 @@ body {
 }
 
 article {
-    margin: 7vh;
+    margin: 7.5vh;
     margin-left: 0;
     width: 50vw;
     height: 85vh;
@@ -39,9 +39,9 @@ article {
 
 #kerstspullen-grid {
     display: grid;
-    grid-template-areas:    "kerstmat           zuurstonkies    kerstkrans"
-                            "kerstsokken        kerstboom       kerststal"
-                            "koenkiesenmelnk    kerstboom       kerstverlichting";
+    grid-template-areas:    "kerstsokken        kerstkrans      zuurstonkies"
+                            "kerstmat           kerstboom       kerstverlichting"
+                            "koenkiesenmelnk    kerstboom       kerststal";
     gap: 1vw;
     justify-content: center;
     align-items: center;
@@ -69,11 +69,11 @@ article {
     overflow: hidden;
 }
 
-.kerstmat, .kerstkrans, .kerstboom, .koenkiesenmelnk, .kerstverlichting{
+.kerstmat, .kerstkrans, .kerstboom, .kerstverlichting{
     background-image: linear-gradient(to bottom, var(--purple-color), #cdbf94);
 }
 
-.zuurstonkies, .kerstsokken, .kerststal{
+.zuurstonkies, .kerstsokken, .kerststal, .koenkiesenmelnk{
     background-image: linear-gradient(to bottom, var(--blue-color), #cdbf94);
 }
 
@@ -162,7 +162,6 @@ section#vuur-container {
     display: flex;
     justify-content: center;
     align-items: end;
-    width: 50vw;
 }
 
 #vuur {
@@ -172,6 +171,14 @@ section#vuur-container {
 #vuur > object{
     width: 60vh;
     height: auto;
+}
+
+#glow {
+    position: absolute;
+    width: 80vh;
+    height: 80vh;
+    background: radial-gradient(#ff5000ab, #ff500000 70%, transparent);
+    border-radius: 50%;
 }
 
 body {

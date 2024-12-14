@@ -13,7 +13,7 @@ p, h1, h2, h3, h4, h5, h6, i {
     --transparent-black-color: rgba(0, 0, 0, 0.85);
     --text-color: #f7f6dd;
     --black-text-color: #20160b;
-    --transparent-white-color: rgba(255, 255, 255, 0.7);
+    --transparent-white-color: #f7f6ddb3;
     --background-image: url('../img/engevibingsbg-xmas1-withball.jpg');
     --header-logeerpartijtje-background: url(../img/logeerpartijtje-alt.png);
     --logeerpartijtje-background: linear-gradient(to bottom, #5b1111, #012a11);

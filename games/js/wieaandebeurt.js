@@ -10,41 +10,61 @@ if (localStorage.getItem('theme') === "christmas") {
 }
 
 let ronde = 0;
-let nuAanDeBeurt = 0
-let beurt = [ronde, nuAanDeBeurt]
+let nuAanDeBeurt = 0;
+
+if (localStorage.getItem("ronde") != null)
+{
+    ronde = localStorage.getItem("ronde")
+}
+if (localStorage.getItem("nuAanDeBeurt") != null)
+{
+    nuAanDeBeurt = localStorage.getItem("nuAanDeBeurt")
+}
 
 const beurtKlaarButton = document.querySelector("button")
 const nuAanDeBeurtElement = document.querySelector("p")
 const roleIconElement = document.getElementById("roleicon")
 
+let specialActionRequired = false
+let specialActionDone = false
+
 function updateAanDeBeurt() {
-    console.log(nuAanDeBeurt)
-    if (nuAanDeBeurt >= 6)
+    specialActionDone = localStorage.getItem("specialActionDone");
+    console.log(specialActionDone)
+    if (specialActionRequired && ((specialActionDone != "koningkaarten" && nuAanDeBeurtElement.innerText == String(currentKoning)) || (specialActionDone != "heksensoep" && nuAanDeBeurtElement.innerText == String(currentHeks))))
     {
-        nuAanDeBeurt = 0;
-        ronde++
+        beurtKlaarButton.innerText = "Voer eerst de\nspeciale actie uit"
     }
-    nuAanDeBeurtElement.innerText = currentVolgorde[nuAanDeBeurt]
-    console.log(currentVolgorde[nuAanDeBeurt] + currentKoning + currentHeks)
-    if (nuAanDeBeurtElement.innerText == String(currentKoning))
-    {
-        console.log(nuAanDeBeurtElement.innerText+"=="+currentKoning)
-        roleIconElement.className = "koning"
+    else {
+        beurtKlaarButton.innerText = "Beurt Klaar"
+        localStorage.setItem("specialActionDone", false);
+        if (nuAanDeBeurt >= 6)
+        {
+            nuAanDeBeurt = 0;
+            ronde++
+        }
+        nuAanDeBeurtElement.innerText = currentVolgorde[nuAanDeBeurt]
+        console.log(currentVolgorde[nuAanDeBeurt] + currentKoning + currentHeks)
+        if (nuAanDeBeurtElement.innerText == String(currentKoning))
+        {
+            roleIconElement.className = "koning"
+            specialActionRequired = true
+        }
+        else if (nuAanDeBeurtElement.innerText == String(currentHeks))
+        {
+            roleIconElement.className = "heks"
+            specialActionRequired = true
+        }
+        else
+        {
+            roleIconElement.classList.remove("koning")
+            roleIconElement.classList.remove("heks")
+            specialActionRequired = false
+        }
+        localStorage.setItem("ronde", ronde)
+        localStorage.setItem("nuAanDeBeurt", nuAanDeBeurt)
+        nuAanDeBeurt++
     }
-    else if (nuAanDeBeurtElement.innerText == String(currentHeks))
-    {
-        console.log(nuAanDeBeurtElement.innerText+"=="+currentHeks)
-        roleIconElement.className = "heks"
-    }
-    else
-    {
-        console.log(nuAanDeBeurtElement.innerText+"!="+currentKoning+nuAanDeBeurtElement.innerText+"!="+currentHeks)
-        roleIconElement.classList.remove("koning")
-        roleIconElement.classList.remove("heks")
-    }
-    beurt = [ronde, nuAanDeBeurt]
-    console.log(beurt)
-    nuAanDeBeurt++
 }
 updateAanDeBeurt()
 beurtKlaarButton.addEventListener("click", updateAanDeBeurt)

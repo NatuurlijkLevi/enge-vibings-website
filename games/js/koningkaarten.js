@@ -449,6 +449,7 @@ function drawRandomCard()
     {
         lastTimeNegative = true;
     }
+    localStorage.setItem("specialActionDone", "koningkaarten");
 }    
 
 // If you press the button, draw a random card
