@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: #3CBEDE33;
+    background-color: var(--transparent-light-blue);
 }
 
 section {

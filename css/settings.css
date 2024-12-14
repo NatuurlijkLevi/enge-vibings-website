@@ -20,7 +20,7 @@ input, div {
 input {
     grid-area: i;
     background-color: var(--black-text-color);
-    color: white;
+    color: var(--text-color);
     border: none;
     padding: 1vw 2vh;
     border-top: var(--hover-blue-color) 1px solid;

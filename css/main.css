@@ -15,6 +15,7 @@ p, h1, h2, h3, h4, h5, h6, i {
     --black-text-color: #000000;
     --transparent-white-color: rgba(255, 255, 255, 0.7);
     --background-image: url('../img/engevibingsbg1.png');
+    --header-logeerpartijtje-background: url(../img/logeerpartijtje-alt.png);
     --logeerpartijtje-background: linear-gradient(0deg, #8A4084, #1E1C4B);
     --gray-color: #5C4B53;
     --light-gray-color: #C29EAF;
@@ -22,7 +23,7 @@ p, h1, h2, h3, h4, h5, h6, i {
     --transparent-light-gray-color: #C29EAF99;
     --transparent-gray-border: #836a7599;
     --wheelspinner-button-text-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
-    --wieaandebeurt-background: #3cbede33;
+    --transparent-light-blue: #3cbede33;
     --gradient-purple-dark: #4B225F;
     --gradient-purple-light: #CB9DCE;
     --gradient-blue-dark: #1E1C4B;

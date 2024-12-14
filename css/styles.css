@@ -125,7 +125,7 @@ body {
 
 header {
     position: fixed;
-    background-image: url(../img/logeerpartijtje-alt.png);
+    background-image: var(--header-logeerpartijtje-background);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

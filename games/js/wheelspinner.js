@@ -49,6 +49,8 @@ let heksDone = localStorage.getItem("heksDone");
 
 let volgordeCount = 0;
 
+const currentTheme = localStorage.getItem("theme")
+
 // Function to check if the game is played in an iframe
 function inIframe () {
   try {
@@ -164,17 +166,18 @@ function resetNames(){
 function resetWheel() {
     container.innerHTML = "";
     wheel = new Wheel(container, props);
-    if (localStorage.getItem("theme") === "christmas")
+    if (currentTheme === "christmas")
     {
       wheel.itemBackgroundColors = ['#c9472d', '#006223', '#9d1900', '#01812e', '#9d1900', '#006223'];
+      wheel.itemLabelColors = ['#F7F6DD'];
     }
     else
     {
       wheel.itemBackgroundColors = ['#3CBEDE', '#DD41B8', '#455DA5', '#96299C', '#455DA5', '#DD41B8'];
+      wheel.itemLabelColors = ['#FCFAFA'];
     }
     wheel.lineWidth = 0;
     wheel.borderWidth = 0;
-    wheel.itemLabelColors = ['#FCFAFA'];
     wheel.itemLabelFont = "'Montserrat', sans-serif";
     wheel.isInteractive = false;
     wheel.itemLabelAlign = 'right';
@@ -353,3 +356,7 @@ buttonItems.forEach((item) => {
   });
 });
 
+if (currentTheme === "christmas") {
+  koning.innerHTML = "Kerstman";
+  heks.innerHTML = "Grinch";
+}
