@@ -23,6 +23,14 @@ function showPopUp(type, message) {
                                 </div>`;
             heksensoepPopUp = true;
             break;
+        case "kerstgrot":
+            popUp.innerHTML += `<div class="pop-up kerstgrot">
+                                    <div class="x"></div>
+                                    <h1 class="pop-up-text">Je tieft het in het vuur...</h1>
+                                    <p class="pop-up-text">${message}</p>
+                                </div>`;
+            heksensoepPopUp = true;
+            break;
     }
     closeX = popUp.querySelector(".x");
     closeX.addEventListener("click", hidePopUp);

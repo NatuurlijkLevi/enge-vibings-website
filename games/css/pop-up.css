@@ -58,7 +58,7 @@ div.pop-up > h1 {
 }
 
 div.pop-up > p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--standard-font);
     user-select: none;
     grid-area: p;
     text-align: center;
@@ -81,7 +81,7 @@ div.pop-up > p {
     background-color: var(--light-blue-color);
 }
 
-.pop-up.heksensoep {
+.pop-up.heksensoep, .pop-up.kerstgrot {
     background-image: linear-gradient(to bottom, #D9BADD, #AAAEBC);
     grid-template-rows: 1fr 2fr 3fr 3fr;
     gap: 1vw;
@@ -99,13 +99,25 @@ div.pop-up > p {
     background-color: #91389f;
 }
 
-div.pop-up-container > .pop-up.heksensoep > p {
+div.pop-up-container > .pop-up.heksensoep > p, div.pop-up-container > .pop-up.kerstgrot > p {
     font-weight: 600;
     grid-area: pi;
     align-items: end;
 }
 
-div.pop-up-container > div.pop-up.heksensoep > p:nth-last-of-type(1) {
+div.pop-up-container > div.pop-up.heksensoep > p:nth-last-of-type(1), div.pop-up-container > div.pop-up.kerstgrot > p:nth-last-of-type(1) {
     grid-area: pii;
     align-items: center;
+}
+
+.pop-up.kerstgrot {
+    background-image: linear-gradient(to bottom, var(--purple-color), #cdbf94);;
+}
+
+.pop-up.heksensoep > .x {
+    background-color: var(--purple-color);
+}
+
+.pop-up.heksensoep > .x:hover{
+    background-color: var(--blue-color);
 }

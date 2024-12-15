@@ -153,15 +153,45 @@ h1 {
     transition: 500ms;
 }
 
-.used #monsterratstoom, .used #zuurvandedoden, .used #spinnenweb, .used #konijnenkeutel, .used #uilenveer, .used #voetenmartelaar, .used #regenwurm, .used #strontvliegje, .used #junkybloed, .used #spiddermanen, .used #levenderijst, .used #oggysangst{
+.used .kerstboom, .used .kerstkrans, .used .kerstverlichting, .used .kerstmat, .used .kerstsokken, .used .kerststal, .used .koenkiesenmelnk, .used .zuurstonkies {
     background: none;
     transition: 500ms;
 }
 
 section#vuur-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: end;
+}
+
+@keyframes burnInFire{
+    0%{
+        bottom: 80vh;
+        opacity: 0;
+    }
+    15%{
+        bottom: 80vh;
+        opacity: 1;
+        filter: brightness(1);
+    }
+    70%{
+        opacity: 1;
+        filter: brightness(0.6);
+    }
+    90%{
+        bottom: 25vh;
+    }
+    100%{
+        bottom: 25vh;
+        opacity: 0;
+        filter: brightness(0);
+    }
+}
+
+section#vuur-container > img {
+    position: absolute;
+    animation: burnInFire 1400ms forwards ease-in-out;
 }
 
 #vuur {
@@ -181,11 +211,6 @@ section#vuur-container {
     border-radius: 50%;
 }
 
-body {
-    background-color: #300808;
-    margin: 0;
-  }
-  
 .vlam {
     font-size: 24px;
     filter: blur(0.02em);

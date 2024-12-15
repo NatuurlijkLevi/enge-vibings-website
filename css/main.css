@@ -1,8 +1,3 @@
-p, h1, h2, h3, h4, h5, h6, i {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
-}
-
 :root {
     --purple-color: #A22F9B;
     --pink-color: #DD41B8;
@@ -28,6 +23,12 @@ p, h1, h2, h3, h4, h5, h6, i {
     --gradient-purple-light: #CB9DCE;
     --gradient-blue-dark: #1E1C4B;
     --gradient-blue-light: #afb2d1;
+    --standard-font: 'Montserrat', sans-serif;
+}
+
+p, h1, h2, h3, h4, h5, h6, i {
+    font-family: var(--standard-font);
+    color: var(--text-color);
 }
 
 iframe{
@@ -38,7 +39,7 @@ iframe{
 }
 
 button {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--standard-font);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -87,7 +87,7 @@ div#dashboard {
     border-radius: 1vw;
     text-align: center;
     padding: 2%;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--standard-font);
 }
 
 article {
@@ -100,7 +100,7 @@ article {
     height: 92vh;
     width: 12vw;
     background-color: var(--transparent-white-color);
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--standard-font);
 }
 
 article > div {
