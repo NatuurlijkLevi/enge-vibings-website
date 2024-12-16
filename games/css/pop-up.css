@@ -69,6 +69,10 @@ div.pop-up > p {
     color: var(--black-text-color);
 }
 
+div.pop-up.heksensoep > p {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .pop-up.wheelspinner {
     background-color: var(--text-color);
 }
@@ -111,13 +115,13 @@ div.pop-up-container > div.pop-up.heksensoep > p:nth-last-of-type(1), div.pop-up
 }
 
 .pop-up.kerstgrot {
-    background-image: linear-gradient(to bottom, var(--purple-color), #cdbf94);;
+    background-image: linear-gradient(to bottom, var(--light-blue-color), #cdbf94);;
 }
 
-.pop-up.heksensoep > .x {
+.pop-up.kerstgrot > .x {
     background-color: var(--purple-color);
 }
 
-.pop-up.heksensoep > .x:hover{
+.pop-up.kerstgrot > .x:hover{
     background-color: var(--blue-color);
 }

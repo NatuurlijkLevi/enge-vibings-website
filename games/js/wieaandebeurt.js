@@ -29,6 +29,8 @@ let specialActionRequired = false
 let specialActionDone = false
 
 function updateAanDeBeurt() {
+    currentKoning = localStorage.getItem("koning")
+    currentHeks = localStorage.getItem("heks");
     specialActionDone = localStorage.getItem("specialActionDone");
     console.log(specialActionDone)
     if (specialActionRequired && ((specialActionDone != "koningkaarten" && nuAanDeBeurtElement.innerText == String(currentKoning)) || (specialActionDone != "heksensoep" && nuAanDeBeurtElement.innerText == String(currentHeks))))

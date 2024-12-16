@@ -11,6 +11,7 @@ function clearLocalStorage() {
 
 function clearHeksensoep() {
     localStorage.removeItem("usedIngredients");
+    localStorage.removeItem("usedKerstspullen");
     consoleLog.innerHTML += "Cleared heksensoep progress<br>";
 }
 

@@ -10,7 +10,9 @@ const presentatieButton = document.querySelector('#presentatie > button');
 // If the button is clicked, the current king will be replaced with the new king
 nieuweKoningButton.addEventListener('click', () => {
     const huidigeKoning = document.querySelector('article > div > section:nth-child(2) > p');
-    huidigeKoning.innerHTML = nieuweKoningInput.value;
+    let nieuweKoning = nieuweKoningInput.value;
+    huidigeKoning.innerHTML = nieuweKoning;
+    localStorage.setItem('koning', nieuweKoning);
     nieuweKoningInput.value = '';
 })
 
@@ -18,7 +20,9 @@ nieuweKoningButton.addEventListener('click', () => {
 // If the button is clicked, the current witch will be replaced with the new witch
 nieuweHeksButton.addEventListener('click', () => {
     const huidigeHeks = document.querySelector('article > div > section:nth-child(3) > p');
-    huidigeHeks.innerHTML = nieuweHeksInput.value;
+    let nieuweHeks = nieuweHeksInput.value;
+    huidigeHeks.innerHTML = nieuweHeks;
+    localStorage.setItem('heks', nieuweHeks);
     nieuweHeksInput.value = '';
 })
 

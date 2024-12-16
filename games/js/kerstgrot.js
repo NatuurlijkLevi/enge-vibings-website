@@ -33,17 +33,17 @@ function burnKerstspul() {
   const randomNumber = Math.random();
   const forward = [5, 6, 7, 8];
   const goodResponse = [
-    "Het smaakt heerlijk!</p><p class='pop-up-text'>Hierdoor ga je ",
-    "De soep is verrukelijk!</p><p class='pop-up-text'>Daarom ga je ",
-    "De soep is om je vingers bij af te likken!</p><p class='pop-up-text'>Ga hierom ",
-    "Het is om van te smullen!</p><p class='pop-up-text'>Hierom ga je "
+    "De rook ruikt heerlijk!</p><p class='pop-up-text'>Hierdoor ga je ",
+    "Het voelt goed!</p><p class='pop-up-text'>Daarom ga je ",
+    "De brandlucht geeft een reuksensatie!</p><p class='pop-up-text'>Ga hierom ",
+    "De grot verwamt goed!</p><p class='pop-up-text'>Hierom ga je "
   ];
   const backward = [3, 4, 9, 10];
   const badResponse = [
-    "Het smaakt afschuwelijk!</p><p class='pop-up-text'>Hierdoor moet je door je mond uit te spoelen ",
-    "De soep is niet te drinken!</p><p class='pop-up-text'>Hierdoor ga je ",
-    "Het is niet te eten!</p><p class='pop-up-text'>Daarom moet je ",
-    "De soep is niet te vreten!</p><p class='pop-up-text'>Daarom ga je "
+    "Er ontstaat een grote steekvlam!</p><p class='pop-up-text'>Hierdoor moet je door je mond uit te spoelen ",
+    "Er ontstaat een explosie!</p><p class='pop-up-text'>Hierdoor ga je ",
+    "Het vuur slaat op hol!</p><p class='pop-up-text'>Daarom moet je ",
+    "Je verbrand je vingers!</p><p class='pop-up-text'>Daarom ga je "
   ];
   const moveResponse = [
     " vakjes ",
@@ -119,6 +119,25 @@ kerstspullen.forEach(kerstspul => {
             thirdkerstspulImg.style.opacity = 0;
             vuurContainer.appendChild(thirdkerstspulImg);
           }, 600);
+        }
+        // Store the used kerstspulForFire in an array in the local storage
+        usedKerstspullen = JSON.parse(localStorage.getItem('usedKerstspullen')) || [];
+        if (!usedKerstspullen.includes(kerstspulForFire)) {
+          if (!Array.isArray(usedKerstspullen)) {
+            usedKerstspullen = [];
+          }
+          usedKerstspullen.push(kerstspulForFire);
+          localStorage.setItem('usedKerstspullen', JSON.stringify(usedKerstspullen));
+        }
+        if (kerstspulForFire != 'kerstsokken') {
+          setTimeout(() => {
+            burnKerstspul();
+          }, 1000);
+        }
+        else {
+          setTimeout(() => {
+            burnKerstspul();
+          }, 2200);
         }
       }, 600);
     }

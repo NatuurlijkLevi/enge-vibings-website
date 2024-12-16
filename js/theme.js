@@ -28,12 +28,6 @@ function inIframe () {
 if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
     localStorage.setItem('theme', 'christmas');
 }
-//Purely for testing
-// else if (monthOfYear === 11)
-// {
-//     localStorage.setItem('theme', 'christmas');
-// }
-//Else set the theme to null
 else {
     localStorage.setItem('theme', null);
 }
