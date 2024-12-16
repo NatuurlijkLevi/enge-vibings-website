@@ -1,7 +1,9 @@
 const root = document.querySelector(":root")
-const currentVolgorde = localStorage.getItem("volgorde").split(",", 6)
-let currentKoning = localStorage.getItem("koning")
-let currentHeks = localStorage.getItem("heks");
+let currentVolgorde;
+let currentKoning;
+let currentHeks;
+let lastRoundHeksensoepDone = localStorage.getItem("lastRoundHeksensoepDone") || "false";
+console.log(lastRoundHeksensoepDone)
 
 // If it's christmas, change the role icons to the christmas ones
 if (localStorage.getItem('theme') === "christmas") {
@@ -28,16 +30,37 @@ const roleIconElement = document.getElementById("roleicon")
 let specialActionRequired = false
 let specialActionDone = false
 
-function updateAanDeBeurt() {
+function updateSpinnedItems() {
+    currentVolgorde = localStorage.getItem("volgorde").split(",", 6)
     currentKoning = localStorage.getItem("koning")
     currentHeks = localStorage.getItem("heks");
+}
+
+const waitForSpinnedItems = setInterval(() => {
+    if (localStorage.getItem("volgordeDone") === "true" && localStorage.getItem("koning") != null && localStorage.getItem("heks") != null) {
+        updateSpinnedItems();
+        updateAanDeBeurt();
+        clearInterval(waitForSpinnedItems);
+    }
+}, 1000);
+
+function updateAanDeBeurt() {
+    currentKoning = localStorage.getItem("koning")
+    let lastHeks = currentHeks
+    currentHeks = localStorage.getItem("heks");
+    if (lastHeks != currentHeks)
+    {
+        lastRoundHeksensoepDone = false
+    }
+
     specialActionDone = localStorage.getItem("specialActionDone");
     console.log(specialActionDone)
     if (specialActionRequired && ((specialActionDone != "koningkaarten" && nuAanDeBeurtElement.innerText == String(currentKoning)) || (specialActionDone != "heksensoep" && nuAanDeBeurtElement.innerText == String(currentHeks))))
     {
         beurtKlaarButton.innerText = "Voer eerst de\nspeciale actie uit"
     }
-    else {
+    else
+    {
         beurtKlaarButton.innerText = "Beurt Klaar"
         localStorage.setItem("specialActionDone", false);
         if (nuAanDeBeurt >= 6)
@@ -55,7 +78,18 @@ function updateAanDeBeurt() {
         else if (nuAanDeBeurtElement.innerText == String(currentHeks))
         {
             roleIconElement.className = "heks"
-            specialActionRequired = true
+            if (lastRoundHeksensoepDone == "true")
+            {
+                specialActionRequired = false
+                lastRoundHeksensoepDone = "false"
+            }
+            else
+            {
+                specialActionRequired = true
+                lastRoundHeksensoepDone = "true"
+            }
+            localStorage.setItem("lastRoundHeksensoepDone", lastRoundHeksensoepDone)
+            console.log(lastRoundHeksensoepDone)
         }
         else
         {
@@ -68,5 +102,4 @@ function updateAanDeBeurt() {
         nuAanDeBeurt++
     }
 }
-updateAanDeBeurt()
 beurtKlaarButton.addEventListener("click", updateAanDeBeurt)
