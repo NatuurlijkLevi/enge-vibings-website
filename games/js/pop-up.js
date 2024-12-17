@@ -1,11 +1,16 @@
+// Initialize variables for the pop-up
 let closeX;
 let popUpIsClosed = true;
 let heksensoepPopUp = false;
 
+// function to show the pop-up
+// @param type: the type of the pop-up
+// @param message: the message to display in the pop-up
 function showPopUp(type, message) {
     popUpIsClosed = false;
     const popUp = document.createElement("div");
     popUp.classList.add("pop-up-container");
+    // Create the pop-up based on the type
     switch (type) {
         case "wheelspinner":
             popUp.innerHTML += `<div class="pop-up wheelspinner">
@@ -37,13 +42,16 @@ function showPopUp(type, message) {
     document.body.appendChild(popUp);
 }
 
+// function to hide the pop-up
 function hidePopUp() {
+    // Remove the pop-up from the DOM
     const popUp = document.querySelector(".pop-up-container");
     if (popUp) {
         closeX.removeEventListener("click", hidePopUp);
         closeX = null;
         popUp.remove();
         popUpIsClosed = true;
+        // Set the special action done to heksensoep if the pop-up was a heksensoep pop-up
         if (heksensoepPopUp){
             localStorage.setItem("specialActionDone", "heksensoep");
         }

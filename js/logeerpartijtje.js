@@ -1,4 +1,12 @@
 // Initialize variables
+let currentTheme = localStorage.getItem('theme');
+const koningkaarten = document.getElementById('koningkaarten');
+const heksensoep = document.getElementById('heksensoep');
+const hekswisselaar = document.querySelector('#hekswisselaar > input');
+const koningwisselaar = document.querySelector('#koningwisselaar > input');
+const koningLabel = document.querySelector('article > div > section:nth-child(2) > h1');
+const heksLabel = document.querySelector('article > div > section:nth-child(3) > h1');
+
 const nieuweKoningButton = document.querySelector('#koningwisselaar > button');
 const nieuweKoningInput = document.querySelector('#koningwisselaar > input');
 const nieuweHeksButton = document.querySelector('#hekswisselaar > button');
@@ -59,14 +67,7 @@ presentatieButton.addEventListener('click', () => {
     window.open(presentatie.label, '_blank');
 })
 
-let currentTheme = localStorage.getItem('theme');
-const koningkaarten = document.getElementById('koningkaarten');
-const heksensoep = document.getElementById('heksensoep');
-const hekswisselaar = document.querySelector('#hekswisselaar > input');
-const koningwisselaar = document.querySelector('#koningwisselaar > input');
-const koningLabel = document.querySelector('article > div > section:nth-child(2) > h1');
-const heksLabel = document.querySelector('article > div > section:nth-child(3) > h1');
-
+// If it's christmas, change the dashboard items to the christmas ones
 if (currentTheme === "christmas") {
   koningkaarten.src = "games/kerstkaarten.html"
   heksensoep.src = "games/kerstgrot.html"

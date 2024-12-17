@@ -50,7 +50,7 @@ async function newDare() {
     splitTextAnimation();
 }
 
-// Add an event listener to the truthButton
+// If the truthButton is clicked, fetch a new truth
 truthButton.addEventListener('click', () => {
     if (!firstTruthOrDare)
     {
@@ -80,7 +80,7 @@ truthButton.addEventListener('click', () => {
     newTruth();
 });
 
-// Add an event listener to the dareButton
+// If the dareButton is clicked, fetch a new dare
 dareButton.addEventListener('click', () => {
     if (!firstTruthOrDare)
     {

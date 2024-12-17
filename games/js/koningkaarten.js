@@ -5,6 +5,8 @@ const koningP = document.querySelector("p");
 
 let numberNine = false;
 let lastTimeNegative = false;
+
+// The array of cards
 const card = [
     [
         // -
@@ -425,6 +427,7 @@ function drawRandomCard()
     const r = Math.random();
     cardValue = Math.floor(r * 200);
 
+    // If the number is 9 and the number 9 has already been drawn, draw a new card
     if (numberNine) {
         while (cardValue == 9)
         {
@@ -432,23 +435,28 @@ function drawRandomCard()
         }
         numberNine = false;
     }
+    // If the last number was negative, draw a positive card
     if (lastTimeNegative) {
         cardValue = Math.floor(r * 100 + 100);
     }
     koningH1.innerHTML = card[0][cardValue];
     koningP.innerHTML = card[1][cardValue];
 
+    // If the card number is 9, set the numberNine variable to true
     if (cardValue === 9) {
         numberNine = true;
     }
+    // If the card number is higher than 100, set the lastTimeNegative variable to false
     if (cardValue > 100)
     {
         lastTimeNegative = false;
     }
+    // If the card number is lower than 100, set the lastTimeNegative variable to true
     else
     {
         lastTimeNegative = true;
     }
+    // Set the specialActionDone variable to koningkaarten
     localStorage.setItem("specialActionDone", "koningkaarten");
 }    
 

@@ -59,10 +59,12 @@ challengeButton.addEventListener("click", () => {
     }
 });
 
+// Initialize variables for the horrorspel popup
 let horrorSpelOgenOne;
 let horrorSpelOgenTwo;
 let horrorSpelPopUpButton;
 
+// function to show the horrorspel popup
 function showPopUp() {
     const horrorSpelPopUp = document.createElement("div");
     horrorSpelPopUp.innerHTML += `  <div id="horrorspel-popup">
@@ -83,8 +85,11 @@ function showPopUp() {
     horrorSpelPopUpAlt.addEventListener("click", openHorrorSpelAlt);
 }
 
+// Add an event listener to the horrorspel button
+// When the button is clicked, the horrorspel popup will be shown
 horrorSpelButton.addEventListener("click", showPopUp);
 
+// function to remove the horrorspel popup
 function removeContainer(container){
     horrorSpelOgenOne = null;
     horrorSpelOgenTwo = null;
@@ -94,7 +99,7 @@ function removeContainer(container){
     container.remove();
 }
 
-// Add an event listener to the horror spel button
+// function to open the horrorspel
 function openHorrorSpel() {
     const horrorSpelContainer = document.querySelector("div:has(> #horrorspel-popup)");
     if (horrorSpelContainer && horrorSpelOgenOne.value !== "" && horrorSpelOgenTwo.value !== "" && horrorSpelOgenOne.value > 0 && horrorSpelOgenOne.value < 7 && horrorSpelOgenTwo.value > 0 && horrorSpelOgenTwo.value < 7)

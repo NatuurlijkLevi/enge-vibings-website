@@ -1,6 +1,8 @@
+// Initialize variables
 const articleP = document.querySelector("article > p");
 const voorwaardenButton = document.querySelector("button");
 
+// Array of voorwaardenkaarten
 const voorwaardenkaarten = [
     "als een speler zwaarder is dan jij.",
     "als de som van jullie leeftijden niet boven de 100 komt.",
@@ -56,9 +58,11 @@ const voorwaardenkaarten = [
     "als je met vakantie bent."
 ];
 
+// Function to generate a random voorwaardenkaart
 function nieuweVoorwaarden() {
     const randomIndex = Math.floor(Math.random() * voorwaardenkaarten.length);
     articleP.innerHTML = "Het moet " + voorwaardenkaarten[randomIndex];
 }
 
+// If the voorwaardenButton is clicked, generate a new voorwaardenkaart
 voorwaardenButton.addEventListener("click", nieuweVoorwaarden);

@@ -55,8 +55,8 @@ async function AskAI(systemPrompt, UserPrompt)
 }
 
 // check if the percentage is NaN
-// param percentageBlue: The percentage of blue
-// param percentageRed: The percentage of red
+// @param percentageBlue: The percentage of blue
+// @param percentageRed: The percentage of red
 function checkIfNaN(percentageBlue, percentageRed)
 {
   if (isNaN(percentageBlue)) {
@@ -82,9 +82,9 @@ function checkIfNaN(percentageBlue, percentageRed)
 }
 
 // Get the opinion of the AI
-// param blue: The blue option
-// param red: The red option
-// param arrayNumber: current number that is used for the array
+// @param blue: The blue option
+// @param red: The red option
+// @param arrayNumber: current number that is used for the array
 async function getOpinionAI(blue, red, arrayNumber){
   try
   {
@@ -139,8 +139,8 @@ async function getOpinionAI(blue, red, arrayNumber){
 }
 
 // Get the options in the containers
-// param blue: The blue option
-// param red: The red option
+// @param blue: The blue option
+// @param red: The red option
 function getOptionsInContainers(blue, red)
 {
   blue = blue || (useExtraOptions ? extraOptions[useArrayNumber][0] : options[useArrayNumber][0]);
@@ -161,11 +161,11 @@ function getOptionsInContainers(blue, red)
 }
 
 // Fetch the would-you-rather.json file and select a random would you rather
-// param type: The type of would you rather
-// param optionsGenerate: The option array that needs to be filled
-// param putWouldYouRatherInContainers: If the would you rather needs to be put in the containers
-// param blue: The blue option
-// param red: The red option
+// @param type: The type of would you rather
+// @param optionsGenerate: The option array that needs to be filled
+// @param putWouldYouRatherInContainers: If the would you rather needs to be put in the containers
+// @param blue: The blue option
+// @param red: The red option
 async function newWouldYouRather(type, optionsGenerate, putWouldYouRatherInContainers, blue, red) {
     if (type === 'Normal')
     {
@@ -270,7 +270,7 @@ async function newWouldYouRather(type, optionsGenerate, putWouldYouRatherInConta
 }
 
 // Generate the would you rather opinions
-// param optionsGenerate: The option array that needs to be filled
+// @param optionsGenerate: The option array that needs to be filled
 function generateWouldYouRatherOpinions(optionsGenerate)
 {
   for (let i = 0; i < 10; i++)

@@ -83,7 +83,10 @@ function changeSoupWaterColorByAdding(ingredient) {
 
 // Sip the soup
 function sipSoep() {
+  // Generate a random number between 0 and 1
   const randomNumber = Math.random();
+
+  // Arrays with responses for moving forward or backward
   const forward = [5, 6, 7, 8];
   const goodResponse = [
     "Het smaakt heerlijk!</p><p class='pop-up-text'>Hierdoor ga je ",
@@ -104,6 +107,7 @@ function sipSoep() {
     " hokjes ",
   ];
 
+  // Generate a message based on the random number
   let message;
   if (randomNumber < 0.21) {
     const randomBackward = backward[Math.floor(Math.random() * backward.length)];
@@ -117,6 +121,7 @@ function sipSoep() {
     message = randomGoodResponse + randomForward + randomMoveResponse + "vooruit.";
   }
 
+  // Show the popup with the message and animate the text
   showPopUp("heksensoep", message);
   const quoteText = new SplitType('.pop-up-text', {
       type: 'lines, words, chars',
@@ -132,11 +137,12 @@ function sipSoep() {
 }
 
 // Add an event listener to each ingredient
-// When an ingredient is clicked, the ingredient will be added to the soup
+// When an ingredient is clicked, the ingredient will be added to the soup if it's not already used
 ingredienten.forEach(ingredient => {
   ingredient.addEventListener('click', () => {
     if (!ingredient.classList.contains('used')) {
       let deepestChildParent = ingredient;
+      // Get the deepest child of the ingredient
       while (deepestChildParent.children.length < 2) {
         deepestChildParent = deepestChildParent.children[0];
       }
@@ -159,6 +165,7 @@ ingredienten.forEach(ingredient => {
           ingredientForSoep = ingredientForSoep.replace(' ', '');
         }
         console.log(ingredientForSoep);
+        // If the ingredient is zuur van de doden, add two more images to the bubbles container
         if (ingredientForSoep === 'zuurvandedoden') {
           const secondIngredientImg = ingredientImg.cloneNode(true);
           secondIngredientImg.width = ingredientImgRect.width;
@@ -173,6 +180,7 @@ ingredienten.forEach(ingredient => {
             bubbles.appendChild(thirdIngredientImg);
           }, 600);
         }
+        // If the ingredient is not zuur van de doden, change the color of the soup water by adding the ingredient
         if (ingredientForSoep != 'zuurvandedoden') {
           setTimeout(() => {
             changeSoupWaterColorByAdding(ingredientForSoep);
@@ -180,6 +188,7 @@ ingredienten.forEach(ingredient => {
           setTimeout(() => {
             sipSoep();
           }, 1000);
+        // If the ingredient is zuur van de doden, change the color of the soup water by adding the ingredient with a longer delay
         } else {
           setTimeout(() => {
             changeSoupWaterColorByAdding(ingredientForSoep);

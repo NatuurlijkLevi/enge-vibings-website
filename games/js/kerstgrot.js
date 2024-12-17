@@ -30,7 +30,10 @@ initializeGameElements();
 
 // Burn the kerstspul
 function burnKerstspul() {
+  // Generate a random number between 0 and 1
   const randomNumber = Math.random();
+
+  // Arrays with responses for moving forward and backward
   const forward = [5, 6, 7, 8];
   const goodResponse = [
     "De rook ruikt heerlijk!</p><p class='pop-up-text'>Hierdoor ga je ",
@@ -51,6 +54,7 @@ function burnKerstspul() {
     " hokjes ",
   ];
 
+  // Generate a message based on the random number
   let message;
   if (randomNumber < 0.21) {
     const randomBackward = backward[Math.floor(Math.random() * backward.length)];
@@ -64,6 +68,7 @@ function burnKerstspul() {
     message = randomGoodResponse + randomForward + randomMoveResponse + "vooruit.";
   }
 
+  // Show the popup with the message and animate the text
   showPopUp("kerstgrot", message);
   const quoteText = new SplitType('.pop-up-text', {
       type: 'lines, words, chars',

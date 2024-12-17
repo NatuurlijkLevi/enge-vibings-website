@@ -209,7 +209,6 @@ let getLastPlayer = (winnerIndex) => {
   }
 }
 
-// Add an event listener to the spinButton
 // If the button is clicked, the wheel will spin to a random item
 spinButton.addEventListener("click", () => {
   if (!buttonIsClicked) {
@@ -356,6 +355,7 @@ buttonItems.forEach((item) => {
   });
 });
 
+// If the current theme is christmas, the text will be changed to the christmas theme
 if (currentTheme === "christmas") {
   koning.innerHTML = "Kerstman";
   heks.innerHTML = "Grinch";
