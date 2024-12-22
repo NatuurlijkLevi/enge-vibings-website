@@ -23,7 +23,7 @@ h1{
     grid-area: h1;
     color: var(--black-text-color);
     font-family: 'Kingthings Christmas 2', sans-serif;
-    font-size: 15vh;
+    font-size: 13vh;
     align-self: end;
     font-weight: 500;
 }
