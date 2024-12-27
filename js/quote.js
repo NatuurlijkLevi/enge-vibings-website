@@ -44,8 +44,8 @@ const jordanQuotes = [
     "Dat beest staat echt alsof die een lamp in de hoek van een kamer is.",
     "Jouw haar ziet er wel uit als iets wat ik op wil eten.",
     "Ik heb hier geen tijd voor, ik heb een kubus om op te lossen.",
-    "Hahaha, Hij heeft zn dingetje in de fik gezet",
-
+    "Hahaha, hij heeft zn dingetje in de fik gezet.",
+    "Je hebt echt gewoon een specht gemaak. Een natte specht, vooruit dan."
 ];
 const leviQuotes = [
     "Ik wil jou mijn slang laten zien.",
@@ -59,7 +59,8 @@ const leviQuotes = [
     "De wijn is belangrijk.",
     "Ik ben niet eng.",
     "<b>*high pitched screaming*</b><br>Het was een mug.",
-    "Ik ben eigenlijk een printer."
+    "Ik ben eigenlijk een printer.",
+    "Nee Amber, jij bent geen vriendschap, jij bent vervelend.",
 ];
 const loekQuotes = [
     "Je kan nooit te weinig hebben.",
@@ -73,7 +74,9 @@ const loekQuotes = [
     "Dat mag je echt niet in quotes zetten, dat is privé.",
     "<b>*nies*</b>, herpes?",
     "Omg een Jezus koe.",
-    "Ik hou van worsten en lul en ballen"
+    "Ik hou van worsten en lul en ballen",
+    "Wat is de mening van het leven?",
+    "Stef, schop mij dan!",
 ];
 const luukQuotes = [
     "George in de wielstoel.",
