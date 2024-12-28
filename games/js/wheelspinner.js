@@ -47,6 +47,9 @@ let volgordeDone = localStorage.getItem("volgordeDone");
 let koningDone = localStorage.getItem("koningDone");
 let heksDone = localStorage.getItem("heksDone");
 
+let koningRoleName = "koning";
+let heksRoleName = "heks";
+
 let volgordeCount = 0;
 
 const currentTheme = localStorage.getItem("theme")
@@ -273,7 +276,7 @@ spinButton.addEventListener("click", () => {
         }
         else if (koning == selected && !koningDone) {
           koningSpel.innerHTML += `<p>${winner}</p>`;
-          showPopUp("wheelspinner", `De koning is ${winner}!`);
+          showPopUp("wheelspinner", `De ${koningRoleName} is ${winner}!`);
           currentKoning = winner;
           localStorage.setItem("koning", currentKoning);
           props.items.splice(winnerIndex, 1);
@@ -285,11 +288,11 @@ spinButton.addEventListener("click", () => {
           selected = heks;
         }
         else if (koningDone && selected == koning) {
-          showPopUp("wheelspinner", "De koning is al gekozen!")
+          showPopUp("wheelspinner", `De ${koningRoleName} is al gekozen!`)
         }
         else if (heks == selected && !heksDone) {
           heksSpel.innerHTML += `<p>${winner}</p>`;
-          showPopUp("wheelspinner", `De heks is ${winner}!`);
+          showPopUp("wheelspinner", `De ${heksRoleName} is ${winner}!`);
           currentHeks = winner;
           localStorage.setItem("heks", currentHeks);
           heksDone = true;
@@ -299,7 +302,7 @@ spinButton.addEventListener("click", () => {
           selected.id = "";
         }
         else if (heksDone && selected == heks) {
-          showPopUp("wheelspinner", "De heks is al gekozen!")
+          showPopUp("wheelspinner", `De ${heksRoleName} is al gekozen!`)
         }
         else if (naam == selected) {
           showPopUp("wheelspinner", `De gekozenen is ${winner}!`);
@@ -359,4 +362,6 @@ buttonItems.forEach((item) => {
 if (currentTheme === "christmas") {
   koning.innerHTML = "Kerstman";
   heks.innerHTML = "Grinch";
+  koningRoleName = "kerstman";
+  heksRoleName = "grinch";
 }
