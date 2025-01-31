@@ -14,6 +14,10 @@ const cssTheme = document.getElementById('css-theme');
 const bodyElement = document.querySelector('body')
 const monthOfYear = new Date().getMonth() + 1;
 const dayOfMonth = new Date().getDate();
+const thisYear = new Date().getFullYear();
+let clickCounter = 0;
+
+const partyDates = [{month: 3, startDay: 8, endDay: 9, year: 2025}];
 
 // Function to check if the page is in an iframe
 function inIframe () {
@@ -28,9 +32,21 @@ function inIframe () {
 if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
     localStorage.setItem('theme', 'christmas');
 }
-else {
+else if (localStorage.getItem('themeSetWithCommands') != "true") {
     localStorage.setItem('theme', null);
 }
+
+if (partyDates.some(date => date.month === monthOfYear && date.startDay >= dayOfMonth && date.endDay <= dayOfMonth && date.year === thisYear))
+{
+    localStorage.setItem('clickEvent', 'party');
+}
+else if (localStorage.getItem('clickEventSetWithCommands') != "true")
+{
+    localStorage.setItem('clickEvent', null);
+}
+
+localStorage.setItem('clickEvent', 'party');
+
 // get the href of the css object if it's not null'
 let href
 if (cssTheme != null)

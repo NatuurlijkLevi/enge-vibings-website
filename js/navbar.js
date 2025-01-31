@@ -4,7 +4,7 @@ const navObjectcontainer = document.querySelector("nav > div.objectcontainer")
 const header = document.querySelector("header");
 const main = document.querySelector("main");
 const linkItems = document.querySelectorAll("nav > ul > li");
-const console = document.querySelector("section#console");
+const consoleElement = document.querySelector("section#console");
 const consoleAppear = "showConsole 1s ease-in-out forwards"
 let bodyRect = body.getBoundingClientRect(body);
 
@@ -20,7 +20,7 @@ linkItems.forEach((item) => {
       }
       // If it does not exist, the console is shown, so hide it
       else {
-        console.style.bottom = "-50vh";
+        consoleElement.style.bottom = "-50vh";
       }
       
       item.id = "currentpage";
@@ -71,6 +71,6 @@ navObjectcontainer.addEventListener("click", () => {
   main.children[1].children[0].style.display = "none";
   setTimeout(() => {
     main.children[1].innerHTML = "<iframe src=''></iframe>";
-    console.style.bottom = "20vh";
+    consoleElement.style.bottom = "20vh";
   }, 750);
 });

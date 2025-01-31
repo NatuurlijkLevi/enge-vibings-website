@@ -121,6 +121,8 @@ li {
     list-style-position: inside;
     direction: ltr;
     width: fit-content;
+    cursor: text;
+    user-select: text;
 }
 
 

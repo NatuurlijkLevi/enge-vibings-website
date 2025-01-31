@@ -36,6 +36,7 @@ iframe{
     height: 100%;
     border: none;
     transition: 750ms linear;
+    user-select: none;
 }
 
 button {

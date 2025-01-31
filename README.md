@@ -40,11 +40,12 @@ Please make sure to update tests as appropriate.
 
 This project was solely developed by Levi Meijer for the party game Leip Logeerpartijtje.
 
-I made use of the following JS library's:
+I made use of the following JavaScript library's:
 [Spin Wheel](https://crazytim.github.io/spin-wheel/)  
 [Easing](https://github.com/danheberden/easing.js/)  
 [Gsap](https://gsap.com/)  
 [Split-type](https://www.npmjs.com/package/split-type)  
+[Party js](https://party.js.org/)  
 
 ## License
 
