@@ -158,7 +158,10 @@ function getRandomName(names) {
 
 // Function to choose a random person
 function chooseRandomPerson(){
-    const namesArray = ["amber", "jordan", "levi", "loek", "luuk", "stef"];
+    let namesArray = ["amber", "jordan", "levi", "loek", "luuk", "stef"];
+    if (localStorage.getItem('theme') === "afterdark") {
+        namesArray = ["jordan", "levi", "loek", "luuk", "stef"];
+    }
     const randomIndex = Math.floor(Math.random() * (namesArray.length));
     const randomPerson = namesArray[randomIndex];
     return randomPerson;

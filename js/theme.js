@@ -36,6 +36,12 @@ else if (localStorage.getItem('themeSetWithCommands') != "true") {
     localStorage.setItem('theme', null);
 }
 
+
+// else if ()
+// {
+localStorage.setItem('theme', 'afterdark');
+// }
+
 if (partyDates.some(date => date.month === monthOfYear && date.startDay >= dayOfMonth && date.endDay <= dayOfMonth && date.year === thisYear))
 {
     localStorage.setItem('clickEvent', 'party');
@@ -63,6 +69,36 @@ if (cssTheme != null)
         {
             initSnowify();
         }
+    }
+    else if (localStorage.getItem('theme') === "afterdark") {
+        if (cssTheme != null)
+        {
+            href = href.replace("main.css", "main-afterdark.css");
+        }
+        let currentVolgorde = localStorage.getItem('volgorde');
+        let currentKoning = localStorage.getItem('koning');
+        let currentHeks = localStorage.getItem('heks');
+        currentVolgorde = currentVolgorde.replace(',Amber', ',').replace('Amber,', '');
+        let currentVolgordeArray = currentVolgorde.split(',');
+        let volgordeArrayWithoutKoning = currentVolgordeArray.filter(item => item !== currentKoning);
+        let volgordeArrayWithoutHeks = currentVolgordeArray.filter(item => item !== currentHeks);
+        console.log(volgordeArrayWithoutKoning);
+        console.log(volgordeArrayWithoutHeks);
+        let koningIndex;
+        let heksIndex;
+        if (currentKoning === "Amber")
+        {
+            koningIndex = Math.floor(Math.random() * (volgordeArrayWithoutHeks.length));
+            currentKoning = volgordeArrayWithoutHeks[koningIndex];
+        }
+        else if (currentHeks === "Amber")
+        {
+            heksIndex = Math.floor(Math.random() * (volgordeArrayWithoutKoning.length));
+            currentHeks = volgordeArrayWithoutKoning[heksIndex];
+        }
+        localStorage.setItem('koning', currentKoning);
+        localStorage.setItem('heks', currentHeks);
+        localStorage.setItem('volgorde', currentVolgorde);
     }
     cssTheme.href = href;
 }
