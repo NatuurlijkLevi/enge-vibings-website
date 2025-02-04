@@ -10,7 +10,7 @@
     --black-text-color: var(--text-color);
     --transparent-white-color: rgba(0, 0, 0, 0.3);
     --background-image: url('../img/engevibingsbg-afterdark.png');
-    --header-logeerpartijtje-background: url(../img/logeerpartijtje-alt.png);
+    --header-logeerpartijtje-background: url(../img/logeerpartijtje-afterdark.png);
     --logeerpartijtje-background: linear-gradient(0deg, #271125, #0c0b1d);
     --gray-color: #3a2f34;
     --light-gray-color: #66515b;
@@ -24,6 +24,7 @@
     --gradient-blue-dark: #100f29;
     --gradient-blue-light: #50515e;
     --standard-font: 'Montserrat', sans-serif;
+    --black-color: #000000;
 }
 
 p, h1, h2, h3, h4, h5, h6, i {
@@ -70,4 +71,12 @@ button:active {
     background-color: var(--pink-color);
     transition: 500ms;
     cursor: unset;
+}
+
+#heksensoep, #wheelspinner{
+    filter: brightness(0.7) !important;
+}
+
+#koningkaarten {
+    filter: invert(0.9) brightness(0.9) !important;
 }

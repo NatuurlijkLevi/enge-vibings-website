@@ -7,6 +7,7 @@ let lastRoundHeksensoepDone = localStorage.getItem("lastRoundHeksensoepDone") ||
 
 let ronde = 0;
 let nuAanDeBeurt = 0;
+let numberOfPlayers = 6;
 
 const beurtKlaarButton = document.querySelector("button")
 const nuAanDeBeurtElement = document.querySelector("p")
@@ -33,7 +34,7 @@ if (localStorage.getItem("nuAanDeBeurt") != null)
 
 // Function to update the spinned items
 function updateSpinnedItems() {
-    currentVolgorde = localStorage.getItem("volgorde").split(",", 6)
+    currentVolgorde = localStorage.getItem("volgorde").split(",", numberOfPlayers)
     currentKoning = localStorage.getItem("koning")
     currentHeks = localStorage.getItem("heks");
 }
@@ -52,6 +53,8 @@ function updateAanDeBeurt() {
     currentKoning = localStorage.getItem("koning")
     let lastHeks = currentHeks
     currentHeks = localStorage.getItem("heks");
+    currentVolgorde = localStorage.getItem("volgorde").split(",");
+    numberOfPlayers = currentVolgorde.length;
 
     // If the last heks is not the same as the current heks, the last round heksensoep is not done
     if (lastHeks != currentHeks)
@@ -72,7 +75,7 @@ function updateAanDeBeurt() {
         beurtKlaarButton.innerText = "Beurt Klaar"
         localStorage.setItem("specialActionDone", false);
         // If the current player is the last player, the round will be increased and the current player will be the first player
-        if (nuAanDeBeurt >= 6)
+        if (nuAanDeBeurt >= numberOfPlayers)
         {
             nuAanDeBeurt = 0;
             ronde++

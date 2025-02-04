@@ -76,3 +76,31 @@ if (currentTheme === "christmas") {
   koningLabel.innerHTML = "Kerstman:"
   heksLabel.innerHTML = "Grinch:"
 }
+
+// Event listener for keydown events
+window.addEventListener('keydown', (event) => {
+  // If the key is 'r' and the selected text is 'Volgorde:', shuffle the player order
+  if (event.key === "r" && window.getSelection().toString() === "Volgorde:") {
+    const volgordeSpel = document.querySelector('article > div > section > ul');
+    let spelVolgorde = localStorage.getItem('volgorde');
+    let spelVolgordeArray = spelVolgorde.split(',');
+    // Ensure the new order is completely different from the previous order
+    let newSpelVolgordeArray = spelVolgordeArray.slice();
+    while (newSpelVolgordeArray.some((speler, index) => speler === spelVolgordeArray[index]))
+    {
+      newSpelVolgordeArray.sort(() => Math.random() - 0.5);
+    }
+    // Update the player order in the local storage
+    spelVolgordeArray = newSpelVolgordeArray;
+    spelVolgorde = spelVolgordeArray.join(',');
+    localStorage.setItem('volgorde', spelVolgorde);
+
+    // Update the player order in the dashboard
+    volgordeSpel.innerHTML = '';
+    spelVolgordeArray.forEach(speler => {
+      const li = document.createElement('li');
+      li.innerHTML = speler;
+      volgordeSpel.appendChild(li);
+    })
+  }
+});

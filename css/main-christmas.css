@@ -24,6 +24,7 @@
     --gradient-blue-dark: #1b511b;
     --gradient-blue-light: #cdbf94;
     --standard-font: 'Montserrat', sans-serif;
+    --black-color: var(--black-text-color);
 }
 
 p, h1, h2, h3, h4, h5, h6, i {

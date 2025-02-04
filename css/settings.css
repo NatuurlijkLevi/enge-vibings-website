@@ -3,6 +3,7 @@
 }
 
 body {
+    background-color: var(--black-color);
     display: grid;
     justify-content: left;
     align-items: center;
@@ -19,7 +20,7 @@ input, div {
 
 input {
     grid-area: i;
-    background-color: var(--black-text-color);
+    background-color: var(--black-color);
     color: var(--text-color);
     border: none;
     padding: 1vw 2vh;

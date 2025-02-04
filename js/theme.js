@@ -15,7 +15,9 @@ const bodyElement = document.querySelector('body')
 const monthOfYear = new Date().getMonth() + 1;
 const dayOfMonth = new Date().getDate();
 const thisYear = new Date().getFullYear();
+const hourOfDay = new Date().getHours();
 let clickCounter = 0;
+let href
 
 const partyDates = [{month: 3, startDay: 8, endDay: 9, year: 2025}];
 
@@ -32,17 +34,15 @@ function inIframe () {
 if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
     localStorage.setItem('theme', 'christmas');
 }
+else if (hourOfDay >= 1 && hourOfDay <= 6) {
+    localStorage.setItem('theme', 'afterdark');
+    localStorage.setItem('themeSetWithCommands', "false");
+}
 else if (localStorage.getItem('themeSetWithCommands') != "true") {
     localStorage.setItem('theme', null);
 }
 
-
-// else if ()
-// {
-localStorage.setItem('theme', 'afterdark');
-// }
-
-if (partyDates.some(date => date.month === monthOfYear && date.startDay >= dayOfMonth && date.endDay <= dayOfMonth && date.year === thisYear))
+if (partyDates.some(date => date.month === monthOfYear && date.startDay <= dayOfMonth && date.endDay >= dayOfMonth && date.year === thisYear))
 {
     localStorage.setItem('clickEvent', 'party');
 }
@@ -51,54 +51,106 @@ else if (localStorage.getItem('clickEventSetWithCommands') != "true")
     localStorage.setItem('clickEvent', null);
 }
 
-localStorage.setItem('clickEvent', 'party');
+function setupChristmas() {
+    if (cssTheme != null)
+    {
+        href = href.replace("main.css", "main-christmas.css");
+    }
+    // If the cssTheme Element is null it's christmas, make it snow
+    if (!inIframe())
+    {
+        initSnowify();
+    }
+}
 
-// get the href of the css object if it's not null'
-let href
+function setupAfterDark() {
+    if (cssTheme != null)
+    {
+        href = href.replace("main.css", "main-afterdark.css");
+    }
+    let currentVolgorde = localStorage.getItem('volgorde');
+    let currentKoning = localStorage.getItem('koning');
+    let currentHeks = localStorage.getItem('heks');
+    currentVolgorde = currentVolgorde.replace(',Amber', '').replace('Amber,', '');
+    let currentVolgordeArray = currentVolgorde.split(',');
+    let volgordeArrayWithoutKoning = currentVolgordeArray.filter(item => item !== currentKoning);
+    let volgordeArrayWithoutHeks = currentVolgordeArray.filter(item => item !== currentHeks);
+    let koningIndex;
+    let heksIndex;
+    if (currentKoning === "Amber")
+    {
+        koningIndex = Math.floor(Math.random() * (volgordeArrayWithoutHeks.length));
+        currentKoning = volgordeArrayWithoutHeks[koningIndex];
+    }
+    else if (currentHeks === "Amber")
+    {
+        heksIndex = Math.floor(Math.random() * (volgordeArrayWithoutKoning.length));
+        currentHeks = volgordeArrayWithoutKoning[heksIndex];
+    }
+    localStorage.setItem('koning', currentKoning);
+    localStorage.setItem('heks', currentHeks);
+    localStorage.setItem('volgorde', currentVolgorde);
+}
+
+// If the cssTheme Element is not null, get the href attribute
 if (cssTheme != null)
 {
     href = cssTheme.href;
     // if it's christmas, change the css and make it snow
     if (localStorage.getItem('theme') === "christmas") {
-        if (cssTheme != null)
-        {
-            href = href.replace("main.css", "main-christmas.css");
-        }
-        // If the cssTheme Element is null it's christmas, make it snow
-        if (!inIframe())
-        {
-            initSnowify();
-        }
+        setupChristmas();
     }
     else if (localStorage.getItem('theme') === "afterdark") {
-        if (cssTheme != null)
-        {
-            href = href.replace("main.css", "main-afterdark.css");
-        }
-        let currentVolgorde = localStorage.getItem('volgorde');
-        let currentKoning = localStorage.getItem('koning');
-        let currentHeks = localStorage.getItem('heks');
-        currentVolgorde = currentVolgorde.replace(',Amber', ',').replace('Amber,', '');
-        let currentVolgordeArray = currentVolgorde.split(',');
-        let volgordeArrayWithoutKoning = currentVolgordeArray.filter(item => item !== currentKoning);
-        let volgordeArrayWithoutHeks = currentVolgordeArray.filter(item => item !== currentHeks);
-        console.log(volgordeArrayWithoutKoning);
-        console.log(volgordeArrayWithoutHeks);
-        let koningIndex;
-        let heksIndex;
-        if (currentKoning === "Amber")
-        {
-            koningIndex = Math.floor(Math.random() * (volgordeArrayWithoutHeks.length));
-            currentKoning = volgordeArrayWithoutHeks[koningIndex];
-        }
-        else if (currentHeks === "Amber")
-        {
-            heksIndex = Math.floor(Math.random() * (volgordeArrayWithoutKoning.length));
-            currentHeks = volgordeArrayWithoutKoning[heksIndex];
-        }
-        localStorage.setItem('koning', currentKoning);
-        localStorage.setItem('heks', currentHeks);
-        localStorage.setItem('volgorde', currentVolgorde);
+        setupAfterDark();
     }
     cssTheme.href = href;
 }
+
+window.addEventListener('keydown', (event) => {
+    if ((event.key === "Delete" || event.key === "Backspace") && window.getSelection().toString() === "Amber" && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        localStorage.setItem('theme', "afterdark");
+        localStorage.setItem('themeSetWithCommands', "true");
+        setupAfterDark();
+        cssTheme.href = href;
+        const currentKoning = document.querySelector('article > div > section:nth-child(2) > p');
+        const currentHeks = document.querySelector('article > div > section:nth-child(3) > p');
+        const volgordeSpel = document.querySelector('article > div > section > ul');
+        volgordeSpel.innerHTML = '';
+        currentVolgorde = localStorage.getItem('volgorde');
+        let currentVolgordeArray = currentVolgorde.split(',');
+        currentVolgordeArray.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = item;
+            volgordeSpel.appendChild(li);
+        });
+        currentKoning.innerHTML = localStorage.getItem('koning');
+        currentHeks.innerHTML = localStorage.getItem('heks');
+
+        // Apply changes to all iframes
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+            try {
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                const iframeCssTheme = iframeDocument.getElementById('css-theme');
+                if (iframeCssTheme) {
+                    iframeCssTheme.href = href;
+                }
+            } catch (e) {
+                console.warn('Unable to access iframe content:', e);
+            }
+        });
+
+        // Apply changes to parent if exists
+        if (window.parent && window.parent !== window) {
+            try {
+                const parentDocument = window.parent.document;
+                const parentCssTheme = parentDocument.getElementById('css-theme');
+                if (parentCssTheme) {
+                    parentCssTheme.href = href;
+                }
+            } catch (e) {
+                console.warn('Unable to access parent document:', e);
+            }
+        }
+    }
+});

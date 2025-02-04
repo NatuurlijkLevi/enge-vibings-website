@@ -19,6 +19,17 @@ function clearHeksensoep() {
     consoleLog.innerHTML += "Cleared heksensoep progress<br>";
 }
 
+function clearTheme() {
+    if (localStorage.getItem('theme') === "afterdark") {
+        let afterDarkVolgorde = localStorage.getItem('volgorde');
+        let newVolgorde = afterDarkVolgorde + ',Amber';
+        localStorage.setItem('volgorde', newVolgorde);
+    }
+    localStorage.removeItem('theme');
+    localStorage.removeItem('themeSetWithCommands');
+    consoleLog.innerHTML += "Cleared theme<br>";
+}
+
 // Add an event listener to the console input
 document.addEventListener("keyup", (event) => {
     // If the enter key is pressed and the console input is not empty check the input
@@ -32,12 +43,16 @@ document.addEventListener("keyup", (event) => {
             case "help":
                 consoleLog.innerHTML += "localstorage clear - clear all localstorage data<br>";
                 consoleLog.innerHTML += "localstorage clear heksensoep - clear heksensoep progress<br>";
+                consoleLog.innerHTML += "theme clear - clear the theme<br>";
                 break;
             case "localstorage clear":
                 clearLocalStorage();
                 break;
             case "localstorage clear heksensoep":
                 clearHeksensoep();
+                break;
+            case "theme clear":
+                clearTheme();
                 break;
         }
         // Clear the console input after the command is executed

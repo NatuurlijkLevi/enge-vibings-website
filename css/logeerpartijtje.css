@@ -88,6 +88,7 @@ div#dashboard {
     text-align: center;
     padding: 2%;
     font-family: var(--standard-font);
+    background: var(--text-color);
 }
 
 article {
