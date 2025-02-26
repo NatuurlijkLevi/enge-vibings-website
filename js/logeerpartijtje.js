@@ -79,8 +79,9 @@ if (currentTheme === "christmas") {
 
 // Event listener for keydown events
 window.addEventListener('keydown', (event) => {
+  const selection = window.getSelection();
   // If the key is 'r' and the selected text is 'Volgorde:', shuffle the player order
-  if (event.key === "r" && window.getSelection().toString() === "Volgorde:") {
+  if (event.key === "r" && selection.toString() === "Volgorde:") {
     const volgordeSpel = document.querySelector('article > div > section > ul');
     let spelVolgorde = localStorage.getItem('volgorde');
     let spelVolgordeArray = spelVolgorde.split(',');
@@ -102,5 +103,23 @@ window.addEventListener('keydown', (event) => {
       li.innerHTML = speler;
       volgordeSpel.appendChild(li);
     })
+  }
+
+  if (selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0);
+    const selectedElement = range.commonAncestorContainer;
+    if (selectedElement.nodeType === 3) { 
+      const parentElement = selectedElement.parentElement;
+      if (event.key === "s" && parentElement.tagName === 'LI' && parentElement.parentElement.tagName === 'UL' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        parentElement.classList.add('skip')
+        let volgorde = localStorage.getItem('volgorde');
+        const speler = parentElement.innerHTML;
+        if (volgorde.includes(speler)) {
+          volgorde = volgorde.replace(speler, speler +'.skip');
+          localStorage.setItem('volgorde', volgorde);
+          console.log(volgorde);
+        }
+      }
+    }
   }
 });

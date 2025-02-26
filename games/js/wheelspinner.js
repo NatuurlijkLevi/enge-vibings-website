@@ -89,7 +89,18 @@ let currentHeks;
 // Check if the volgorde is saved
 if (savedVolgorde !== null) {
   savedVolgorde.split(",").forEach((item) => {
-    volgordeSpel.innerHTML += `<li>${item}</li>`;
+    if (item.includes(".skip"))
+    {
+      while (item.includes(".skip"))
+      {
+        item = item.replace(".skip", "");
+      }
+      volgordeSpel.innerHTML += `<li class="skip">${item}</li>`;
+    }
+    else
+    {
+      volgordeSpel.innerHTML += `<li>${item}</li>`;
+    }
   });
   volgordeCount = 6;
 }

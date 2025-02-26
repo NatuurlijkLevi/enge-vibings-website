@@ -133,3 +133,6 @@ section:nth-child(1n+2){
     flex-direction: column;
 }
 
+.skip {
+    text-decoration: line-through;
+}

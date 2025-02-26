@@ -50,76 +50,84 @@ const waitForSpinnedItems = setInterval(() => {
 
 // Function to update the current player
 function updateAanDeBeurt() {
-    currentKoning = localStorage.getItem("koning")
-    let lastHeks = currentHeks
+    currentKoning = localStorage.getItem("koning");
+    let lastHeks = currentHeks;
     currentHeks = localStorage.getItem("heks");
     currentVolgorde = localStorage.getItem("volgorde").split(",");
     numberOfPlayers = currentVolgorde.length;
 
+    console.log(nuAanDeBeurt);
+
+    // Ensure nuAanDeBeurt is within bounds
+    if (nuAanDeBeurt < numberOfPlayers && currentVolgorde[nuAanDeBeurt].includes(".skip")) {
+        nuAanDeBeurt++;
+        let localStorageVolgorde = localStorage.getItem("volgorde");
+        localStorageVolgorde = localStorageVolgorde.replace(".skip", "");
+        localStorage.setItem("volgorde", localStorageVolgorde);
+
+        // Only execute if there is no .skip in the localStorageVolgorde
+        if (!localStorageVolgorde.includes(".skip")) {
+            // Find the parent element and remove the class 'skip' from the li elements
+            const skipLiElement = parent.document.querySelector('article > div > section > ul > li.skip');
+            skipLiElement.classList.remove('skip');
+        }
+    }
+
     // If the last heks is not the same as the current heks, the last round heksensoep is not done
-    if (lastHeks != currentHeks)
-    {
-        lastRoundHeksensoepDone = false
+    if (lastHeks != currentHeks) {
+        lastRoundHeksensoepDone = false;
     }
 
     // If the special action is required and the special action is not done, the button will show a message
     specialActionDone = localStorage.getItem("specialActionDone");
-    console.log(specialActionDone)
-    if (specialActionRequired && ((specialActionDone != "koningkaarten" && nuAanDeBeurtElement.innerText == String(currentKoning)) || (specialActionDone != "heksensoep" && nuAanDeBeurtElement.innerText == String(currentHeks))))
-    {
-        beurtKlaarButton.innerText = "Voer eerst de\nspeciale actie uit"
+    console.log(specialActionDone);
+    if (specialActionRequired && ((specialActionDone != "koningkaarten" && nuAanDeBeurtElement.innerText == String(currentKoning)) || (specialActionDone != "heksensoep" && nuAanDeBeurtElement.innerText == String(currentHeks)))) {
+        beurtKlaarButton.innerText = "Voer eerst de\nspeciale actie uit";
     }
     // If the special action is required and the special action is done or the special action is not required, the button will show the normal message on the button
-    else
-    {
-        beurtKlaarButton.innerText = "Beurt Klaar"
+    else {
+        beurtKlaarButton.innerText = "Beurt Klaar";
         localStorage.setItem("specialActionDone", false);
         // If the current player is the last player, the round will be increased and the current player will be the first player
-        if (nuAanDeBeurt >= numberOfPlayers)
-        {
+        if (nuAanDeBeurt >= numberOfPlayers) {
             nuAanDeBeurt = 0;
-            ronde++
+            ronde++;
         }
         // The current player will be updated
-        nuAanDeBeurtElement.innerText = currentVolgorde[nuAanDeBeurt]
+        nuAanDeBeurtElement.innerText = currentVolgorde[nuAanDeBeurt];
         // If the current player is the king, the role icon will be the king icon and the special action is required
-        if (nuAanDeBeurtElement.innerText == String(currentKoning))
-        {
-            roleIconElement.className = "koning"
-            specialActionRequired = true
+        if (nuAanDeBeurtElement.innerText == String(currentKoning)) {
+            roleIconElement.className = "koning";
+            specialActionRequired = true;
         }
         // If the current player is the witch, the role icon will be the witch icon
-        else if (nuAanDeBeurtElement.innerText == String(currentHeks))
-        {
-            roleIconElement.className = "heks"
+        else if (nuAanDeBeurtElement.innerText == String(currentHeks)) {
+            roleIconElement.className = "heks";
             // If the last round heksensoep is done, the special action is not required
-            if (lastRoundHeksensoepDone == "true")
-            {
-                specialActionRequired = false
-                lastRoundHeksensoepDone = "false"
+            if (lastRoundHeksensoepDone == "true") {
+                specialActionRequired = false;
+                lastRoundHeksensoepDone = "false";
             }
             // If the last round heksensoep is not done, the special action is required
-            else
-            {
-                specialActionRequired = true
-                lastRoundHeksensoepDone = "true"
+            else {
+                specialActionRequired = true;
+                lastRoundHeksensoepDone = "true";
             }
             // The last round heksensoep is updated in the local storage
-            localStorage.setItem("lastRoundHeksensoepDone", lastRoundHeksensoepDone)
-            console.log(lastRoundHeksensoepDone)
+            localStorage.setItem("lastRoundHeksensoepDone", lastRoundHeksensoepDone);
+            console.log(lastRoundHeksensoepDone);
         }
         // If the current player is neither the king nor the witch, there will be no icons and the special action is not required
-        else
-        {
-            roleIconElement.classList.remove("koning")
-            roleIconElement.classList.remove("heks")
-            specialActionRequired = false
+        else {
+            roleIconElement.classList.remove("koning");
+            roleIconElement.classList.remove("heks");
+            specialActionRequired = false;
         }
-        localStorage.setItem("ronde", ronde)
-        localStorage.setItem("nuAanDeBeurt", nuAanDeBeurt)
-        nuAanDeBeurt++
+        localStorage.setItem("ronde", ronde);
+        localStorage.setItem("nuAanDeBeurt", nuAanDeBeurt);
+        nuAanDeBeurt++;
     }
 }
 
 // If the button is clicked, the current player will be updated
-beurtKlaarButton.addEventListener("click", updateAanDeBeurt)
+beurtKlaarButton.addEventListener("click", updateAanDeBeurt);
