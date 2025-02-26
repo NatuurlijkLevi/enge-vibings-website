@@ -65,7 +65,7 @@ body {
         opacity: 1;
     }
     86% {
-        right: 45.5vw;
+        right: 30vw;
         rotate: 2turn;
         opacity: 1;
     }
@@ -110,15 +110,15 @@ body {
         opacity: 1;
     }
     79% {
-        right: 45.5vw;
+        right: 30vw;
         opacity: 1;
     }
     80% {
-        right: 45.5vw;
+        right: 30vw;
         opacity: 0;
     }
     100% {
-        right: 45.5vw;
+        right: 30vw;
         opacity: 0;
     }
 }
