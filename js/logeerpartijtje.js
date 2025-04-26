@@ -80,8 +80,9 @@ if (currentTheme === "christmas") {
 // Event listener for keydown events
 window.addEventListener('keydown', (event) => {
   const selection = window.getSelection();
+  console.log(selection.toString());
   // If the key is 'r' and the selected text is 'Volgorde:', shuffle the player order
-  if (event.key === "r" && selection.toString() === "Volgorde:") {
+  if (event.key === "r" && (selection.toString().includes("Volgorde"))) {
     const volgordeSpel = document.querySelector('article > div > section > ul');
     let spelVolgorde = localStorage.getItem('volgorde');
     let spelVolgordeArray = spelVolgorde.split(',');
@@ -100,6 +101,10 @@ window.addEventListener('keydown', (event) => {
     volgordeSpel.innerHTML = '';
     spelVolgordeArray.forEach(speler => {
       const li = document.createElement('li');
+      while (speler.includes('.skip')) {
+        speler = speler.replace('.skip', '');
+        li.classList.add('skip')
+      }
       li.innerHTML = speler;
       volgordeSpel.appendChild(li);
     })

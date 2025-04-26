@@ -104,7 +104,7 @@ function updateAanDeBeurt() {
         else if (nuAanDeBeurtElement.innerText == String(currentHeks)) {
             roleIconElement.className = "heks";
             // If the last round heksensoep is done, the special action is not required
-            if (lastRoundHeksensoepDone == "true") {
+            if (lastRoundHeksensoepDone == "true" || localStorage.getItem("ingredientenToegevoegd") == 9) {
                 specialActionRequired = false;
                 lastRoundHeksensoepDone = "false";
             }

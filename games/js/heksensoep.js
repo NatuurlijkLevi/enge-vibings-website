@@ -3,19 +3,29 @@ const ingredienten = document.querySelectorAll('.ingredient');
 const root = document.querySelector(':root');
 const iframe = document.getElementById('ketel-bubbels');
 const ketelSvgGroup = document.querySelector('div#ketel > svg > g');
+let ingredientenToegevoegd = localStorage.getItem('ingredientenToegevoegd') || 0;
 let innerDoc;
 let bubbles;
 let iframeRoot;
 let bubble;
+let bubblesLoaded;
 
 // Initialize the game elements so the iframe gets always loaded (the iframe.onload event listener is not always working)
 async function initializeGameElements() {
   innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-  bubbles = innerDoc.getElementById('bubbles');
-  bubble = innerDoc.querySelectorAll('.bubble');
-  iframeRoot = innerDoc.querySelector(':root');
+  bubbles = await innerDoc.getElementById('bubbles');
+  bubble = await innerDoc.querySelectorAll('.bubble');
+  iframeRoot = await innerDoc.querySelector(':root');
   console.log(innerDoc);
   console.log(bubbles);
+  if (!bubbles) {
+    bubblesLoaded = false;
+    setTimeout(() => {
+      setBubblesElements();
+    }, 1000);
+  }
+
+
   
   // If there is local storage, get the ingredients that are already used
   let usedIngredients = JSON.parse(localStorage.getItem('usedIngredients')) || [];
@@ -36,6 +46,21 @@ async function initializeGameElements() {
     });
   } else {
     console.error('usedIngredients is not an array:', usedIngredients);
+  }
+}
+
+async function setBubblesElements(){
+  bubbles = innerDoc.getElementById('bubbles');
+  bubble = innerDoc.querySelectorAll('.bubble');
+  iframeRoot = innerDoc.querySelector(':root');
+  if (bubbles) {
+    bubblesLoaded = true;
+    console.log(bubbles);
+  }
+  else {
+    setTimeout(() => {
+      setBubblesElements();
+    }, 1000);
   }
 }
 
@@ -76,8 +101,11 @@ function changeSoupWaterColorByAdding(ingredient) {
     if (!Array.isArray(usedIngredients)) {
       usedIngredients = [];
     }
+    ingredientenToegevoegd++;
     usedIngredients.push(ingredient);
     localStorage.setItem('usedIngredients', JSON.stringify(usedIngredients));
+    localStorage.setItem('ingredientenToegevoegd', ingredientenToegevoegd);
+    console.log(ingredientenToegevoegd);
   }
 }
 
