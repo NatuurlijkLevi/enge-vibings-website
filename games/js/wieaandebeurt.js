@@ -57,19 +57,62 @@ function updateAanDeBeurt() {
     numberOfPlayers = currentVolgorde.length;
 
     console.log(nuAanDeBeurt);
+    
+    // First handle wraparound if needed
+    if (nuAanDeBeurt >= numberOfPlayers) {
+        nuAanDeBeurt = 0;
+        ronde++;
+    }
 
-    // Ensure nuAanDeBeurt is within bounds
+    // Skip player if marked with .skip (only once per turn)
     if (nuAanDeBeurt < numberOfPlayers && currentVolgorde[nuAanDeBeurt].includes(".skip")) {
-        nuAanDeBeurt++;
+        console.log("Skipping player:", currentVolgorde[nuAanDeBeurt]);
+        
+        // Remove the .skip from the current player specifically
         let localStorageVolgorde = localStorage.getItem("volgorde");
-        localStorageVolgorde = localStorageVolgorde.replace(".skip", "");
+        const currentPlayerWithSkip = currentVolgorde[nuAanDeBeurt];
+        const currentPlayerWithoutSkip = currentPlayerWithSkip.replace(".skip", "");
+        localStorageVolgorde = localStorageVolgorde.replace(currentPlayerWithSkip, currentPlayerWithoutSkip);
         localStorage.setItem("volgorde", localStorageVolgorde);
+        
+        // Update current volgorde array
+        currentVolgorde = localStorageVolgorde.split(",");
+        
+        console.log("Updated volgorde: " + localStorageVolgorde);
 
-        // Only execute if there is no .skip in the localStorageVolgorde
+        // Find and remove the skip class from the specific player
+        const allLiElements = parent.document.querySelectorAll('article > div > section > ul > li');
+        allLiElements.forEach((li, index) => {
+            // If this li corresponds to the current player that was just unskipped
+            if (li.textContent.trim() === currentPlayerWithoutSkip) {
+                li.classList.remove('skip');
+                console.log("Removed skip class from:", currentPlayerWithoutSkip);
+            }
+        });
+
+        // Also remove skip class if no more .skip players exist
         if (!localStorageVolgorde.includes(".skip")) {
-            // Find the parent element and remove the class 'skip' from the li elements
-            const skipLiElement = parent.document.querySelector('article > div > section > ul > li.skip');
-            skipLiElement.classList.remove('skip');
+            const remainingSkipElements = parent.document.querySelectorAll('article > div > section > ul > li.skip');
+            remainingSkipElements.forEach(element => {
+                element.classList.remove('skip');
+            });
+        }
+        
+        // Move to next player (skip this turn)
+        nuAanDeBeurt++;
+        
+        // Handle wraparound after skipping
+        if (nuAanDeBeurt >= numberOfPlayers) {
+            nuAanDeBeurt = 0;
+            ronde++;
+        }
+        
+        // Recursively check if the next player also needs to be skipped
+        // But limit recursion to prevent infinite loops
+        if (nuAanDeBeurt < numberOfPlayers && currentVolgorde[nuAanDeBeurt].includes(".skip")) {
+            console.log("Next player also needs to be skipped, calling updateAanDeBeurt again");
+            updateAanDeBeurt();
+            return; // Exit this function call since the recursive call will handle the rest
         }
     }
 
@@ -88,11 +131,6 @@ function updateAanDeBeurt() {
     else {
         beurtKlaarButton.innerText = "Beurt Klaar";
         localStorage.setItem("specialActionDone", false);
-        // If the current player is the last player, the round will be increased and the current player will be the first player
-        if (nuAanDeBeurt >= numberOfPlayers) {
-            nuAanDeBeurt = 0;
-            ronde++;
-        }
         // The current player will be updated
         nuAanDeBeurtElement.innerText = currentVolgorde[nuAanDeBeurt];
         // If the current player is the king, the role icon will be the king icon and the special action is required

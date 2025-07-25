@@ -34,7 +34,7 @@ function inIframe () {
 if (monthOfYear === 12 && (dayOfMonth >= 6 && dayOfMonth <= 29)) {
     localStorage.setItem('theme', 'christmas');
 }
-else if (hourOfDay >= 1 && hourOfDay <= 6) {
+else if (hourOfDay >= 3 && hourOfDay <= 6) {
     localStorage.setItem('theme', 'afterdark');
     localStorage.setItem('themeSetWithCommands', "false");
 }
