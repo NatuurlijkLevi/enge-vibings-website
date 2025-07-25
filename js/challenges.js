@@ -19,6 +19,7 @@ const banaanAnimation = "bananaShootToCloseChallenges 1250ms ease-in";
 
 let animationBusy = false;
 const horrorSpelButton = document.getElementById("horrorspel");
+const wiiSpelButton = document.getElementById("wii");
 
 // Add an event listener to the challenge button
 // When the button is clicked, the challenge container will slide out
@@ -65,7 +66,7 @@ let horrorSpelOgenTwo;
 let horrorSpelPopUpButton;
 
 // function to show the horrorspel popup
-function showPopUp() {
+function showHorrorspelPopUp() {
     const horrorSpelPopUp = document.createElement("div");
     horrorSpelPopUp.innerHTML += `  <div id="horrorspel-popup">
                                         <h1>Hoeveel ogen?</h1>
@@ -85,9 +86,25 @@ function showPopUp() {
     horrorSpelPopUpAlt.addEventListener("click", openHorrorSpelAlt);
 }
 
+function showWiiSpelPopUp() {
+    const wiiSpelPopUp = document.createElement("div");
+    wiiSpelPopUp.innerHTML += `     <div id="wii-popup">
+                                        <h1>Wii Spellen</h1>
+                                        <ul>
+                                            <li><a href="tetrispartydeluxe:" onclick="closeWiiSpelPopUp()" target="_blank">Tetris Party Deluxe</a></li>
+                                            <li><a href="udrawstudio:" onclick="closeWiiSpelPopUp()" target="_blank">uDraw Studio</a></li>
+                                            <li><a href="wariowaresmoothmoves:" onclick="closeWiiSpelPopUp()" target="_blank">Wario Ware: Smooth Moves</a></li>
+                                            <li><a href="wiiparty:" onclick="closeWiiSpelPopUp()" target="_blank">Wii Party</a></li>
+                                            <li><a href="wiisportsresort:" onclick="closeWiiSpelPopUp()" target="_blank">Wii Sports Resort</a></li>
+                                        </ul>
+                                    </div>`;
+    document.body.appendChild(wiiSpelPopUp);
+}
+
 // Add an event listener to the horrorspel button
 // When the button is clicked, the horrorspel popup will be shown
-horrorSpelButton.addEventListener("click", showPopUp);
+horrorSpelButton.addEventListener("click", showHorrorspelPopUp);
+wiiSpelButton.addEventListener("click", showWiiSpelPopUp);
 
 // function to remove the horrorspel popup
 function removeContainer(container){
@@ -110,6 +127,13 @@ function openHorrorSpel() {
         removeContainer(horrorSpelContainer);
         horrorSpelPopUpButton.removeEventListener("click", openHorrorSpel);
         horrorSpelPopUpAlt.removeEventListener("click", openHorrorSpelAlt);
+    }
+}
+
+function closeWiiSpelPopUp() {
+    const wiiSpelContainer = document.querySelector("div:has(> #wii-popup)");
+    if (wiiSpelContainer) {
+        removeContainer(wiiSpelContainer);
     }
 }
 
