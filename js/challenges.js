@@ -91,6 +91,7 @@ function showWiiSpelPopUp() {
     wiiSpelPopUp.innerHTML += `     <div id="wii-popup">
                                         <h1>Wii Spellen</h1>
                                         <ul>
+                                            <li><a href="drmariogermbuster:" onclick="closeWiiSpelPopUp()" target="_blank">Dr. Mario & Germ Buster</a></li>
                                             <li><a href="tetrispartydeluxe:" onclick="closeWiiSpelPopUp()" target="_blank">Tetris Party Deluxe</a></li>
                                             <li><a href="udrawstudio:" onclick="closeWiiSpelPopUp()" target="_blank">uDraw Studio</a></li>
                                             <li><a href="wariowaresmoothmoves:" onclick="closeWiiSpelPopUp()" target="_blank">Wario Ware: Smooth Moves</a></li>
