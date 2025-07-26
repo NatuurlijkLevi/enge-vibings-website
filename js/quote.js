@@ -28,7 +28,8 @@ const amberQuotes = [
     "Ik zeg altijd au als iemand Texas zegt.",
     "Oh lekker, stenen!<br>♪♪ Ik eet graag stenen voor ontbijt ♪♪",
     "Het hoort geen soep te zijn",
-    "Levi, wil je even de pijpzak pakken?"
+    "Levi, wil je even de pijpzak pakken?",
+    "Het klinkt gewoon alsof je in een magnetron zit."
 ];
 const jordanQuotes = [
     "Dillema.",
@@ -45,7 +46,9 @@ const jordanQuotes = [
     "Jouw haar ziet er wel uit als iets wat ik op wil eten.",
     "Ik heb hier geen tijd voor, ik heb een kubus om op te lossen.",
     "Hahaha, hij heeft zn dingetje in de fik gezet.",
-    "Je hebt echt gewoon een specht gemaak. Een natte specht, vooruit dan."
+    "Je hebt echt gewoon een specht gemaak. Een natte specht, vooruit dan.",
+    "Ik ben besloten",
+    "♪♪ Arriva Arriva, waarom ben je laat Arriva Arriva, ik sta te wachten hier Arriva Arriva ♪♪"
 ];
 const leviQuotes = [
     "Ik wil jou mijn slang laten zien.",
@@ -77,6 +80,7 @@ const loekQuotes = [
     "Ik hou van worsten en lul en ballen",
     "Wat is de mening van het leven?",
     "Stef, schop mij dan!",
+    "De toeterclown komt je toeteren om 3 uur 's nachts."
 ];
 const luukQuotes = [
     "George in de wielstoel.",
@@ -84,7 +88,9 @@ const luukQuotes = [
     "Nee Levi, sssh. Niet typen rotjoch.",
     "Noise reducetion.",
     "Hocus pocus ik zit in amogus.",
-    "En ik ben een weegschaal"
+    "En ik ben een weegschaal",
+    "Doe eens rustig met je bal Loek",
+    "Hoedje van pauperzooi"
 ];
 const stefQuotes = [
     "Das echt Fiat he, werkt pas als je er tegenaan slaat. Net als een vrouw.",
@@ -99,7 +105,9 @@ const stefQuotes = [
     "Jezus penguin.",
     "Gisteren reden wij ook door rood, maar dat was heel donker oranje.",
     "Politie hotdogs",
-    "Ik wil helemaal geen mobiele salade wagen"
+    "Ik wil helemaal geen mobiele salade wagen",
+    "Cummirubben",
+    "Hoe laat is het morgen?",
 ];
 
 const bogdanQuotes = [
