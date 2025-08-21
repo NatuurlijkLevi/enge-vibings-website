@@ -42,6 +42,10 @@ linkItems.forEach((item) => {
           main.children[1].innerHTML ="<iframe src='logeerpartijtje.html'></iframe>";
         }, 750);
       }
+      // If the clicked item is "Vakantiespel", change the page to the vacation game page
+      else if (item.innerHTML == "<p>Vakantiespel</p>") {
+        window.location.href = "../vakantiespel.html";
+      }
       // If the clicked item is "Games", change the main content to the games page and show the Among Us character
       else if (item.innerHTML == "<p>Games</p>") {
         main.id = "games";
